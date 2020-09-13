@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>盘点不容小觑的JS数组操作方法 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="数组使用方法盘点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="盘点不容小觑的JS数组操作方法">
+<meta property="og:url" content="http://yoursite.com/2020/09/13/%E7%9B%98%E7%82%B9%E4%B8%8D%E5%AE%B9%E5%B0%8F%E8%A7%91%E7%9A%84JS%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数组使用方法盘点">
 <meta property="og:locale">
+<meta property="article:published_time" content="2020-09-13T13:37:48.000Z">
+<meta property="article:modified_time" content="2020-09-13T13:40:40.983Z">
 <meta property="article:author" content="宇智波胖虎">
 <meta name="twitter:card" content="summary">
   
@@ -150,16 +154,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-盘点不容小觑的JS数组操作方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-盘点不容小觑的JS数组操作方法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/13/%E7%9B%98%E7%82%B9%E4%B8%8D%E5%AE%B9%E5%B0%8F%E8%A7%91%E7%9A%84JS%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95/">盘点不容小觑的JS数组操作方法</a>
+    <h1 class="article-title" itemprop="name">
+      盘点不容小觑的JS数组操作方法
     </h1>
   
 
@@ -173,292 +175,291 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>数组使用方法盘点</p>
-        
-          <a class="article-more-a" href="/2020/09/13/%E7%9B%98%E7%82%B9%E4%B8%8D%E5%AE%B9%E5%B0%8F%E8%A7%91%E7%9A%84JS%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/13/%E7%9B%98%E7%82%B9%E4%B8%8D%E5%AE%B9%E5%B0%8F%E8%A7%91%E7%9A%84JS%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-拖拽和碰撞检测" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/01/%E6%8B%96%E6%8B%BD%E5%92%8C%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B/">拖拽和碰撞检测</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/01/%E6%8B%96%E6%8B%BD%E5%92%8C%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B/" class="archive-article-date">
-  	<time datetime="2020-05-01T08:52:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、盒子拖拽"><a href="#一、盒子拖拽" class="headerlink" title="一、盒子拖拽"></a>一、盒子拖拽</h3><p>原生JS：拖拽目标元素到页面任意位置</p>
-<iframe height="265" style="width: 100%;" scrolling="no" title="YzzXEyK" src="https://codepen.io/OrangeSnow/embed/YzzXEyK?height=265&theme-id=0&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow/pen/YzzXEyK'>YzzXEyK</a> by Sakura
-  (<a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow'>@OrangeSnow</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe>
-        
-          <a class="article-more-a" href="/2020/05/01/%E6%8B%96%E6%8B%BD%E5%92%8C%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/01/%E6%8B%96%E6%8B%BD%E5%92%8C%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-React：仿简书项目" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/23/React%EF%BC%9A%E4%BB%BF%E7%AE%80%E4%B9%A6%E9%A1%B9%E7%9B%AE/">React：仿简书项目</a>
-    </h1>
-  
-
-        
-        <a href="/2019/02/23/React%EF%BC%9A%E4%BB%BF%E7%AE%80%E4%B9%A6%E9%A1%B9%E7%9B%AE/" class="archive-article-date">
-  	<time datetime="2019-02-23T10:15:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="关键知识点"><a href="#关键知识点" class="headerlink" title="关键知识点"></a>关键知识点</h3><p>项目配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Redux、Redux-thunk、axios</span><br></pre></td></tr></table></figure>
-<p>1、</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Fragment&gt;&lt;&#x2F;Fragment&gt;：占位符，不会出现在节点中</span><br></pre></td></tr></table></figure>
-<p>2、<br>this指向问题，用bind</p>
-<p>3、<br>给数组加值，擅用解构：[…this.state.list,newValue]</p>
-<p>4、</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dangrouslySetInnerHTML&#x3D;&#123;&#123;__html:item随便&#125;&#125;不转义，容易被XSS注入脚本攻击。</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2019/02/23/React%EF%BC%9A%E4%BB%BF%E7%AE%80%E4%B9%A6%E9%A1%B9%E7%9B%AE/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/23/React%EF%BC%9A%E4%BB%BF%E7%AE%80%E4%B9%A6%E9%A1%B9%E7%9B%AE/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-React官方文档学习笔记（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/13/React%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">React官方文档学习笔记（二）</a>
-    </h1>
-  
-
-        
-        <a href="/2019/01/13/React%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2019-01-13T10:09:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="深入-JSX"><a href="#深入-JSX" class="headerlink" title="深入 JSX"></a>深入 JSX</h3><h5 id="在运行时选择类型"><a href="#在运行时选择类型" class="headerlink" title="在运行时选择类型"></a>在运行时选择类型</h5><p>错误</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;;</span><br><span class="line">import &#123; PhotoStory, VideoStory &#125; from &#39;.&#x2F;stories&#39;;</span><br><span class="line"></span><br><span class="line">const components &#x3D; &#123;</span><br><span class="line">  photo: PhotoStory,</span><br><span class="line">  video: VideoStory</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function Story(props) &#123;</span><br><span class="line">  &#x2F;&#x2F; 错误！JSX 标签名不能为一个表达式。</span><br><span class="line">  return &lt;components[props.storyType] story&#x3D;&#123;props.story&#125; &#x2F;&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>正确：如果你的确想通过表达式来确定 React 元素的类型，请先将其赋值给大写开头的变量，不能是小写的！</p>
-        
-          <a class="article-more-a" href="/2019/01/13/React%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/13/React%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-React官方文档学习笔记（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/06/React%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">React官方文档学习笔记（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/06/React%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2018-12-06T10:08:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="（一）JSX"><a href="#（一）JSX" class="headerlink" title="（一）JSX"></a>（一）JSX</h3><p>JSX的表达式要放在大括号中,推荐在 JSX 代码的外面扩上一个小括号，这样可以防止分号自动插入的bug。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const element &#x3D; (</span><br><span class="line">  &lt;h1&gt;</span><br><span class="line">    Hello, &#123;formatName(user)&#125;!</span><br><span class="line">  &lt;&#x2F;h1&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>Babel 转译器会把 JSX 转换成一个名为 React.createElement() 的方法调用，下面两种方法效果等同。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const element &#x3D; (</span><br><span class="line">  &lt;h1 className&#x3D;&quot;greeting&quot;&gt;</span><br><span class="line">    Hello, world!</span><br><span class="line">  &lt;&#x2F;h1&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const element &#x3D; React.createElement(</span><br><span class="line">  &#39;h1&#39;,</span><br><span class="line">  &#123;className: &#39;greeting&#39;&#125;,</span><br><span class="line">  &#39;Hello, world!&#39;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>React DOM 在渲染之前默认会过滤所有传入的值。它可以确保你的应用不会被注入攻击。所有的内容在渲染之前都被转换成了字符串。这样可以有效地防止 XSS(跨站脚本) 攻击。</p>
+<a id="more"></a>
+<p>平时写需求的时候，后台经常让前端二次处理接口数据（小声逼逼：让前端处理复杂数据的后台和需求很累赘的产品一样，都是前端的敌人），增加了额外的工作量。为了提高工作效率，腾出更多时间学习，就盘点一下数组的使用方法。</p>
+<p>本文将MDN文档上有的方法，分门别类的罗列了一下。主要作为个人学习的笔记，具体MDN文档上都有，自己罗列一遍，方便记忆。</p>
+<h2 id="数组简介"><a href="#数组简介" class="headerlink" title="数组简介"></a>数组简介</h2><blockquote>
+<p>数组是一种类列表对象，它的原型中提供了遍历和修改元素的相关操作。</p>
 </blockquote>
-        
-          <a class="article-more-a" href="/2018/12/06/React%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/#more">more >></a>
-        
+<blockquote>
+<p>只能用整数作为数组元素的索引，而不能用字符串。数组的索引是从0开始，只能用[]引用。<br>因为在 JavaScript 中，以数字开头的属性不能用点号引用，必须用方括号。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array">MDN文档：Array</a></p>
+<h2 id="数组属性"><a href="#数组属性" class="headerlink" title="数组属性"></a>数组属性</h2><blockquote>
+<p>length 、Symbol 属性 @@unscopable</p>
+</blockquote>
+<h2 id="数组操作方法系列一：修改器方法"><a href="#数组操作方法系列一：修改器方法" class="headerlink" title="数组操作方法系列一：修改器方法"></a>数组操作方法系列一：修改器方法</h2><blockquote>
+<p>定义：修改器方法会改变调用它们的对象自身的值，即对数组进行增、删、改操作</p>
+</blockquote>
+<h3 id="pop"><a href="#pop" class="headerlink" title="pop()"></a>pop()</h3><blockquote>
+<p>定义：从数组中删除最后一个元素，并返回该元素的值。此方法更改数组的长度</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const plants &#x3D; [&#39;broccoli&#39;, &#39;cauliflower&#39;, &#39;cabbage&#39;, &#39;kale&#39;, &#39;tomato&#39;];</span><br><span class="line">console.log(plants.pop());</span><br><span class="line">&#x2F;&#x2F; expected output: &quot;tomato&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="push"><a href="#push" class="headerlink" title="push()"></a>push()</h3><blockquote>
+<p>定义：将一个或多个元素添加到数组的末尾，并返回该数组的新长度</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var sports &#x3D; [&quot;soccer&quot;, &quot;baseball&quot;];</span><br><span class="line">var total &#x3D; sports.push(&quot;football&quot;, &quot;swimming&quot;);</span><br><span class="line">console.log(sports); </span><br><span class="line">&#x2F;&#x2F; [&quot;soccer&quot;, &quot;baseball&quot;, &quot;football&quot;, &quot;swimming&quot;]</span><br><span class="line">console.log(total);  </span><br><span class="line">&#x2F;&#x2F; 4</span><br></pre></td></tr></table></figure>
+<h3 id="shift"><a href="#shift" class="headerlink" title="shift()"></a>shift()</h3><blockquote>
+<p>定义：从数组中删除第一个元素，并返回该元素的值。此方法更改数组的长度</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const array1 &#x3D; [1, 2, 3];</span><br><span class="line">const firstElement &#x3D; array1.shift();</span><br><span class="line"></span><br><span class="line">console.log(array1);</span><br><span class="line">&#x2F;&#x2F; expected output: Array [2, 3]</span><br><span class="line">console.log(firstElement);</span><br><span class="line">&#x2F;&#x2F; expected output: 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="unshift"><a href="#unshift" class="headerlink" title="unshift()"></a>unshift()</h3><blockquote>
+<p>定义：将一个或多个元素添加到数组的开头，并返回该数组的新长度(该方法修改原有数组)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const array1 &#x3D; [1, 2, 3];</span><br><span class="line"></span><br><span class="line">console.log(array1.unshift(4, 5));</span><br><span class="line">&#x2F;&#x2F; expected output: 5</span><br><span class="line"></span><br><span class="line">console.log(array1);</span><br><span class="line">&#x2F;&#x2F; expected output: Array [4, 5, 1, 2, 3]</span><br></pre></td></tr></table></figure>
+
+<h3 id="reverse"><a href="#reverse" class="headerlink" title="reverse()"></a>reverse()</h3><blockquote>
+<p>定义：将数组中元素的位置颠倒，并返回该数组。数组的第一个元素会变成最后一个，数组的最后一个元素变成第一个。该方法会改变原数组。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a &#x3D; [1, 2, 3];</span><br><span class="line">a.reverse(); </span><br><span class="line">console.log(a); &#x2F;&#x2F; [3, 2, 1]</span><br></pre></td></tr></table></figure>
+
+<h3 id="sort"><a href="#sort" class="headerlink" title="sort()"></a>sort()</h3><blockquote>
+<p>定义：用<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/In-place_algorithm">原地算法</a>对数组的元素进行排序，并返回数组。默认排序顺序是在将元素转换为字符串，然后比较它们的UTF-16代码单元值序列时构建的</p>
+</blockquote>
+<blockquote>
+<p>注意：sort()很重要，应用场景很广，对象数组的多条件优先级也可以使用sort()</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">arr.sort([compareFunction])</span><br><span class="line"></span><br><span class="line">compareFunction 可选</span><br><span class="line">用来指定按某种顺序进行排列的函数。如果省略，元素按照转换为的字符串的各个字符的Unicode位点进行排序。</span><br><span class="line">firstEl</span><br><span class="line">第一个用于比较的元素</span><br><span class="line">secondEl</span><br><span class="line">第二个用于比较的元素</span><br></pre></td></tr></table></figure>
+<p>compareFunction(a, b) 小于 0 ，那么 a 会被排列到 b 之前；<br>等于 0 ， a 和 b 的相对位置不变;<br>compareFunction(a, b) 大于 0 ， b 会被排列到 a 之前</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function compare(a, b) &#123;</span><br><span class="line">  if (a &lt; b ) &#123;           &#x2F;&#x2F; 按某种排序标准进行比较, a 小于 b</span><br><span class="line">    return -1;</span><br><span class="line">  &#125;</span><br><span class="line">  if (a &gt; b ) &#123;</span><br><span class="line">    return 1;</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; a must be equal to b</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;精简，升序排列</span><br><span class="line">function compareNumbers(a, b) &#123;</span><br><span class="line">  return a - b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 按照多个值排序数组</span><br><span class="line">mapped.sort(function(a, b) &#123;</span><br><span class="line">  return +(a.value &gt; b.value) || +(a.value &#x3D;&#x3D;&#x3D; b.value) - 1;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="splice"><a href="#splice" class="headerlink" title="splice()"></a>splice()</h3><blockquote>
+<p>定义：通过删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容。此方法会改变原数组。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">array.splice(start, deleteCount, [item1, item2, item3])</span><br><span class="line"></span><br><span class="line">start：指定修改的开始位置（从0计数）。如果超出了数组的长度，则从数组末尾开始添加内容</span><br><span class="line">deleteCount：整数，表示要移除的数组元素的个数。0通常与添加元素一起组合使用。</span><br><span class="line">item1, item2…：要添加进数组的元素,从start 位置开始</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var myFish &#x3D; [&#39;angel&#39;, &#39;clown&#39;, &#39;drum&#39;, &#39;mandarin&#39;, &#39;sturgeon&#39;];</span><br><span class="line">var removed &#x3D; myFish.splice(3, 1);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 运算后的 myFish: [&quot;angel&quot;, &quot;clown&quot;, &quot;drum&quot;, &quot;sturgeon&quot;]</span><br><span class="line">&#x2F;&#x2F; 被删除的元素: [&quot;mandarin&quot;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="copyWithin-（实验性API）"><a href="#copyWithin-（实验性API）" class="headerlink" title="copyWithin()（实验性API）"></a>copyWithin()（实验性API）</h3><blockquote>
+<p>定义：浅复制数组的一部分到同一数组中的另一个位置，并返回它，不会改变原数组的长度。</p>
+</blockquote>
+<blockquote>
+<p>即：将数组中的一部分数据用另一部分数据替换</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.copyWithin(target, start, end)</span><br></pre></td></tr></table></figure>
+<p>三个参数：</p>
+<p>target：开始复制元素的下标，如果是负数，则从末尾开始计算。</p>
+<p>start： 开始复制元素的起始位置，如果是负数，则从末尾开始计算。</p>
+<p>end：复制元素的结束位置，copyWithin 将会拷贝到该位置，但不包括 end 这个位置的元素。如果是负数，则从末尾开始计算。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">MDN官方例子：</span><br><span class="line">[1, 2, 3, 4, 5].copyWithin(-2)</span><br><span class="line">&#x2F;&#x2F; [1, 2, 3, 1, 2]</span><br><span class="line"></span><br><span class="line">[1, 2, 3, 4, 5].copyWithin(0, 3)</span><br><span class="line">&#x2F;&#x2F; [4, 5, 3, 4, 5]</span><br><span class="line"></span><br><span class="line">[].copyWithin.call(&#123;length: 5, 3: 1&#125;, 0, 3);</span><br><span class="line">&#x2F;&#x2F; &#123;0: 1, 3: 1, length: 5&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="fill-（实验性API）"><a href="#fill-（实验性API）" class="headerlink" title="fill()（实验性API）"></a>fill()（实验性API）</h3><blockquote>
+<p>定义：用一个固定值填充一个数组中从起始索引到终止索引内的全部元素。不包括终止索引。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.fill(value（填充数组元素的值）, start（起始索引）, end（终止索引，不包含）)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MDN官方例子:</span><br><span class="line">[1, 2, 3].fill(4, 1, 2);         &#x2F;&#x2F; [1, 4, 3]</span><br><span class="line">[1, 2, 3].fill(4, -3, -2);       &#x2F;&#x2F; [4, 2, 3]</span><br><span class="line">[1, 2, 3].fill(4, NaN, NaN);     &#x2F;&#x2F; [1, 2, 3]</span><br><span class="line">Array(3).fill(4);                &#x2F;&#x2F; [4, 4, 4]</span><br><span class="line">[].fill.call(&#123; length: 3 &#125;, 4);  &#x2F;&#x2F; &#123;0: 4, 1: 4, 2: 4, length: 3&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="数组操作方法系列二：访问方法"><a href="#数组操作方法系列二：访问方法" class="headerlink" title="数组操作方法系列二：访问方法"></a>数组操作方法系列二：访问方法</h2><blockquote>
+<p>定义：访问方法绝对不会改变调用它们的对象的值，只会返回一个新的数组或者返回一个其它的期望值。</p>
+</blockquote>
+<h3 id="slice"><a href="#slice" class="headerlink" title="slice()"></a>slice()</h3><blockquote>
+<p>定义：返回一个新的数组对象，这一对象是一个由 begin 和 end 决定的原数组的浅拷贝（包括 begin，不包括end）。原始数组不会被改变</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const animals &#x3D; [&#39;ant&#39;, &#39;bison&#39;, &#39;camel&#39;, &#39;duck&#39;, &#39;elephant&#39;];</span><br><span class="line"></span><br><span class="line">console.log(animals.slice(2));</span><br><span class="line">&#x2F;&#x2F; expected output: Array [&quot;camel&quot;, &quot;duck&quot;, &quot;elephant&quot;]</span><br><span class="line"></span><br><span class="line">console.log(animals.slice(2, 4));</span><br><span class="line">&#x2F;&#x2F; expected output: Array [&quot;camel&quot;, &quot;duck&quot;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="concat"><a href="#concat" class="headerlink" title="concat()"></a>concat()</h3><blockquote>
+<p>定义：用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。</p>
+</blockquote>
+<blockquote>
+<p>注意：concat方法不会改变this或任何作为参数提供的数组，而是返回一个浅拷贝。当一个合并的数组中有对象，只要修改一个数组中对象的值，新旧数组中对象值都会改变。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MDN官方例子：</span><br><span class="line">var alpha &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];</span><br><span class="line">var alphaNumeric &#x3D; alpha.concat(1, [2, 3]);</span><br><span class="line"></span><br><span class="line">console.log(alphaNumeric); </span><br><span class="line">&#x2F;&#x2F; results in [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, 1, 2, 3]</span><br></pre></td></tr></table></figure>
+
+<h3 id="join"><a href="#join" class="headerlink" title="join()"></a>join()</h3><blockquote>
+<p>定义：将一个数组（或一个类数组对象）的所有元素连接成一个字符串并返回这个字符串。如果数组只有一个项目，那么将返回该项目而不使用分隔符。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; [&#39;Wind&#39;, &#39;Rain&#39;, &#39;Fire&#39;];</span><br><span class="line">var myVar1 &#x3D; a.join();      &#x2F;&#x2F; myVar1的值变为&quot;Wind,Rain,Fire&quot;</span><br><span class="line">var myVar2 &#x3D; a.join(&#39;, &#39;);  &#x2F;&#x2F; myVar2的值变为&quot;Wind, Rain, Fire&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="includes-（实验性API）"><a href="#includes-（实验性API）" class="headerlink" title="includes()（实验性API）"></a>includes()（实验性API）</h3><blockquote>
+<p>定义：用来判断一个数组是否包含一个指定的值，根据情况，如果包含则返回 true，否则返回false</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.includes(valueToFind, fromIndex)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const array1 &#x3D; [1, 2, 3];</span><br><span class="line"></span><br><span class="line">console.log(array1.includes(2));</span><br><span class="line">&#x2F;&#x2F; expected output: true</span><br><span class="line">[1, 2, 3].includes(3, -1); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h3 id="indexOf"><a href="#indexOf" class="headerlink" title="indexOf()"></a>indexOf()</h3><blockquote>
+<p>定义：返回在数组中可以找到一个给定元素的第一个索引，如果不存在，则返回-1</p>
+</blockquote>
+<blockquote>
+<p>补充：和findIndex()很像，但条件还是有差别的，findIndex()要满足提供的测试函数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var array &#x3D; [2, 5, 9];</span><br><span class="line">array.indexOf(2);     &#x2F;&#x2F; 0</span><br><span class="line">array.indexOf(7);     &#x2F;&#x2F; -1</span><br><span class="line">array.indexOf(9, 2);  &#x2F;&#x2F; 2</span><br></pre></td></tr></table></figure>
+
+<h3 id="lastIndexOf"><a href="#lastIndexOf" class="headerlink" title="lastIndexOf()"></a>lastIndexOf()</h3><blockquote>
+<p>定义：返回指定元素（也即有效的 JavaScript 值或变量）在数组中的最后一个的索引，如果不存在则返回 -1。从数组的后面向前查找，从 fromIndex 处开始。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var array &#x3D; [2, 5, 9, 2];</span><br><span class="line">var index &#x3D; array.lastIndexOf(2);</span><br><span class="line">&#x2F;&#x2F; index is 3</span><br><span class="line">index &#x3D; array.lastIndexOf(7);</span><br><span class="line">&#x2F;&#x2F; index is -1</span><br><span class="line">index &#x3D; array.lastIndexOf(2, 3);</span><br><span class="line">&#x2F;&#x2F; index is 3</span><br><span class="line">index &#x3D; array.lastIndexOf(2, -2);</span><br><span class="line">&#x2F;&#x2F; index is 0</span><br></pre></td></tr></table></figure>
+
+<h3 id="toLocaleString-NaN"><a href="#toLocaleString-NaN" class="headerlink" title="toLocaleString()"></a>toLocaleString()</h3><blockquote>
+<p>定义：返回一个字符串表示数组中的元素。数组中的元素将使用各自的 toLocaleString 方法转成字符串，这些字符串将使用一个特定语言环境的字符串（例如一个逗号 “,”）隔开</p>
+</blockquote>
+<p>待补充~</p>
+<h3 id="toSource-（非标准，尽量不用于生产环境）"><a href="#toSource-（非标准，尽量不用于生产环境）" class="headerlink" title="toSource() （非标准，尽量不用于生产环境）"></a>toSource() （非标准，尽量不用于生产环境）</h3><blockquote>
+<p>返回一个字符串,代表该数组的源代码</p>
+</blockquote>
+<h3 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString()"></a>toString()</h3><blockquote>
+<p>定义：返回一个字符串，表示指定的数组及其元素</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const array1 &#x3D; [1, 2, &#39;a&#39;, &#39;1a&#39;];</span><br><span class="line"></span><br><span class="line">console.log(array1.toString());</span><br><span class="line">&#x2F;&#x2F; expected output: &quot;1,2,a,1a&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="数组操作方法系列三：迭代方法"><a href="#数组操作方法系列三：迭代方法" class="headerlink" title="数组操作方法系列三：迭代方法"></a>数组操作方法系列三：迭代方法</h2><blockquote>
+<p>定义：即遍历方法</p>
+</blockquote>
+<h3 id="forEach"><a href="#forEach" class="headerlink" title="forEach()"></a>forEach()</h3><blockquote>
+<p>定义：对数组的每个元素执行一次给定的函数</p>
+</blockquote>
+<blockquote>
+<p>即：类似for循环</p>
+</blockquote>
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter()"></a>filter()</h3><blockquote>
+<p>定义：方法创建一个新数组, 其包含通过所提供函数实现的测试的所有元素</p>
+</blockquote>
+<blockquote>
+<p>即：对原数组进行过滤，返回的新数组中都是原数组中符合条件的元素</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var newArray &#x3D; arr.filter(callback(element, index, array),thisArg)</span><br><span class="line"></span><br><span class="line">element：元素的值</span><br><span class="line">index：元素的索引</span><br><span class="line">array：被遍历的数组本身</span><br><span class="line">thisArg：执行 callback 时，用于 this 的值</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let filterArray &#x3D; [1, 2, 3].filter(value &#x3D;&gt; value &gt; 2) &#x2F;&#x2F; [3]</span><br></pre></td></tr></table></figure>
+
+<h3 id="map"><a href="#map" class="headerlink" title="map()"></a>map()</h3><blockquote>
+<p>定义：创建一个新数组，其结果是该数组中的每个元素是调用一次提供的函数后的返回值</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var numbers &#x3D; [1, 4, 9];</span><br><span class="line">var roots &#x3D; numbers.map(Math.sqrt);</span><br><span class="line">&#x2F;&#x2F; roots的值为[1, 2, 3], numbers的值仍为[1, 4, 9]</span><br></pre></td></tr></table></figure>
+
+<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce()"></a>reduce()</h3><blockquote>
+<p>对数组中的每个元素执行一个reducer函数(升序执行)，将其结果汇总为单个返回值</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">reducer 函数接收4个参数:</span><br><span class="line">Accumulator (acc) (累计器)</span><br><span class="line">Current Value (cur) (当前值)</span><br><span class="line">Current Index (idx) (当前索引)</span><br><span class="line">Source Array (src) (源数组)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var initialValue &#x3D; 0;</span><br><span class="line">var sum &#x3D; [&#123;x: 1&#125;, &#123;x:2&#125;, &#123;x:3&#125;].reduce(</span><br><span class="line">    (accumulator, currentValue) &#x3D;&gt; accumulator + currentValue.x</span><br><span class="line">    ,initialValue</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">console.log(sum) &#x2F;&#x2F; logs 6</span><br></pre></td></tr></table></figure>
+
+<h3 id="reduceRight"><a href="#reduceRight" class="headerlink" title="reduceRight()"></a>reduceRight()</h3><blockquote>
+<p>定义：接受一个函数作为累加器（accumulator）和数组的每个值（从右到左）将其减少为单个值</p>
+</blockquote>
+<p>待补充~</p>
+<h3 id="entries-（实验性API）"><a href="#entries-（实验性API）" class="headerlink" title="entries()（实验性API）"></a>entries()（实验性API）</h3><blockquote>
+<p>定义：返回一个新的Array Iterator对象，该对象包含数组中每个索引的键/值对</p>
+</blockquote>
+<p>有点没搞懂，先放着~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MDN：官方例子</span><br><span class="line">const array1 &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];</span><br><span class="line">const iterator1 &#x3D; array1.entries();</span><br><span class="line"></span><br><span class="line">console.log(iterator1.next().value);</span><br><span class="line">&#x2F;&#x2F; expected output: Array [0, &quot;a&quot;]</span><br><span class="line">console.log(iterator1.next().value);</span><br><span class="line">&#x2F;&#x2F; expected output: Array [1, &quot;b&quot;]</span><br></pre></td></tr></table></figure>
+<h3 id="every"><a href="#every" class="headerlink" title="every()"></a>every()</h3><blockquote>
+<p>定义：测试一个数组内的所有元素是否都能通过某个指定函数的测试。它返回一个布尔值。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.every(callback(element（元素值）, index（元素的索引）, array（原数组)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MDN官方例子：</span><br><span class="line">[12, 5, 8, 130, 44].every(x &#x3D;&gt; x &gt;&#x3D; 10); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+<h3 id="some"><a href="#some" class="headerlink" title="some()"></a>some()</h3><blockquote>
+<p>定义：测试数组中是不是至少有1个元素通过了被提供的函数测试。它返回的是一个Boolean类型的值</p>
+</blockquote>
+<blockquote>
+<p>注意：和includes()有区别，includes()直接找对应的值，find()是满足callback 函数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[2, 5, 8, 1, 4].some(x &#x3D;&gt; x &gt; 10);  &#x2F;&#x2F; false</span><br><span class="line">[12, 5, 8, 1, 4].some(x &#x3D;&gt; x &gt; 10); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h3 id="find-（实验性API）"><a href="#find-（实验性API）" class="headerlink" title="find()（实验性API）"></a>find()（实验性API）</h3><blockquote>
+<p>定义：返回数组中满足提供的测试函数的第一个元素的值。否则返回 undefined。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.find(callback, thisArg)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MDN：官方例子</span><br><span class="line">const array1 &#x3D; [5, 12, 8, 130, 44];</span><br><span class="line">const found &#x3D; array1.find(element &#x3D;&gt; element &gt; 10);</span><br></pre></td></tr></table></figure>
+
+<h3 id="findIndex-（实验性API）"><a href="#findIndex-（实验性API）" class="headerlink" title="findIndex()（实验性API）"></a>findIndex()（实验性API）</h3><blockquote>
+<p>定义：返回数组中满足提供的测试函数的第一个元素的索引。若没有找到对应元素则返回-1。</p>
+</blockquote>
+<blockquote>
+<p>补充：这个方法和find()有异曲同工之妙，只不过find()返回的是元素的值，findIndex()返回的是元素的下标，从方法名就可以看出来了。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.findIndex(callback, thisArg)</span><br></pre></td></tr></table></figure>
+
+<h3 id="keys-（实验性API）"><a href="#keys-（实验性API）" class="headerlink" title="keys()（实验性API）"></a>keys()（实验性API）</h3><blockquote>
+<p>定义：返回一个包含数组中每个索引键的Array Iterator对象</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr &#x3D; [&quot;a&quot;, , &quot;c&quot;];</span><br><span class="line">var sparseKeys &#x3D; Object.keys(arr);</span><br><span class="line">var denseKeys &#x3D; [...arr.keys()];</span><br><span class="line">console.log(sparseKeys); &#x2F;&#x2F; [&#39;0&#39;, &#39;2&#39;]</span><br><span class="line">console.log(denseKeys);  &#x2F;&#x2F; [0, 1, 2]</span><br></pre></td></tr></table></figure>
+
+<h3 id="values-（实验性API）"><a href="#values-（实验性API）" class="headerlink" title="values() （实验性API）"></a>values() （实验性API）</h3><blockquote>
+<p>定义：返回一个新的 Array Iterator 对象，该对象包含数组每个索引的值</p>
+</blockquote>
+<h3 id="Array-prototype-iterator（实验性API）"><a href="#Array-prototype-iterator（实验性API）" class="headerlink" title="Array.prototype@@iterator（实验性API）"></a>Array.prototype<a href="">@@iterator</a>（实验性API）</h3><blockquote>
+<p>定义：@@iterator 属性和 Array.prototype.values() 属性的初始值是同一个函数对象</p>
+</blockquote>
+<p>待补充~</p>
+<h2 id="数组操作方法系列四：其他方法"><a href="#数组操作方法系列四：其他方法" class="headerlink" title="数组操作方法系列四：其他方法"></a>数组操作方法系列四：其他方法</h2><h3 id="Array-isArray"><a href="#Array-isArray" class="headerlink" title="Array.isArray()"></a>Array.isArray()</h3><blockquote>
+<p>定义：用于确定传递的值是否是一个 Array</p>
+</blockquote>
+<blockquote>
+<p>即：判断是不是数组，是的话返回布尔值true</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">MDN官方例子：</span><br><span class="line">&#x2F;&#x2F; true</span><br><span class="line">Array.isArray([1, 2, 3]);  </span><br><span class="line">Array.isArray(new Array(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;))</span><br><span class="line">Array.isArray(Array.prototype) &#x2F;&#x2F;鲜为人知的事实：其实 Array.prototype 也是一个数组。</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; false</span><br><span class="line">Array.isArray(&#123;foo: 123&#125;); </span><br><span class="line">Array.isArray(new Uint8Array(32))</span><br><span class="line">Array.isArray(&#123; __proto__: Array.prototype &#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from()"></a>Array.from()</h3><blockquote>
+<p>定义：从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例</p>
+</blockquote>
+<blockquote>
+<p>即：就是在不改变原数据值的情况下，将对象、字符串等变成数组后，返回新的数组</p>
+</blockquote>
+<p>Array.from()有三个参数：</p>
+<p>obj（必填）：要转化成数组的对象或者字符串</p>
+<p>mapFn（可填）：新数组中的每个元素会执行该回调函数，和map类似，返回经过这个方法处理后的数组</p>
+<p>thisArg（可填）：执行回调函数 mapFn 时的this 对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Array.from(obj, mapFn, thisArg) &#x3D; Array.from(obj).map(mapFn, thisArg)</span><br><span class="line"></span><br><span class="line">MDN官方例子：</span><br><span class="line">console.log(Array.from(&#39;foo&#39;));</span><br><span class="line">&#x2F;&#x2F; expected output: Array [&quot;f&quot;, &quot;o&quot;, &quot;o&quot;]</span><br><span class="line"></span><br><span class="line">console.log(Array.from([1, 2, 3], x &#x3D;&gt; x + x));</span><br><span class="line">&#x2F;&#x2F; expected output: Array [2, 4, 6]</span><br></pre></td></tr></table></figure>
+<h3 id="Array-of"><a href="#Array-of" class="headerlink" title="Array.of()"></a>Array.of()</h3><blockquote>
+<p>定义：创建一个具有可变数量参数的新数组实例，而不考虑参数的数量或类型</p>
+</blockquote>
+<blockquote>
+<p>即：在of()中添加的所有数据，都返回成一个数组，没有参数类型和参数数量的限制</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MDN官方例子：</span><br><span class="line">Array.of(7);       &#x2F;&#x2F; [7] </span><br><span class="line">Array.of(1, 2, 3); &#x2F;&#x2F; [1, 2, 3]</span><br><span class="line"></span><br><span class="line">Array(7);          &#x2F;&#x2F; [ , , , , , , ]</span><br><span class="line">Array(1, 2, 3);    &#x2F;&#x2F; [1, 2, 3]</span><br></pre></td></tr></table></figure>
+
+<h3 id="flat"><a href="#flat" class="headerlink" title="flat()"></a>flat()</h3><blockquote>
+<p>定义：会按照一个可指定的深度递归遍历数组，并将所有元素与遍历到的子数组中的元素合并为一个新数组返回。</p>
+</blockquote>
+<p>注意！！：flat()内部实现原理挺复杂的，MDN上有很多几个方案，得花时间多看看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var newArray &#x3D; arr.flat([depth])</span><br><span class="line">depth 可选：指定要提取嵌套数组的结构深度，默认值为 1。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MDN官方例子：</span><br><span class="line">&#x2F;&#x2F;扁平化嵌套数组</span><br><span class="line">[0, 1, 2, [3, 4]].flat() &#x2F;&#x2F;[0, 1, 2, 3, 4]</span><br><span class="line">[0, 1, 2, [[[3, 4]]]].flat(2) &#x2F;&#x2F;[0, 1, 2, [3, 4]]</span><br><span class="line">&#x2F;&#x2F;扁平化与数组空项</span><br><span class="line">[1, 2, , 4, 5].flat() &#x2F;&#x2F;[1, 2, 4, 5]</span><br></pre></td></tr></table></figure>
+<h3 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap()"></a>flatMap()</h3><blockquote>
+<p>定义：首先使用映射函数映射每个元素，然后将结果压缩成一个新数组</p>
+</blockquote>
+<blockquote>
+<p>即：和flat()的用法一样，只是多了二次处理数据的方法，所以名字上也加了个Map</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr1.map(x &#x3D;&gt; [x * 2]); </span><br><span class="line">&#x2F;&#x2F; [[2], [4], [6], [8]]</span><br><span class="line"></span><br><span class="line">arr1.flatMap(x &#x3D;&gt; [x * 2]);</span><br><span class="line">&#x2F;&#x2F; [2, 4, 6, 8]</span><br></pre></td></tr></table></figure>
+
+<h3 id="Array-species"><a href="#Array-species" class="headerlink" title="Array[@@species]"></a>Array[@@species]</h3><blockquote>
+<p>定义：访问器属性返回 Array 的构造函数</p>
+</blockquote>
+<p>待补充</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>其实老实讲，之前碰到一些需要查的语法，经常看的是别人的文章。不过经过这一次数组的梳理，个人觉得还是能先看MDN文档就先MDN文档。</p>
+<p>因为MDN文档中的语法是比较官方全面的，一般的文章中多少带了些主观的理解，有可能会存在偏差，包括我自己写的这篇。</p>
+<p>但作为个人理解学习，写文章还是很有必要的。</p>
+<p>不过在写文章的过程中，我写到一半其实不想写下去了，因为越看越觉得写的MDN上都有，没必要再整理一遍。但半途而废也不好，就干脆整理完。回顾一下，最有用的是文章目录和不同方法之间的总结比较。以后再写类似的盘点文章，可以着重这两方面。</p>
+<p>总结归纳一下，学习输入以看文档为主，总结记忆靠写文章帮助。</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -467,16 +468,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/06/React%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/09/13/%E7%9B%98%E7%82%B9%E4%B8%8D%E5%AE%B9%E5%B0%8F%E8%A7%91%E7%9A%84JS%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/01/%E6%8B%96%E6%8B%BD%E5%92%8C%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">拖拽和碰撞检测</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -496,374 +556,14 @@
 
 
 
-
-  
-    <article id="post-微信小程序业务应用场景" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/06/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%9A%E5%8A%A1%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">微信小程序业务应用场景</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/06/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%9A%E5%8A%A1%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/" class="archive-article-date">
-  	<time datetime="2018-11-06T10:06:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1、授权登录</p>
-<p>2、带参数跳转到新页面，展示对应详情和列表。可将参数放在url中，在对应页面onload的options中获取，之后在对应页面向后台请求获取数据，也可以将数据变成字符串放在url中一起传过去（对象则要变成字符串）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let obj &#x3D; JSON.stringify(this.data.obj)</span><br><span class="line">wx.navigateTo(&#123;</span><br><span class="line">    url: &#96;$&#123;obj&#125;?obj&#x3D;$&#123;obj&#125;&#96;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">onLoad: function (options) &#123;</span><br><span class="line">    let obj &#x3D; JSON.parse(options.obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/11/06/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%9A%E5%8A%A1%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/06/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%9A%E5%8A%A1%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-微信小程序开发笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/16/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/">微信小程序开发笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/16/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2018-10-16T10:04:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>记录日常工作中开发微信小程序用到的知识点。</p>
-<p>1、修改数据，很容易就误调用this.data了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">this.setData(&#123; [type]: !this.data[type] &#125;)</span><br><span class="line">this.setData(...,()&#x3D; &gt;&#123;&#125;) &#x2F;&#x2F;还可以使用回调函数</span><br></pre></td></tr></table></figure>
-<p>2、本地存储数据，非常实用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wx.setStorageSync(&#39;data&#39;, this.userInfo)</span><br><span class="line">let data &#x3D; wx.getStorageSync(&#39;data&#39;)</span><br><span class="line">wx.removeStorageSync(&#39;data&#39;) &#x2F;&#x2F;删除存储</span><br></pre></td></tr></table></figure>
-<p>3、picker没有文字的时候容易塌陷，触发不了弹出框，通常套个vew给个padding</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;picker&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;picker&quot;&gt;</span><br><span class="line">        &#123;&#123;array[0]&#125;&#125;&#123;&#123;array[1]&#125;&#125;&#123;&#123;array[2]&#125;&#125;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;picker&gt;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/10/16/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/16/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Echarts具体样式个人笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/10/Echarts%E5%85%B7%E4%BD%93%E6%A0%B7%E5%BC%8F%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/">Echarts具体样式个人笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/10/Echarts%E5%85%B7%E4%BD%93%E6%A0%B7%E5%BC%8F%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2018-09-10T10:02:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>虽然查文档很全面，但还是自己罗列一下样式，这样记忆深刻一些。不然每次看文档，时间都花在找上面了/(ㄒoㄒ)/</p>
-<p>（如果有大神路过，请问一下，文档那么多样式，你们都是咋记住哒）</p>
-<p> 1、折线图填充渐变<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">series: [</span><br><span class="line">        areaStyle: &#123;</span><br><span class="line">            normal: &#123;</span><br><span class="line">                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [&#123;</span><br><span class="line">                    offset: 0,</span><br><span class="line">                    color: &#39;#d68262&#39;</span><br><span class="line">                &#125;, &#123;</span><br><span class="line">                    offset: 1,</span><br><span class="line">                    color: &#39;#ffe&#39;</span><br><span class="line">                &#125;])</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
-        
-          <a class="article-more-a" href="/2018/09/10/Echarts%E5%85%B7%E4%BD%93%E6%A0%B7%E5%BC%8F%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/10/Echarts%E5%85%B7%E4%BD%93%E6%A0%B7%E5%BC%8F%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-【转载】我是如何利用Github-Pages搭建起我的博客，细数一路的坑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/15/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8Github-Pages%E6%90%AD%E5%BB%BA%E8%B5%B7%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%EF%BC%8C%E7%BB%86%E6%95%B0%E4%B8%80%E8%B7%AF%E7%9A%84%E5%9D%91/">【转载】我是如何利用Github Pages搭建起我的博客，细数一路的坑</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/15/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8Github-Pages%E6%90%AD%E5%BB%BA%E8%B5%B7%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%EF%BC%8C%E7%BB%86%E6%95%B0%E4%B8%80%E8%B7%AF%E7%9A%84%E5%9D%91/" class="archive-article-date">
-  	<time datetime="2018-01-15T08:43:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>转载自<a target="_blank" rel="noopener" href="https://cczeng.github.io/2017/05/03/git/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8Github-Pages%E6%90%AD%E5%BB%BA%E8%B5%B7%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E2%80%94%E2%80%94%E7%BB%86%E6%95%B0%E4%B8%80%E8%B7%AF%E7%9A%84%E5%9D%91/">我是如何利用Github Pages搭建起我的博客，细数一路的坑</a></p>
-<h1 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h1><p>其实早在这之前我就一直想过写博客,但由于种种原因一直没有去学习这方面的知识,最近半个月(从开始动手到搭建好)一直陆陆续续的在着手这方面的工作。从开始到搭建完成的过程中遇到了很多困难，因为在这之前对Github一点了解都没有导致满头雾水,不断的跳进一个又一个坑,甚至想过放弃.但最后结果想必都知道了。在写如何搭建之前我觉得我们应该先从头开始了解。  </p>
-        
-          <a class="article-more-a" href="/2018/01/15/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8Github-Pages%E6%90%AD%E5%BB%BA%E8%B5%B7%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%EF%BC%8C%E7%BB%86%E6%95%B0%E4%B8%80%E8%B7%AF%E7%9A%84%E5%9D%91/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">blog</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/15/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8Github-Pages%E6%90%AD%E5%BB%BA%E8%B5%B7%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%EF%BC%8C%E7%BB%86%E6%95%B0%E4%B8%80%E8%B7%AF%E7%9A%84%E5%9D%91/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-第一次接外包的沉思" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E5%A4%96%E5%8C%85%E7%9A%84%E6%B2%89%E6%80%9D/">第一次接外包的沉思</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E5%A4%96%E5%8C%85%E7%9A%84%E6%B2%89%E6%80%9D/" class="archive-article-date">
-  	<time datetime="2017-12-21T07:07:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>外包心得</p>
-        
-          <a class="article-more-a" href="/2017/12/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E5%A4%96%E5%8C%85%E7%9A%84%E6%B2%89%E6%80%9D/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E5%A4%96%E5%8C%85%E7%9A%84%E6%B2%89%E6%80%9D/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -886,8 +586,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
