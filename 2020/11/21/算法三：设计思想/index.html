@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>拖拽和碰撞检测 | Hexo</title>
+  <title>算法三：设计思想 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、盒子拖拽原生JS：拖拽目标元素到页面任意位置    See the Pen YzzXEyK by Sakura   (@OrangeSnow) on CodePen.">
+  <meta name="description" content="分而治之（重要） “分而治之”是算法设计中的一种方法它将一个问题分成多个和原问题相似的小问题，递归解决小问题，再将结果合并以解决原来的问题  应用场景：归并排序、快速排序 leetcode：374、226、100、101">
 <meta property="og:type" content="article">
-<meta property="og:title" content="拖拽和碰撞检测">
-<meta property="og:url" content="http://yoursite.com/2020/05/01/%E6%8B%96%E6%8B%BD%E5%92%8C%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B/index.html">
+<meta property="og:title" content="算法三：设计思想">
+<meta property="og:url" content="http://yoursite.com/2020/11/21/%E7%AE%97%E6%B3%95%E4%B8%89%EF%BC%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、盒子拖拽原生JS：拖拽目标元素到页面任意位置    See the Pen YzzXEyK by Sakura   (@OrangeSnow) on CodePen.">
+<meta property="og:description" content="分而治之（重要） “分而治之”是算法设计中的一种方法它将一个问题分成多个和原问题相似的小问题，递归解决小问题，再将结果合并以解决原来的问题  应用场景：归并排序、快速排序 leetcode：374、226、100、101">
 <meta property="og:locale">
-<meta property="article:published_time" content="2020-05-01T08:52:23.000Z">
-<meta property="article:modified_time" content="2020-08-30T10:29:19.614Z">
+<meta property="article:published_time" content="2020-11-21T01:26:45.000Z">
+<meta property="article:modified_time" content="2021-02-19T15:46:29.140Z">
 <meta property="article:author" content="宇智波胖虎">
 <meta name="twitter:card" content="summary">
   
@@ -154,97 +154,50 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-拖拽和碰撞检测" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-算法三：设计思想" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      拖拽和碰撞检测
+      算法三：设计思想
     </h1>
   
 
         
-        <a href="/2020/05/01/%E6%8B%96%E6%8B%BD%E5%92%8C%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B/" class="archive-article-date">
-  	<time datetime="2020-05-01T08:52:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-01</time>
+        <a href="/2020/11/21/%E7%AE%97%E6%B3%95%E4%B8%89%EF%BC%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/" class="archive-article-date">
+  	<time datetime="2020-11-21T01:26:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一、盒子拖拽"><a href="#一、盒子拖拽" class="headerlink" title="一、盒子拖拽"></a>一、盒子拖拽</h3><p>原生JS：拖拽目标元素到页面任意位置</p>
-<iframe height="265" style="width: 100%;" scrolling="no" title="YzzXEyK" src="https://codepen.io/OrangeSnow/embed/YzzXEyK?height=265&theme-id=0&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow/pen/YzzXEyK'>YzzXEyK</a> by Sakura
-  (<a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow'>@OrangeSnow</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe>
-
+        <h2 id="分而治之（重要）"><a href="#分而治之（重要）" class="headerlink" title="分而治之（重要）"></a>分而治之（重要）</h2><blockquote>
+<p>“分而治之”是算法设计中的一种方法</br><br>它将一个问题分成<b>多个和原问题相似</b>的小问题，<b>递归解决</b>小问题，再将结果合并以解决原来的问题</br></p>
+</blockquote>
+<p>应用场景：归并排序、快速排序</p>
+<p>leetcode：374、226、100、101</p>
 <a id="more"></a>
-
-<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>1、onmousedown（鼠标按下事件） ：获取鼠标在盒子中的坐标，保证移动后鼠标在盒子的指定位置（x、y）<br>x = pagex - box.offsetLeft<br>y = pagey - box.offsetTop<br>2、onmousemove（鼠标移动事件） ：移动后鼠标的位置（x2,y2），减去鼠标在盒子中的坐标，就是盒子移动后的坐标<br>document.onmousemove<br>//给box赋值<br>box.style.left = (x2 – x) + “px”<br>box.style.top = (y2 - y) + “px”<br>3、onmouseup（鼠标抬起事件）：事件解绑<br>document.onmousemove = null</p>
-<h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><p>1、变成绝对定位，脱离文档流才可以移动<br>2、鼠标移动事件绑定在document上，优化性能</p>
-<h3 id="二、碰撞检测：矩形—矩形"><a href="#二、碰撞检测：矩形—矩形" class="headerlink" title="二、碰撞检测：矩形—矩形"></a>二、碰撞检测：矩形—矩形</h3><p>拖拽两个矩形div进行碰撞检测</p>
-<iframe height="265" style="width: 100%;" scrolling="no" title="ZEEGaOR" src="https://codepen.io/OrangeSnow/embed/ZEEGaOR?height=265&theme-id=0&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow/pen/ZEEGaOR'>ZEEGaOR</a> by Sakura
-  (<a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow'>@OrangeSnow</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe>
-
-<h4 id="逻辑"><a href="#逻辑" class="headerlink" title="逻辑"></a>逻辑</h4><p>外接图形判别法，判断任意两个矩形的任意一边是否无间距，从而判断是否碰撞。</p>
-<h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rect1.x &lt; rect2.x + rect2.width &amp;&amp;</span><br><span class="line">rect1.x + rect1.width &gt; rect2.x &amp;&amp;</span><br><span class="line">rect1.y &lt; rect2.y + rect2.height &amp;&amp;</span><br><span class="line">rect1.height + rect1.y &gt; rect2.y</span><br></pre></td></tr></table></figure>
-<p>以上逻辑封装成碰撞检测函数bump(box1,box2),进行复用</p>
-<h3 id="三、碰撞检测：圆形—圆形"><a href="#三、碰撞检测：圆形—圆形" class="headerlink" title="三、碰撞检测：圆形—圆形"></a>三、碰撞检测：圆形—圆形</h3><p>拖拽两个圆形div进行碰撞检测</p>
-<h4 id="逻辑-1"><a href="#逻辑-1" class="headerlink" title="逻辑"></a>逻辑</h4><p>过判断任意两个圆形的圆心距离是否小于两圆半径之和，若小于则为碰撞。</p>
-<iframe height="265" style="width: 100%;" scrolling="no" title="rNNVYWZ" src="https://codepen.io/OrangeSnow/embed/rNNVYWZ?height=265&theme-id=0&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow/pen/rNNVYWZ'>rNNVYWZ</a> by Sakura
-  (<a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow'>@OrangeSnow</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe>
-
-<h4 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h4><p>两点之间的距离公式，两个圆心之间的距离</p>
-<h4 id="算法-1"><a href="#算法-1" class="headerlink" title="算法"></a>算法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Math.sqrt(Math.pow(circleA.x - circleB.x, 2) + Math.pow(circleA.y - circleB.y, 2)) </span><br><span class="line">&lt; circleA.radius + circleB.radius</span><br></pre></td></tr></table></figure>
-
-<h3 id="四、碰撞检测：圆形—矩形"><a href="#四、碰撞检测：圆形—矩形" class="headerlink" title="四、碰撞检测：圆形—矩形"></a>四、碰撞检测：圆形—矩形</h3><p>拖拽圆形和矩形div进行碰撞检测</p>
-<iframe height="265" style="width: 100%;" scrolling="no" title="KKKpyWQ" src="https://codepen.io/OrangeSnow/embed/KKKpyWQ?height=265&theme-id=0&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow/pen/KKKpyWQ'>KKKpyWQ</a> by Sakura
-  (<a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow'>@OrangeSnow</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe>
-
-<h4 id="逻辑-2"><a href="#逻辑-2" class="headerlink" title="逻辑"></a>逻辑</h4><p>通过找出矩形上离圆心最近的点，然后通过判断该点与圆心的距离是否小于圆的半径，若小于则为碰撞。</p>
-<h4 id="判断条件"><a href="#判断条件" class="headerlink" title="判断条件"></a>判断条件</h4><p>对于 x轴：<br>如果圆心在矩形的左侧（if(circle.x &lt; rect.x)），那么 closestPoint.x = rect.x<br>如果圆心在矩形的右侧（else if(circle.x &gt; rect.x + rect.w)），那么 closestPoint.x = rect.x + rect.w<br>如果圆心在矩形的正上下方（else），那么 closestPoint.x = circle.x<br>对于 y 轴：<br>如果圆心在矩形的上方（if(circle.y &lt; rect.y)），那么 closestPoint.y = rect.y。<br>如果圆心在矩形的下方（else if(circle.y &gt; rect.y + rect.h)），那么 closestPoint.y = rect.y + rect.h。<br>如果圆心在矩形的正左右两侧（else），那么 closestPoint.y = circle.y</p>
-<h4 id="算法-2"><a href="#算法-2" class="headerlink" title="算法"></a>算法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var distance &#x3D; Math.sqrt(Math.pow(closestPoint.x - circle.x, 2) + Math.pow(closestPoint.y - circle.y, 2))</span><br><span class="line">if(distance &lt; circle.r) return true &#x2F;&#x2F; 发生碰撞</span><br><span class="line">else return false &#x2F;&#x2F; 未发生碰撞</span><br></pre></td></tr></table></figure>
-
-<h3 id="五、碰撞检测：圆形—旋转矩形"><a href="#五、碰撞检测：圆形—旋转矩形" class="headerlink" title="五、碰撞检测：圆形—旋转矩形"></a>五、碰撞检测：圆形—旋转矩形</h3><p>拖拽圆形和旋转矩形div进行碰撞检测</p>
-<iframe height="265" style="width: 100%;" scrolling="no" title="dyyMJNb" src="https://codepen.io/OrangeSnow/embed/dyyMJNb?height=265&theme-id=0&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow/pen/dyyMJNb'>dyyMJNb</a> by Sakura
-  (<a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow'>@OrangeSnow</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe>
-
-<h4 id="逻辑-3"><a href="#逻辑-3" class="headerlink" title="逻辑"></a>逻辑</h4><p>1、一个物体相对于另一个物体的位置发生了变化，这个物体就在运动。<br>2、简化模型，变为普通的圆形与矩形碰撞检测</p>
-<h4 id="计算过程"><a href="#计算过程" class="headerlink" title="计算过程"></a>计算过程</h4><pre><code> 目标值：C(c,d)的坐标，即相对旋转后的圆心坐标</code></pre>
-<p>1、已知条件：设 A 点旋转前的角度为 δ，则旋转（逆时针）到 C 点后的角度为(δ+β)<br>2、由于 |AB| 与 |CB| 相等（即长度），且<br>     已知条件： |AB| = y/sin(δ) = x / cos(δ)<br>     已知条件： |CB| = d/sin(δ + β) = c / cos(δ + β)<br>3、已知条件：半径 r = x / cos(δ) = y / sin(δ) = d / sin(δ + β) = c / cos(δ + β)<br>4、由以下三角函数两角和差公式：<br>    sin(δ + β) = sin(δ)cos(β) + cos(δ)sin(β)<br>    cos(δ + β) = cos(δ)cos(β) - sin(δ)sin(β)<br>5、可得出旋转后的坐标：<br>    c = r * cos(δ + β) = r * cos(δ)cos(β) - r * sin(δ)sin(β) = x * cos(β) - y * sin(β)<br>    d = r * sin(δ + β) = r * sin(δ)cos(β) + r * cos(δ)sin(β) = y * cos(β) + x * sin(β)<br>6、实际坐标公式<br>    x’= cos(β) * (cx – centerX) – sin(β) * (cy – centerY) + centerX<br>    y’= sin(β) * (cx – centerX) + cos(β) * (cy – centerY) + centerY</p>
-<h4 id="算法-3"><a href="#算法-3" class="headerlink" title="算法"></a>算法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x’&#x3D; Math.cos(radian) * (cx - centerX) - Math.sin(radian) * (cy - centerY) + centerX</span><br><span class="line">y’&#x3D; Math.sin(radian) * (cx - centerX) + Math.cos(radian) * (cy - centerY) + centerY</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="六、碰撞检测：像素-像素"><a href="#六、碰撞检测：像素-像素" class="headerlink" title="六、碰撞检测：像素-像素"></a>六、碰撞检测：像素-像素</h3><p>拖拽不规则的图形，在像素级别进行碰撞检测</p>
-<iframe height="265" style="width: 100%;" scrolling="no" title="VwwLrzL" src="https://codepen.io/OrangeSnow/embed/VwwLrzL?height=265&theme-id=0&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow/pen/VwwLrzL'>VwwLrzL</a> by Sakura
-  (<a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow'>@OrangeSnow</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe>
-
-<h4 id="逻辑-4"><a href="#逻辑-4" class="headerlink" title="逻辑"></a>逻辑</h4><p>1、根据每一像素来判定是否碰撞，性能要求比较高。通常情况下，先对图像所在的矩形进行碰撞检测，当两个矩形碰撞时，再从像素级别进行判断<br>2、所在矩形发生碰撞后，再在像素级别进行比较，提高性能<br>3、获取两个精灵图像在相交矩形的像素数据，在相交矩形区域进行遍历判断，若两个图像在同一位置的值都不为0，则发生碰撞</p>
-<p>2D游戏中，通常使用矩形、圆形等来代替复杂图形的相交检测。因为这两种形状的碰撞检测速度是最快的。<br>其中矩形包围盒又可以分为轴对齐包围盒（AABB, Axis Aligned Bounding Box）与转向包围盒（OBB, Oriented Bounding Box）。<br>AABB与OBB的区别在于，AABB中的矩形的其中一条边和坐标轴平行，OBB的计算复杂度要高于AABB。根据不同的使用场景，可以用不同的方案。</p>
-<h4 id="算法-4"><a href="#算法-4" class="headerlink" title="算法"></a>算法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var rect &#x2F;&#x2F;相交矩形的数据对象，sx, sy, sw, sh</span><br><span class="line">var kyuubiImg &#x2F;&#x2F;图像1</span><br><span class="line">var narutoImg &#x2F;&#x2F;图像2</span><br><span class="line">if(rect[0] &gt;&#x3D; rect[2] || rect[1] &gt;&#x3D; rect[3]) &#123;&#x2F;&#x2F;如果没有相交则退出 &#125; else&#123;</span><br><span class="line">    &#x2F;&#x2F;获取精灵在相交矩形像素数据</span><br><span class="line">    kyuubiImg.data &#x3D; backBuf.getImageData(rect[0],rect[1],rect[4],rect[5]).data;</span><br><span class="line">    narutoImg.data &#x3D; backBuf.getImageData(rect[0],rect[1],rect[4],rect[5]).data;</span><br><span class="line">    for(var i&#x3D;3;i&lt;kyuubiImg.data.length;i+&#x3D;4)&#123;</span><br><span class="line">        if(kyuubiImg.data[i] &gt; 0 &amp;&amp; narutoImg.data[i] &gt; 0)&#123;</span><br><span class="line">                    &#x2F;&#x2F;发生碰撞</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="七、小Demo：颜色选择器"><a href="#七、小Demo：颜色选择器" class="headerlink" title="七、小Demo：颜色选择器"></a>七、小Demo：颜色选择器</h4><iframe height="265" style="width: 100%;" scrolling="no" title="ExxjbvM" src="https://codepen.io/OrangeSnow/embed/ExxjbvM?height=265&theme-id=0&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow/pen/ExxjbvM'>ExxjbvM</a> by Sakura
-  (<a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow'>@OrangeSnow</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe>
-
-<p>CanvasRenderingContext2D.getImageData() 返回一个 ImageData 对象，用来描述 canvas 区域隐含的像素数据，这个区域通过矩形表示，起始点为(sx, sy)、宽为sw、高为sh。<br>ctx.getImageData(sx, sy, sw, sh)<br>参数<br>sx：将要被提取的图像数据矩形区域的左上角 x 坐标。<br>sy：将要被提取的图像数据矩形区域的左上角 y 坐标。<br>sw：将要被提取的图像数据矩形区域的宽度。<br>sh：将要被提取的图像数据矩形区域的高度。<br>返回值<br>一个 ImageData 对象，包含 canvas 给定的矩形图像数据。<br>ImageData 对象会有三个属性，height、width 和 data。<br>ImageData.height<br>使用像素描述 ImageData 的实际高度，这个值其实等于 getImageData() 方法中的参数 sh<br>ImageData.width<br>使用像素描述 ImageData 的实际宽度。这个值其实等于 getImageData() 方法中的参数 sw<br>ImageData.data<br>一个一维数组，包含以 RGBA 顺序的数据，数据使用 0 至 255（包含）的整数表示</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">示例代码：</span><br><span class="line">var ctx &#x3D; canvas.getContext(&#39;2d&#39;);</span><br><span class="line">&#x2F;&#x2F; 获取鼠标坐标</span><br><span class="line">var x &#x3D; event.layerX</span><br><span class="line">var y &#x3D; event.layerY</span><br><span class="line">&#x2F;&#x2F; 获取图片像素信息</span><br><span class="line">var pixel &#x3D; ctx.getImageData(x, y, 1, 1)</span><br><span class="line">var data &#x3D; pixel.data</span><br><span class="line"> &#x2F;&#x2F; 获取rgba值</span><br><span class="line">var rgba &#x3D; &#39;rgba(&#39; + data[0] + &#39;,&#39; + data[1] +&#39;,&#39; + data[2] + &#39;,&#39; + (data[3] &#x2F; 255) + &#39;)&#39;;</span><br><span class="line">&#x2F;&#x2F; 设置小正方形的背景颜色</span><br><span class="line">color.style.background &#x3D;rgba;</span><br></pre></td></tr></table></figure>
-
-<p>引用：<br>1、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaohuochai/p/5899228.html">javascript动画系列第三篇——碰撞检测</a><br>2、<a target="_blank" rel="noopener" href="http://www.imooc.com/article/79972?block_id=tuijian_wz">用 canvas 的 getImageData 做点有趣的事</a><br>3、<a target="_blank" rel="noopener" href="https://aotu.io/notes/2017/02/16/2d-collision-detection/index.html">“等一下，我碰！”——常见的2D碰撞检测</a><br>4、<a target="_blank" rel="noopener" href="https://github.com/krapnikkk/JS-gameMathematics">使用html+javascript实现游戏常用算法演示</a><br>5、<a target="_blank" rel="noopener" href="http://imgbase64.duoshitong.com/">工具网站：图片转换Base64</a><br>6、<a target="_blank" rel="noopener" href="https://cczeng.github.io/2017/05/03/git/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8Github-Pages%E6%90%AD%E5%BB%BA%E8%B5%B7%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E2%80%94%E2%80%94%E7%BB%86%E6%95%B0%E4%B8%80%E8%B7%AF%E7%9A%84%E5%9D%91/">GitHub搭建Hexo博客教程</a><br>7、<a target="_blank" rel="noopener" href="https://my.oschina.net/fgreshrht/blog/378961">圆与旋转矩形的碰撞检测（下篇）</a><br>8、<a target="_blank" rel="noopener" href="https://flashgene.com/archives/66663.html">碰撞检测的向量实现</a><br>9、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qwguo/p/6678830.html">通过js获取元素css3的transform rotate旋转角度方法</a></p>
-
+<h2 id="动态规划（重要）"><a href="#动态规划（重要）" class="headerlink" title="动态规划（重要）"></a>动态规划（重要）</h2><blockquote>
+<p>“动态规划”是算法设计中的一种方法</br><br>它将一个问题分解为<b>相互重叠</b>的小问题，通过反复求解子问题，来解决原来的问题</br></p>
+</blockquote>
+<p>应用场景：斐波那契数列、翻转二叉树</p>
+<p>leetcode：70、198</p>
+<h2 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h2><blockquote>
+<p>“贪心算法”是算法设计中的一种方法</br><br>期盼通过每个阶段的<b>局部最优</b>选择，从而达到全局的最优</br><br>结果并不一定是最优</p>
+</blockquote>
+<p>应用场景：零钱兑换、天龙八部-珍珑棋局</p>
+<p>leetcode：455、122</p>
+<h2 id="回溯算法"><a href="#回溯算法" class="headerlink" title="回溯算法"></a>回溯算法</h2><blockquote>
+<p>“回溯算法”是算法设计中的一种方法</br><br>回溯算法是一种<b>渐进式</b>寻找并构建问题解决方式的策略</br><br>回溯算法会从一个可能的动作开始解决问题，如果不行，就回溯并选择另一个动作，直到将问题解决</p>
+</blockquote>
+<p>应用场景：全排列</p>
+<p>leetcode：46、78</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1、明白数据结构与算法的<b>特点</b>和<b>应用场景</b></br><br>2、用<b>JS实现一遍</b>，再用第二第三语言实现一遍</br><br>3、学会分析<b>时间/空间复杂度</b></br><br>4、提炼前端和算法的结合点，用于工作实战</br><br>5、多刷题，至少300道</br><br>6、多总结套路、模板</br><br>7、多<b>阅读源码</b>，比如React（dom树的操作）、Loadsh（扩展JS数据结构算法，集合的交集……）、V8（JS原生实现的算法）</br><br>8、多实战，将算法用于工作</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>1、</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* 实现，一个dot函数，将嵌套的对象结构转为非嵌套的对象 *&#x2F;</span><br><span class="line"></span><br><span class="line">function dot(obj: object) &#123;</span><br><span class="line"> &#x2F;* 此处实现 *&#x2F;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;* 例如 *&#x2F;</span><br><span class="line">const obj &#x3D; &#123;</span><br><span class="line"> id: &#39;abc&#39;,</span><br><span class="line"> nes: &#123; ted: &#123; value: true &#125; &#125;,</span><br><span class="line"> other: &#123; nested: &#123; stuff: 5, stuff2: 6 &#125; &#125;,</span><br><span class="line"> some: &#123; array: [&#39;A&#39;, &#39;B&#39;] &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const dotObj &#x3D; dot(obj);</span><br><span class="line">console.log(dotObj);</span><br><span class="line">&#x2F;*</span><br><span class="line"> &#123;</span><br><span class="line">   &quot;id&quot;: &quot;abc&quot;,</span><br><span class="line">   &quot;nes.ted.value&quot;: true,</span><br><span class="line">   &quot;other.nested.stuff&quot;: 5,</span><br><span class="line">   &quot;other.nested.stuff2&quot;: 6,</span><br><span class="line">   &quot;some.array[0]&quot;: &quot;A&quot;,</span><br><span class="line">   &quot;some.array[1]&quot;: &quot;B&quot;</span><br><span class="line"> &#125;</span><br><span class="line">*&#x2F;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -323,7 +276,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/01/%E6%8B%96%E6%8B%BD%E5%92%8C%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/11/21/%E7%AE%97%E6%B3%95%E4%B8%89%EF%BC%9A%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -337,18 +290,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/09/13/%E7%9B%98%E7%82%B9%E4%B8%8D%E5%AE%B9%E5%B0%8F%E8%A7%91%E7%9A%84JS%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/11/29/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E6%95%B4%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          盘点不容小觑的JS数组操作方法
+          前端学习资料
         
       </div>
     </a>
   
   
-    <a href="/2019/02/23/React%EF%BC%9A%E4%BB%BF%E7%AE%80%E4%B9%A6%E9%A1%B9%E7%9B%AE/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">React：仿简书项目</div>
+    <a href="/2020/11/15/%E7%AE%97%E6%B3%95%E4%BA%8C%EF%BC%9A%E6%90%9C%E7%B4%A2%E3%80%81%E6%8E%92%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">算法二：搜索、排序</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -391,7 +344,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 宇智波胖虎
+    		&copy; 2021 宇智波胖虎
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
