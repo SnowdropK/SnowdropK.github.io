@@ -6,19 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>拖拽和碰撞检测 | Hexo</title>
+  <title>文件下载 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、盒子拖拽原生JS：拖拽目标元素到页面任意位置    See the Pen YzzXEyK by Sakura   (@OrangeSnow) on CodePen.">
+  <meta name="description" content="一、字节概念字节（Byte）是计算机信息技术用于计量存储容量的一种计量单位，也表示一些计算机编程语言中的数据类型和语言字符。 一个字节存储8位无符号数，储存的数值范围为0-255。 Byte与bit数据存储是以“字节”（Byte）为单位，数据传输大多是以“位”（bit，又名“比特”）为单位，一个位就代表一个0或1（即二进制），每8个位（bit，简写为b）组成一个字节（Byte，简写为B），是最小一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="拖拽和碰撞检测">
-<meta property="og:url" content="http://yoursite.com/2021/01/25/%E6%8B%96%E6%8B%BD%E5%92%8C%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B/index.html">
+<meta property="og:title" content="文件下载">
+<meta property="og:url" content="http://yoursite.com/2021/09/05/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、盒子拖拽原生JS：拖拽目标元素到页面任意位置    See the Pen YzzXEyK by Sakura   (@OrangeSnow) on CodePen.">
+<meta property="og:description" content="一、字节概念字节（Byte）是计算机信息技术用于计量存储容量的一种计量单位，也表示一些计算机编程语言中的数据类型和语言字符。 一个字节存储8位无符号数，储存的数值范围为0-255。 Byte与bit数据存储是以“字节”（Byte）为单位，数据传输大多是以“位”（bit，又名“比特”）为单位，一个位就代表一个0或1（即二进制），每8个位（bit，简写为b）组成一个字节（Byte，简写为B），是最小一">
 <meta property="og:locale">
-<meta property="article:published_time" content="2021-01-25T08:52:23.000Z">
-<meta property="article:modified_time" content="2021-02-19T15:42:53.135Z">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/77bef7962ce2444ab587ae323fef5893~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/77bc38238947453abd341dc80441767b~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8e33f301ebd440f5bd2b34d7ccbb3946~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c3720cfb7aaf438b8b713817fc1b3a4f~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e555c210a68d4125ae42bd8af69c5850~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/00eaba29e2954032879ccffc37cc0711~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/740514537fac41219196d26cecce17f5~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c89ee6d5625e435cba0984c7841b6dce~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="article:published_time" content="2021-09-05T13:12:17.000Z">
+<meta property="article:modified_time" content="2021-09-05T13:15:05.459Z">
 <meta property="article:author" content="宇智波胖虎">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/77bef7962ce2444ab587ae323fef5893~tplv-k3u1fbpfcp-watermark.image">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,96 +163,110 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-拖拽和碰撞检测" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-文件下载" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      拖拽和碰撞检测
+      文件下载
     </h1>
   
 
         
-        <a href="/2021/01/25/%E6%8B%96%E6%8B%BD%E5%92%8C%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B/" class="archive-article-date">
-  	<time datetime="2021-01-25T08:52:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-25</time>
+        <a href="/2021/09/05/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" class="archive-article-date">
+  	<time datetime="2021-09-05T13:12:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一、盒子拖拽"><a href="#一、盒子拖拽" class="headerlink" title="一、盒子拖拽"></a>一、盒子拖拽</h3><p>原生JS：拖拽目标元素到页面任意位置</p>
-<iframe height="265" style="width: 100%;" scrolling="no" title="YzzXEyK" src="https://codepen.io/OrangeSnow/embed/YzzXEyK?height=265&theme-id=0&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow/pen/YzzXEyK'>YzzXEyK</a> by Sakura
-  (<a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow'>@OrangeSnow</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe>
+        <h2 id="一、字节"><a href="#一、字节" class="headerlink" title="一、字节"></a>一、字节</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p><code>字节（Byte）</code>是计算机信息技术用于计量存储容量的一种计量单位，也表示一些计算机编程语言中的数据类型和语言字符。</p>
+<p>一个字节存储8位无符号数，储存的数值范围为0-255。</p>
+<h3 id="Byte与bit"><a href="#Byte与bit" class="headerlink" title="Byte与bit"></a>Byte与bit</h3><p><code>数据存储</code>是以<code>“字节”（Byte）</code>为单位，<code>数据传输</code>大多是以<code>“位”（bit，又名“比特”）为单位</code>，一个位就代表一个0或1（即二进制），每8个位（bit，简写为b）组成一个字节（Byte，简写为B），是最小一级的信息单位。</p>
+<p>有控制码或非美标码的文件，通常不能在不同电脑系统间直接交换。这类文件有一个通称，叫“二进制文件”(<code>Binary Files</code>)。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>字节(Byte)=<span class="number">8</span>位(bit)</span><br><span class="line"><span class="number">1</span>KB( Kilobyte，千字节)=<span class="number">1024</span>B</span><br><span class="line"><span class="number">1</span>MB( Megabyte，兆字节)=<span class="number">1024</span>KB</span><br><span class="line"><span class="number">1</span>GB( Gigabyte，吉字节，千兆)=<span class="number">1024</span>MB</span><br><span class="line"><span class="number">1</span>TB( Trillionbyte，万亿字节，太字节)=<span class="number">1024</span>GB</span><br><span class="line"><span class="number">1</span>PB( Petabyte，千万亿字节，拍字节)=<span class="number">1024</span>TB</span><br><span class="line"><span class="number">1</span>EB( Exabyte，百亿亿字节，艾字节)=<span class="number">1024</span>PB</span><br><span class="line"><span class="number">1</span>ZB(Zettabyte，十万亿亿字节，泽字节)=<span class="number">1024</span>EB</span><br><span class="line"><span class="number">1</span>YB( Yottabyte，一亿亿亿字节，尧字节)=<span class="number">1024</span>ZB</span><br><span class="line"><span class="number">1</span>BB( Brontobyte，千亿亿亿字节)=<span class="number">1024</span>YB</span><br></pre></td></tr></table></figure>
+<h2 id="二、编码"><a href="#二、编码" class="headerlink" title="二、编码"></a>二、编码</h2><h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><p>在计算机中，所有的数据在存储和运算时都要使用二进制数表示（因为计算机用高电平和低电平分别表示1和0），例如，像a、b、c、d等52个字母（包括大写）以及0、1等数字还有一些常用的符号（例如*、#、@等）在计算机中存储时也要使用二进制数来表示。</p>
+<p>而具体用哪些二进制数字表示哪个符号，当然每个人都可以约定自己的一套（这就叫<code>编码</code>），而如果要想互相通信而不造成混乱，那么就必须使用相同的编码规则。美国有关的标准化组织就出台了<code>ASCII编码</code>，统一规定了上述常用符号用哪些二进制数来表示。</p>
+<h3 id="编码标准"><a href="#编码标准" class="headerlink" title="编码标准"></a>编码标准</h3><p>文字编码标准主要有<code>ASCII</code>、<code>GB2312</code>、<code>GBK</code>、<code>Unicode</code>等。</p>
+<p><code>ASCII</code>：编码是美国信息交换标准编码（美标）。</p>
+<p><code>GB2312</code>、<code>GBK</code>、<code>GB18030</code>：汉字字符编码方案的国家标准。</p>
+<p><code>BIG5码</code>：针对繁体汉字的汉字编码，在台湾、香港的电脑系统中普遍应用。</p>
+<p><code>Unicode</code>：宽字节字符集，它对每个字符都固定使用两个字节即16位表示（普及到东亚国家发展出的编码标准）（UCS4、UTF-8、UTF-16都是Unicode的编码方案。其中UTF-8因可以兼容<code>ASCII</code>而被广泛使用。）。</p>
+<hr>
+<p><code>Base64编码</code>：现有的字符集非常多，常用的有 <code>UTF-8 / GBK</code> 等, 这里面的某些字节在某些传输渠道。比如邮件传输就不支持上面<code>ASCII</code>码中的控制字符， <code>Base64</code>的创建就是为了解决此问题。</p>
+<p>Base64内的64是指64个字符, 分别是 <code>A-Z, a-z, 0-9, +, /</code>，Base64 相应的索引表如下:</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/77bef7962ce2444ab587ae323fef5893~tplv-k3u1fbpfcp-watermark.image" alt="777.jpg"></p>
+<h3 id="ASCII码与Base64的编解码"><a href="#ASCII码与Base64的编解码" class="headerlink" title="ASCII码与Base64的编解码"></a>ASCII码与Base64的编解码</h3><p><code>Base64</code>有64个字符， 2^6 = 64，所以每个<code>Base64编码</code>字符可以用一个<br><code>6位的二进制</code>来表示。这样的话如果有<code>3个字节的二进制</code>, 可以用<code>4位Base64字符</code>表示。</p>
+<p>编码流程如下:</p>
+<ol>
+<li><code>ASCII码</code>字符串根据ASCII码对照表转换为<code>二进制数值</code>；</li>
+<li>把<code>二进制数值</code>按每<code>6位</code>进行划分；</li>
+<li>然后<code>6位二进制</code>转化为<code>十进制</code>根据对照表找到<code>Base64编码字符</code>；</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/77bc38238947453abd341dc80441767b~tplv-k3u1fbpfcp-watermark.image" alt="777.png"></p>
+<p>由图可知，<code>Man</code>（3 字节）编码的结果为 <code>TWFu</code>（4 字节），很明显经过 base64 编码后体积会增加 1/3。<code>Man</code> 这个字符串的长度刚好是 3，可以用 4 个 base64 单元来表示。</p>
+<blockquote>
+<p>如果待编码字符串的长度不是3的倍数，为了可以整除6编译出完整的字节数, 就需要使用 0 字节值在末尾补足，使其能够被 3 整除，然后再进行 base64 的编码。</p>
+</blockquote>
+<blockquote>
+<p>如果有连续<code>6位都是0的话, 就用“=”来表示</code>。</p>
+</blockquote>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8e33f301ebd440f5bd2b34d7ccbb3946~tplv-k3u1fbpfcp-watermark.image" alt="777.png"></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c3720cfb7aaf438b8b713817fc1b3a4f~tplv-k3u1fbpfcp-watermark.image" alt="777.jpg"></p>
+<h3 id="base64编码与解码"><a href="#base64编码与解码" class="headerlink" title="base64编码与解码"></a>base64编码与解码</h3><ul>
+<li>btoa()：该函数能够基于二进制数据 “字符串” 创建一个 base64 编码的 ASCII 字符串。</li>
+<li>atob()： 该函数能够<code>解码</code>通过 base64 编码的字符串数据。</li>
+</ul>
+<h2 id="三、下载相关函数"><a href="#三、下载相关函数" class="headerlink" title="三、下载相关函数"></a>三、下载相关函数</h2><h3 id="Object-URL"><a href="#Object-URL" class="headerlink" title="Object URL"></a>Object URL</h3><p>Object URL 是一种伪协议，也被称为 Blob URL。它允许 Blob 或 File 对象用作图像，下载二进制数据链接等的 URL 源。在浏览器中，我们使用 <code>URL.createObjectURL</code> 方法来创建 Blob URL，该方法接收一个 <code>Blob</code> 对象，并为其创建一个唯一的 URL，其形式为 <code>blob:&lt;origin&gt;/&lt;uuid&gt;</code>，对应的示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blob:https:&#x2F;&#x2F;example.org&#x2F;40a5fb5a-d56d-4a33-b4e2-0acf6a8e5f641</span><br></pre></td></tr></table></figure>
+<p>虽然存储了 URL → Blob 的映射，但 Blob 本身仍驻留在内存中，浏览器无法释放它。映射在文档卸载时自动清除，因此 Blob 对象随后被释放。但是，如果应用程序寿命很长，那不会很快发生。因此，如果我们创建一个 Blob URL，即使不再需要该 Blob，它也会存在内存中。</p>
+<p>针对这个问题，可以调用 <code>URL.revokeObjectURL(url)</code> 方法，从内部映射中删除引用，从而允许删除 Blob（如果没有其他引用），并释放内存。</p>
+<h3 id="Blob"><a href="#Blob" class="headerlink" title="Blob"></a>Blob</h3><h4 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h4><p><code>Blob（Binary Large Object）</code>表示二进制类型的大对象。在数据库管理系统中，将二进制数据存储为一个单一个体的集合。Blob 通常是影像、声音或多媒体文件。<strong>「在 JavaScript 中 Blob 类型的对象表示不可变的类似文件对象的原始数据。」</strong></p>
+<p>Blob 对象含有两个属性：size 和 type。其中 <code>size</code> 属性用于表示数据的大小（以字节为单位），<code>type</code> 是 <code>MIME 类型</code>的字符串。</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e555c210a68d4125ae42bd8af69c5850~tplv-k3u1fbpfcp-watermark.image" alt="777.jpg"></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/00eaba29e2954032879ccffc37cc0711~tplv-k3u1fbpfcp-watermark.image" alt="777.png"></p>
+<h4 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var aBlob &#x3D; new Blob(blobParts, options);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>blobParts：它是一个由 ArrayBuffer，ArrayBufferView，Blob，DOMString 等对象构成的数组。DOMStrings 会被编码为 UTF-8。</p>
+</li>
+<li><p>options：一个可选的对象，包含以下两个属性：</p>
+<ul>
+<li>type —— 默认值为 <code>&quot;&quot;</code>，它代表了将会被放入到 blob 中的数组内容的 MIME 类型。</li>
+<li>endings —— 默认值为 <code>&quot;transparent&quot;</code>，用于指定包含行结束符 <code>\n</code> 的字符串如何被写入。 它是以下两个值中的一个： <code>&quot;native&quot;</code>，代表行结束符会被更改为适合宿主操作系统文件系统的换行符，或者 <code>&quot;transparent&quot;</code>，代表会保持 blob 中保存的结束符不变。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myBlobParts = [<span class="string">&#x27;&lt;html&gt;&lt;h2&gt;Hello Semlinker&lt;/h2&gt;&lt;/html&gt;&#x27;</span>]; <span class="comment">// an array consisting of a single DOMString</span></span><br><span class="line"><span class="keyword">let</span> myBlob = <span class="keyword">new</span> Blob(myBlobParts, &#123;<span class="attr">type</span> : <span class="string">&#x27;text/html&#x27;</span>, <span class="attr">endings</span>: <span class="string">&quot;transparent&quot;</span>&#125;); <span class="comment">// the blob</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(myBlob.size + <span class="string">&quot; bytes size&quot;</span>);</span><br><span class="line"><span class="comment">// Output: 37 bytes size</span></span><br><span class="line"><span class="built_in">console</span>.log(myBlob.type + <span class="string">&quot; is the type&quot;</span>);</span><br><span class="line"><span class="comment">// Output: text/html is the type</span></span><br></pre></td></tr></table></figure>
 
-<a id="more"></a>
+<h3 id="ArrayBuffer"><a href="#ArrayBuffer" class="headerlink" title="ArrayBuffer"></a>ArrayBuffer</h3><p>ArrayBuffer 对象用来表示<strong>「通用的、固定长度的」</strong>原始二进制数据缓冲区。** <strong>「ArrayBuffer 不能直接操作，而是要通过类型数组对象 或 <code>DataView</code>对象来操作」</strong>，它们会将缓冲区中的数据表示为特定的格式，并通过这些格式来读写缓冲区的内容。</p>
+<h3 id="Unit8Array"><a href="#Unit8Array" class="headerlink" title="Unit8Array"></a>Unit8Array</h3><p>Uint8Array 数组类型表示一个 8 位无符号整型数组，创建时内容被初始化为 0。创建完后，可以以<strong>「对象的方式或使用数组下标索引的方式」</strong> 引用数组中的元素。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Uint8Array</span>(); <span class="comment">// ES2017 最新语法</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Uint8Array</span>(length); <span class="comment">// 创建初始化为0的，包含length个元素的无符号整型数组</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Uint8Array</span>(typedArray);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Uint8Array</span>(object);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Uint8Array</span>(buffer [, byteOffset [, length]]);</span><br></pre></td></tr></table></figure>
 
-<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>1、onmousedown（鼠标按下事件） ：获取鼠标在盒子中的坐标，保证移动后鼠标在盒子的指定位置（x、y）<br>x = pagex - box.offsetLeft<br>y = pagey - box.offsetTop<br>2、onmousemove（鼠标移动事件） ：移动后鼠标的位置（x2,y2），减去鼠标在盒子中的坐标，就是盒子移动后的坐标<br>document.onmousemove<br>//给box赋值<br>box.style.left = (x2 – x) + “px”<br>box.style.top = (y2 - y) + “px”<br>3、onmouseup（鼠标抬起事件）：事件解绑<br>document.onmousemove = null</p>
-<h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><p>1、变成绝对定位，脱离文档流才可以移动<br>2、鼠标移动事件绑定在document上，优化性能</p>
-<h3 id="二、碰撞检测：矩形—矩形"><a href="#二、碰撞检测：矩形—矩形" class="headerlink" title="二、碰撞检测：矩形—矩形"></a>二、碰撞检测：矩形—矩形</h3><p>拖拽两个矩形div进行碰撞检测</p>
-<iframe height="265" style="width: 100%;" scrolling="no" title="ZEEGaOR" src="https://codepen.io/OrangeSnow/embed/ZEEGaOR?height=265&theme-id=0&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow/pen/ZEEGaOR'>ZEEGaOR</a> by Sakura
-  (<a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow'>@OrangeSnow</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe>
+<h2 id="四、文件下载"><a href="#四、文件下载" class="headerlink" title="四、文件下载"></a>四、文件下载</h2><h3 id="4-1-a标签下载"><a href="#4-1-a标签下载" class="headerlink" title="4.1 a标签下载"></a>4.1 a标签下载</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dataUrlToBlob</span>(<span class="params">base64, mimeType</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> bytes = <span class="built_in">window</span>.atob(base64.split(<span class="string">&quot;,&quot;</span>)[<span class="number">1</span>]);</span><br><span class="line">  <span class="keyword">let</span> ab = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(bytes.length);</span><br><span class="line">  <span class="keyword">let</span> ia = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(ab);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; bytes.length; i++) &#123;</span><br><span class="line">    ia[i] = bytes.charCodeAt(i);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Blob([ab], &#123; <span class="attr">type</span>: mimeType &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 保存文件</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saveFile</span>(<span class="params">blob, filename</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> a = <span class="built_in">document</span>.createElement(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">  a.download = filename;</span><br><span class="line">  a.href = URL.createObjectURL(blob);</span><br><span class="line">  a.click();</span><br><span class="line">  URL.revokeObjectURL(a.href)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="逻辑"><a href="#逻辑" class="headerlink" title="逻辑"></a>逻辑</h4><p>外接图形判别法，判断任意两个矩形的任意一边是否无间距，从而判断是否碰撞。</p>
-<h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rect1.x &lt; rect2.x + rect2.width &amp;&amp;</span><br><span class="line">rect1.x + rect1.width &gt; rect2.x &amp;&amp;</span><br><span class="line">rect1.y &lt; rect2.y + rect2.height &amp;&amp;</span><br><span class="line">rect1.height + rect1.y &gt; rect2.y</span><br></pre></td></tr></table></figure>
-<p>以上逻辑封装成碰撞检测函数bump(box1,box2),进行复用</p>
-<h3 id="三、碰撞检测：圆形—圆形"><a href="#三、碰撞检测：圆形—圆形" class="headerlink" title="三、碰撞检测：圆形—圆形"></a>三、碰撞检测：圆形—圆形</h3><p>拖拽两个圆形div进行碰撞检测</p>
-<h4 id="逻辑-1"><a href="#逻辑-1" class="headerlink" title="逻辑"></a>逻辑</h4><p>过判断任意两个圆形的圆心距离是否小于两圆半径之和，若小于则为碰撞。</p>
-<iframe height="265" style="width: 100%;" scrolling="no" title="rNNVYWZ" src="https://codepen.io/OrangeSnow/embed/rNNVYWZ?height=265&theme-id=0&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow/pen/rNNVYWZ'>rNNVYWZ</a> by Sakura
-  (<a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow'>@OrangeSnow</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe>
+<h3 id="4-2-showSaveFilePicker-API-下载"><a href="#4-2-showSaveFilePicker-API-下载" class="headerlink" title="4.2 showSaveFilePicker API 下载"></a>4.2 showSaveFilePicker API 下载</h3><p><a href="https://link.juejin.cn/?target=https://developer.mozilla.org/en-US/docs/Web/API/window/showSaveFilePicker" title="https://developer.mozilla.org/en-US/docs/Web/API/window/showSaveFilePicker">showSaveFilePicker</a> 方法支持一个对象类型的可选参数，可包含以下属性：</p>
+<ul>
+<li><p><code>excludeAcceptAllOption</code>：布尔类型，默认值为 <code>false</code>。默认情况下，选择器应包含一个不应用任何文件类型过滤器的选项（由下面的 <code>types</code> 选项启用）。将此选项设置为 <code>true</code> 意味着 <code>types</code> 选项不可用。</p>
+</li>
+<li><p><code>types</code>：数组类型，表示允许保存的文件类型列表。数组中的每一项是包含以下属性的配置对象：</p>
+<ul>
+<li><code>description（可选）</code>：用于描述允许保存文件类型类别。</li>
+<li><code>accept</code>：是一个对象，该对象的 <code>key</code> 是 <a href="https://link.juejin.cn/?target=https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types" title="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types">MIME</a> 类型，值是文件扩展名列表。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">saveFile</span>(<span class="params">blob, filename</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> handle = <span class="keyword">await</span> <span class="built_in">window</span>.showSaveFilePicker(&#123;</span><br><span class="line">      suggestedName: filename,</span><br><span class="line">      types: [</span><br><span class="line">        &#123;</span><br><span class="line">          description: <span class="string">&quot;PNG file&quot;</span>,</span><br><span class="line">          accept: &#123;</span><br><span class="line">            <span class="string">&quot;image/png&quot;</span>: [<span class="string">&quot;.png&quot;</span>],</span><br><span class="line">          &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          description: <span class="string">&quot;Jpeg file&quot;</span>,</span><br><span class="line">          accept: &#123;</span><br><span class="line">            <span class="string">&quot;image/jpeg&quot;</span>: [<span class="string">&quot;.jpeg&quot;</span>],</span><br><span class="line">          &#125;,</span><br><span class="line">         &#125;,</span><br><span class="line">      ],</span><br><span class="line">     &#125;);</span><br><span class="line">    <span class="keyword">const</span> writable = <span class="keyword">await</span> handle.createWritable();</span><br><span class="line">    <span class="keyword">await</span> writable.write(blob);</span><br><span class="line">    <span class="keyword">await</span> writable.close();</span><br><span class="line">    <span class="keyword">return</span> handle;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">     <span class="built_in">console</span>.error(err.name, err.message);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">download</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!imgDataUrl) &#123;</span><br><span class="line">    alert(<span class="string">&quot;请先合成图片&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> imgBlob = dataUrlToBlob(imgDataUrl, <span class="string">&quot;image/png&quot;</span>);</span><br><span class="line">  saveFile(imgBlob, <span class="string">&quot;face.png&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h4><p>两点之间的距离公式，两个圆心之间的距离</p>
-<h4 id="算法-1"><a href="#算法-1" class="headerlink" title="算法"></a>算法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Math.sqrt(Math.pow(circleA.x - circleB.x, 2) + Math.pow(circleA.y - circleB.y, 2)) </span><br><span class="line">&lt; circleA.radius + circleB.radius</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-FileSaver-下载"><a href="#4-3-FileSaver-下载" class="headerlink" title="4.3 FileSaver 下载"></a>4.3 FileSaver 下载</h3><p><a href="https://link.juejin.cn/?target=https://github.com/eligrey/FileSaver.js" title="https://github.com/eligrey/FileSaver.js">FileSaver.js</a> 是在客户端保存文件的解决方案，非常适合在客户端上生成文件的 Web 应用程序。它是 HTML5 版本的 saveAs() FileSaver 实现，支持大多数主流的浏览器，其兼容性如下图所示：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/740514537fac41219196d26cecce17f5~tplv-k3u1fbpfcp-zoom-1.image"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FileSaver saveAs(</span><br><span class="line"> Blob/File/Url, </span><br><span class="line"> optional DOMString filename, </span><br><span class="line"> optional <span class="built_in">Object</span> &#123; autoBom &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
-<h3 id="四、碰撞检测：圆形—矩形"><a href="#四、碰撞检测：圆形—矩形" class="headerlink" title="四、碰撞检测：圆形—矩形"></a>四、碰撞检测：圆形—矩形</h3><p>拖拽圆形和矩形div进行碰撞检测</p>
-<iframe height="265" style="width: 100%;" scrolling="no" title="KKKpyWQ" src="https://codepen.io/OrangeSnow/embed/KKKpyWQ?height=265&theme-id=0&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow/pen/KKKpyWQ'>KKKpyWQ</a> by Sakura
-  (<a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow'>@OrangeSnow</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe>
-
-<h4 id="逻辑-2"><a href="#逻辑-2" class="headerlink" title="逻辑"></a>逻辑</h4><p>通过找出矩形上离圆心最近的点，然后通过判断该点与圆心的距离是否小于圆的半径，若小于则为碰撞。</p>
-<h4 id="判断条件"><a href="#判断条件" class="headerlink" title="判断条件"></a>判断条件</h4><p>对于 x轴：<br>如果圆心在矩形的左侧（if(circle.x &lt; rect.x)），那么 closestPoint.x = rect.x<br>如果圆心在矩形的右侧（else if(circle.x &gt; rect.x + rect.w)），那么 closestPoint.x = rect.x + rect.w<br>如果圆心在矩形的正上下方（else），那么 closestPoint.x = circle.x<br>对于 y 轴：<br>如果圆心在矩形的上方（if(circle.y &lt; rect.y)），那么 closestPoint.y = rect.y。<br>如果圆心在矩形的下方（else if(circle.y &gt; rect.y + rect.h)），那么 closestPoint.y = rect.y + rect.h。<br>如果圆心在矩形的正左右两侧（else），那么 closestPoint.y = circle.y</p>
-<h4 id="算法-2"><a href="#算法-2" class="headerlink" title="算法"></a>算法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var distance &#x3D; Math.sqrt(Math.pow(closestPoint.x - circle.x, 2) + Math.pow(closestPoint.y - circle.y, 2))</span><br><span class="line">if(distance &lt; circle.r) return true &#x2F;&#x2F; 发生碰撞</span><br><span class="line">else return false &#x2F;&#x2F; 未发生碰撞</span><br></pre></td></tr></table></figure>
-
-<h3 id="五、碰撞检测：圆形—旋转矩形"><a href="#五、碰撞检测：圆形—旋转矩形" class="headerlink" title="五、碰撞检测：圆形—旋转矩形"></a>五、碰撞检测：圆形—旋转矩形</h3><p>拖拽圆形和旋转矩形div进行碰撞检测</p>
-<iframe height="265" style="width: 100%;" scrolling="no" title="dyyMJNb" src="https://codepen.io/OrangeSnow/embed/dyyMJNb?height=265&theme-id=0&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow/pen/dyyMJNb'>dyyMJNb</a> by Sakura
-  (<a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow'>@OrangeSnow</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe>
-
-<h4 id="逻辑-3"><a href="#逻辑-3" class="headerlink" title="逻辑"></a>逻辑</h4><p>1、一个物体相对于另一个物体的位置发生了变化，这个物体就在运动。<br>2、简化模型，变为普通的圆形与矩形碰撞检测</p>
-<h4 id="计算过程"><a href="#计算过程" class="headerlink" title="计算过程"></a>计算过程</h4><pre><code> 目标值：C(c,d)的坐标，即相对旋转后的圆心坐标</code></pre>
-<p>1、已知条件：设 A 点旋转前的角度为 δ，则旋转（逆时针）到 C 点后的角度为(δ+β)<br>2、由于 |AB| 与 |CB| 相等（即长度），且<br>     已知条件： |AB| = y/sin(δ) = x / cos(δ)<br>     已知条件： |CB| = d/sin(δ + β) = c / cos(δ + β)<br>3、已知条件：半径 r = x / cos(δ) = y / sin(δ) = d / sin(δ + β) = c / cos(δ + β)<br>4、由以下三角函数两角和差公式：<br>    sin(δ + β) = sin(δ)cos(β) + cos(δ)sin(β)<br>    cos(δ + β) = cos(δ)cos(β) - sin(δ)sin(β)<br>5、可得出旋转后的坐标：<br>    c = r * cos(δ + β) = r * cos(δ)cos(β) - r * sin(δ)sin(β) = x * cos(β) - y * sin(β)<br>    d = r * sin(δ + β) = r * sin(δ)cos(β) + r * cos(δ)sin(β) = y * cos(β) + x * sin(β)<br>6、实际坐标公式<br>    x’= cos(β) * (cx – centerX) – sin(β) * (cy – centerY) + centerX<br>    y’= sin(β) * (cx – centerX) + cos(β) * (cy – centerY) + centerY</p>
-<h4 id="算法-3"><a href="#算法-3" class="headerlink" title="算法"></a>算法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x’&#x3D; Math.cos(radian) * (cx - centerX) - Math.sin(radian) * (cy - centerY) + centerX</span><br><span class="line">y’&#x3D; Math.sin(radian) * (cx - centerX) + Math.cos(radian) * (cy - centerY) + centerY</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="六、碰撞检测：像素-像素"><a href="#六、碰撞检测：像素-像素" class="headerlink" title="六、碰撞检测：像素-像素"></a>六、碰撞检测：像素-像素</h3><p>拖拽不规则的图形，在像素级别进行碰撞检测</p>
-<iframe height="265" style="width: 100%;" scrolling="no" title="VwwLrzL" src="https://codepen.io/OrangeSnow/embed/VwwLrzL?height=265&theme-id=0&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow/pen/VwwLrzL'>VwwLrzL</a> by Sakura
-  (<a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow'>@OrangeSnow</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe>
-
-<h4 id="逻辑-4"><a href="#逻辑-4" class="headerlink" title="逻辑"></a>逻辑</h4><p>1、根据每一像素来判定是否碰撞，性能要求比较高。通常情况下，先对图像所在的矩形进行碰撞检测，当两个矩形碰撞时，再从像素级别进行判断<br>2、所在矩形发生碰撞后，再在像素级别进行比较，提高性能<br>3、获取两个精灵图像在相交矩形的像素数据，在相交矩形区域进行遍历判断，若两个图像在同一位置的值都不为0，则发生碰撞</p>
-<p>2D游戏中，通常使用矩形、圆形等来代替复杂图形的相交检测。因为这两种形状的碰撞检测速度是最快的。<br>其中矩形包围盒又可以分为轴对齐包围盒（AABB, Axis Aligned Bounding Box）与转向包围盒（OBB, Oriented Bounding Box）。<br>AABB与OBB的区别在于，AABB中的矩形的其中一条边和坐标轴平行，OBB的计算复杂度要高于AABB。根据不同的使用场景，可以用不同的方案。</p>
-<h4 id="算法-4"><a href="#算法-4" class="headerlink" title="算法"></a>算法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var rect &#x2F;&#x2F;相交矩形的数据对象，sx, sy, sw, sh</span><br><span class="line">var kyuubiImg &#x2F;&#x2F;图像1</span><br><span class="line">var narutoImg &#x2F;&#x2F;图像2</span><br><span class="line">if(rect[0] &gt;&#x3D; rect[2] || rect[1] &gt;&#x3D; rect[3]) &#123;&#x2F;&#x2F;如果没有相交则退出 &#125; else&#123;</span><br><span class="line">    &#x2F;&#x2F;获取精灵在相交矩形像素数据</span><br><span class="line">    kyuubiImg.data &#x3D; backBuf.getImageData(rect[0],rect[1],rect[4],rect[5]).data;</span><br><span class="line">    narutoImg.data &#x3D; backBuf.getImageData(rect[0],rect[1],rect[4],rect[5]).data;</span><br><span class="line">    for(var i&#x3D;3;i&lt;kyuubiImg.data.length;i+&#x3D;4)&#123;</span><br><span class="line">        if(kyuubiImg.data[i] &gt; 0 &amp;&amp; narutoImg.data[i] &gt; 0)&#123;</span><br><span class="line">                    &#x2F;&#x2F;发生碰撞</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="七、小Demo：颜色选择器"><a href="#七、小Demo：颜色选择器" class="headerlink" title="七、小Demo：颜色选择器"></a>七、小Demo：颜色选择器</h4><iframe height="265" style="width: 100%;" scrolling="no" title="ExxjbvM" src="https://codepen.io/OrangeSnow/embed/ExxjbvM?height=265&theme-id=0&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow/pen/ExxjbvM'>ExxjbvM</a> by Sakura
-  (<a target="_blank" rel="noopener" href='https://codepen.io/OrangeSnow'>@OrangeSnow</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe>
-
-<p>CanvasRenderingContext2D.getImageData() 返回一个 ImageData 对象，用来描述 canvas 区域隐含的像素数据，这个区域通过矩形表示，起始点为(sx, sy)、宽为sw、高为sh。<br>ctx.getImageData(sx, sy, sw, sh)<br>参数<br>sx：将要被提取的图像数据矩形区域的左上角 x 坐标。<br>sy：将要被提取的图像数据矩形区域的左上角 y 坐标。<br>sw：将要被提取的图像数据矩形区域的宽度。<br>sh：将要被提取的图像数据矩形区域的高度。<br>返回值<br>一个 ImageData 对象，包含 canvas 给定的矩形图像数据。<br>ImageData 对象会有三个属性，height、width 和 data。<br>ImageData.height<br>使用像素描述 ImageData 的实际高度，这个值其实等于 getImageData() 方法中的参数 sh<br>ImageData.width<br>使用像素描述 ImageData 的实际宽度。这个值其实等于 getImageData() 方法中的参数 sw<br>ImageData.data<br>一个一维数组，包含以 RGBA 顺序的数据，数据使用 0 至 255（包含）的整数表示</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">示例代码：</span><br><span class="line">var ctx &#x3D; canvas.getContext(&#39;2d&#39;);</span><br><span class="line">&#x2F;&#x2F; 获取鼠标坐标</span><br><span class="line">var x &#x3D; event.layerX</span><br><span class="line">var y &#x3D; event.layerY</span><br><span class="line">&#x2F;&#x2F; 获取图片像素信息</span><br><span class="line">var pixel &#x3D; ctx.getImageData(x, y, 1, 1)</span><br><span class="line">var data &#x3D; pixel.data</span><br><span class="line"> &#x2F;&#x2F; 获取rgba值</span><br><span class="line">var rgba &#x3D; &#39;rgba(&#39; + data[0] + &#39;,&#39; + data[1] +&#39;,&#39; + data[2] + &#39;,&#39; + (data[3] &#x2F; 255) + &#39;)&#39;;</span><br><span class="line">&#x2F;&#x2F; 设置小正方形的背景颜色</span><br><span class="line">color.style.background &#x3D;rgba;</span><br></pre></td></tr></table></figure>
-
-<p>引用：<br>1、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaohuochai/p/5899228.html">javascript动画系列第三篇——碰撞检测</a><br>2、<a target="_blank" rel="noopener" href="http://www.imooc.com/article/79972?block_id=tuijian_wz">用 canvas 的 getImageData 做点有趣的事</a><br>3、<a target="_blank" rel="noopener" href="https://aotu.io/notes/2017/02/16/2d-collision-detection/index.html">“等一下，我碰！”——常见的2D碰撞检测</a><br>4、<a target="_blank" rel="noopener" href="https://github.com/krapnikkk/JS-gameMathematics">使用html+javascript实现游戏常用算法演示</a><br>5、<a target="_blank" rel="noopener" href="http://imgbase64.duoshitong.com/">工具网站：图片转换Base64</a><br>6、<a target="_blank" rel="noopener" href="https://cczeng.github.io/2017/05/03/git/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8Github-Pages%E6%90%AD%E5%BB%BA%E8%B5%B7%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E2%80%94%E2%80%94%E7%BB%86%E6%95%B0%E4%B8%80%E8%B7%AF%E7%9A%84%E5%9D%91/">GitHub搭建Hexo博客教程</a><br>7、<a target="_blank" rel="noopener" href="https://my.oschina.net/fgreshrht/blog/378961">圆与旋转矩形的碰撞检测（下篇）</a><br>8、<a target="_blank" rel="noopener" href="https://flashgene.com/archives/66663.html">碰撞检测的向量实现</a><br>9、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qwguo/p/6678830.html">通过js获取元素css3的transform rotate旋转角度方法</a></p>
+<h3 id="4-4-base64-格式下载"><a href="#4-4-base64-格式下载" class="headerlink" title="4.4 base64 格式下载"></a>4.4 base64 格式下载</h3><p><strong>Base64</strong> 是一种基于 64 个可打印字符来表示二进制数据的表示方法。由于 2⁶ = 64 ，所以每 6 个比特为一个单元，对应某个可打印字符。3 个字节有 24 个比特，对应于 4 个 base64 单元，即 3 个字节可由 4 个可打印字符来表示。相应的转换过程如下图所示：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c89ee6d5625e435cba0984c7841b6dce~tplv-k3u1fbpfcp-zoom-1.image"></p>
+<p><strong>Base64 常用在处理文本数据的场合，表示、传输、存储一些二进制数据，包括 MIME 的电子邮件及 XML 的一些复杂数据。</strong> 在 <a href="https://link.juejin.cn/?target=https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types" title="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types">MIME</a> 格式的电子邮件中，base64 可以用来将二进制的字节序列数据编码成 ASCII 字符序列构成的文本。使用时，在传输编码方式中指定 base64。使用的字符包括大小写拉丁字母各 26 个、数字 10 个、加号 + 和斜杠 /，共 64 个字符，等号 = 用来作为后缀用途。</p>
 
       
 
@@ -323,7 +346,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/01/25/%E6%8B%96%E6%8B%BD%E5%92%8C%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/09/05/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -337,18 +360,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/09/05/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          文件下载
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/01/20/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E6%A8%A1%E5%9D%97%E5%8C%96%E8%A7%84%E8%8C%83/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Javascript深入系列（八）：模块化规范</div>
+    <a href="/2021/01/25/%E6%8B%96%E6%8B%BD%E5%92%8C%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">拖拽和碰撞检测</div>
       <i class="icon-circle-right"></i>
     </a>
   
