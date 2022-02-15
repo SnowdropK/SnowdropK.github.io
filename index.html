@@ -152,6 +152,150 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-axios工具函数源码学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/16/axios%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">axios工具函数源码学习</a>
+    </h1>
+  
+
+        
+        <a href="/2022/01/16/axios%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/" class="archive-article-date">
+  	<time datetime="2022-01-16T01:05:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>源码共读活动：<a target="_blank" rel="noopener" href="https://www.yuque.com/ruochuan12/notice/p19">第19期 | axios 工具函数</a><br>仓库：<a target="_blank" rel="noopener" href="https://github.com/axios/axios">axios</a>，<a target="_blank" rel="noopener" href="https://github1s.com/axios/axios/blob/HEAD/lib/utils.js#L198">在线查看</a><br>​</p>
+<h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><ol>
+<li>初步学会看源码</li>
+<li>学会 axios 中的10多个工具函数</li>
+</ol>
+<p>​</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>axios的工具函数主要是用于各种数据类型的判断，以及对数据进行二次处理，如下便是所有的工具函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// 判断数组</span></span><br><span class="line">  isArray: isArray,</span><br><span class="line">  <span class="comment">// 判断ArrayBuffer（通用的、固定长度的原始二进制数据缓冲区）</span></span><br><span class="line">  isArrayBuffer: isArrayBuffer,</span><br><span class="line">  <span class="comment">// 判断是否是Buffer</span></span><br><span class="line">  isBuffer: isBuffer,</span><br><span class="line">  <span class="comment">// 判断是否是FormData</span></span><br><span class="line">  isFormData: isFormData,</span><br><span class="line">  <span class="comment">// 判断是否是ArrayBufferView （是一个表示以下任意一个 TypedArray 类型的辅助数据类型）</span></span><br><span class="line">  isArrayBufferView: isArrayBufferView,</span><br><span class="line">  <span class="comment">// 判断是否是字符串</span></span><br><span class="line">  isString: isString,</span><br><span class="line">  <span class="comment">// 判断是否是数字</span></span><br><span class="line">  isNumber: isNumber,</span><br><span class="line">  <span class="comment">// 判断是否是对象</span></span><br><span class="line">  isObject: isObject,</span><br><span class="line">  <span class="comment">// 判断是否是纯对象</span></span><br><span class="line">  isPlainObject: isPlainObject,</span><br><span class="line">  <span class="comment">// 判断是否是undefined</span></span><br><span class="line">  isUndefined: isUndefined,</span><br><span class="line">  <span class="comment">// 判断是否是Date</span></span><br><span class="line">  isDate: isDate,</span><br><span class="line">  <span class="comment">// 判断是否是文件类型</span></span><br><span class="line">  isFile: isFile,</span><br><span class="line">  <span class="comment">// 判断是否是Blob</span></span><br><span class="line">  isBlob: isBlob,</span><br><span class="line">  <span class="comment">// 判断是否是函数</span></span><br><span class="line">  isFunction: isFunction,</span><br><span class="line">  <span class="comment">// 判断是否是流</span></span><br><span class="line">  isStream: isStream,</span><br><span class="line">  <span class="comment">// 判断是否是URLSearchParams</span></span><br><span class="line">  isURLSearchParams: isURLSearchParams,</span><br><span class="line">  <span class="comment">// 判断是否是标准浏览器环境</span></span><br><span class="line">  isStandardBrowserEnv: isStandardBrowserEnv,</span><br><span class="line">  <span class="comment">// 遍历对象或数组</span></span><br><span class="line">  forEach: forEach,</span><br><span class="line">  <span class="comment">// 合并对象</span></span><br><span class="line">  merge: merge,</span><br><span class="line">  <span class="comment">// 继承对象进行拓展</span></span><br><span class="line">  extend: extend,</span><br><span class="line">  <span class="comment">// 去除首尾空格</span></span><br><span class="line">  trim: trim,</span><br><span class="line">  <span class="comment">// 删除UTF-8编码中BOM</span></span><br><span class="line">  stripBOM: stripBOM</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><p>因为大部分工具函数都是用于类型判断，所以先了解<code>typeof</code>、<code>instanceof</code>、<code>Object.prototype.toString</code>等的用法很有必要。<br>​
+        
+          <a class="article-more-a" href="/2022/01/16/axios%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/01/16/axios%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-validate-npm-package-name源码学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/16/validate-npm-package-name%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">validate-npm-package-name源码学习</a>
+    </h1>
+  
+
+        
+        <a href="/2021/12/16/validate-npm-package-name%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/" class="archive-article-date">
+  	<time datetime="2021-12-16T03:58:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>源码共读活动：<a target="_blank" rel="noopener" href="https://www.yuque.com/ruochuan12/notice/p7">第7期 | validate-npm-package-name 检测 npm 包是否符合标准</a><br>仓库：<a target="_blank" rel="noopener" href="https://github.com/npm/validate-npm-package-name">validate-npm-package-name</a><br>正则表达式可视化：<a target="_blank" rel="noopener" href="https://jex.im/regulex/#!flags=&re=%5E(a%7Cb)*%3F%24">Regulex</a><br>​</p>
+<h2 id="一、介绍"><a href="#一、介绍" class="headerlink" title="一、介绍"></a>一、介绍</h2><h3 id="1-1-概念"><a href="#1-1-概念" class="headerlink" title="1.1 概念"></a>1.1 概念</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Give me a string and I<span class="string">&#x27;ll tell you if it&#x27;</span>s a valid npm package name.</span><br><span class="line"></span><br><span class="line">This package <span class="built_in">exports</span> a single synchronous <span class="function"><span class="keyword">function</span> <span class="title">that</span> <span class="title">takes</span> <span class="title">a</span> <span class="title">string</span> <span class="title">as</span> <span class="title">input</span> <span class="title">and</span> <span class="title">returns</span> <span class="title">an</span> <span class="title">object</span> <span class="title">with</span> <span class="title">two</span> <span class="title">properties</span>:</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">validForNewPackages</span> :: <span class="title">Boolean</span></span></span><br><span class="line"><span class="function"><span class="title">validForOldPackages</span> :: <span class="title">Boolean</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">谷歌翻译：</span><br><span class="line">接受一个字符串，判断它是否是一个有效的npm包名。</span><br><span class="line"></span><br><span class="line">这个包导出一个同步函数，它接受一个字符串作为输入参数并返回一个具如下有两个属性的对象： </span><br><span class="line">validForNewPackages :: Boolean</span><br><span class="line">validForOldPackages :: Boolean</span><br></pre></td></tr></table></figure>
+<p>从概念中可以看出，validate-npm-package-name是用来校验npm包命名是否合法的一个工具。<br>​</p>
+<p>ps：只有在包名合法有效的时候，返回的对象只有validForNewPackages、validForOldPackages两个属性。当包名存在问题时，返回的对象中还会有erros或者warnings。<br>​</p>
+        
+          <a class="article-more-a" href="/2021/12/16/validate-npm-package-name%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/16/validate-npm-package-name%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-文件下载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -177,112 +321,9 @@
 <h3 id="1-2-Byte与bit"><a href="#1-2-Byte与bit" class="headerlink" title="1.2 Byte与bit"></a>1.2 Byte与bit</h3><p><code>数据存储</code>是以<code>“字节”（Byte）</code>为单位，<code>数据传输</code>大多是以<code>“位”（bit，又名“比特”）为单位</code>，一个位就代表一个0或1（即二进制），每8个位（bit，简写为b）组成一个字节（Byte，简写为B），是最小一级的信息单位。</p>
 <p>有控制码或非美标码的文件，通常不能在不同电脑系统间直接交换。这类文件有一个通称，叫“二进制文件”(<code>Binary Files</code>)。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>字节(Byte)=<span class="number">8</span>位(bit)</span><br><span class="line"><span class="number">1</span>KB( Kilobyte，千字节)=<span class="number">1024</span>B</span><br><span class="line"><span class="number">1</span>MB( Megabyte，兆字节)=<span class="number">1024</span>KB</span><br><span class="line"><span class="number">1</span>GB( Gigabyte，吉字节，千兆)=<span class="number">1024</span>MB</span><br><span class="line"><span class="number">1</span>TB( Trillionbyte，万亿字节，太字节)=<span class="number">1024</span>GB</span><br><span class="line"><span class="number">1</span>PB( Petabyte，千万亿字节，拍字节)=<span class="number">1024</span>TB</span><br><span class="line"><span class="number">1</span>EB( Exabyte，百亿亿字节，艾字节)=<span class="number">1024</span>PB</span><br><span class="line"><span class="number">1</span>ZB(Zettabyte，十万亿亿字节，泽字节)=<span class="number">1024</span>EB</span><br><span class="line"><span class="number">1</span>YB( Yottabyte，一亿亿亿字节，尧字节)=<span class="number">1024</span>ZB</span><br><span class="line"><span class="number">1</span>BB( Brontobyte，千亿亿亿字节)=<span class="number">1024</span>YB</span><br></pre></td></tr></table></figure>
-<h2 id="二、编码"><a href="#二、编码" class="headerlink" title="二、编码"></a>二、编码</h2><h3 id="2-1-概念"><a href="#2-1-概念" class="headerlink" title="2.1 概念"></a>2.1 概念</h3><p>在计算机中，所有的数据在存储和运算时都要使用二进制数表示（因为计算机用高电平和低电平分别表示1和0），例如，像a、b、c、d等52个字母（包括大写）以及0、1等数字还有一些常用的符号（例如*、#、@等）在计算机中存储时也要使用二进制数来表示。</p>
-<p>而具体用哪些二进制数字表示哪个符号，当然每个人都可以约定自己的一套（这就叫<code>编码</code>），而如果要想互相通信而不造成混乱，那么就必须使用相同的编码规则。美国有关的标准化组织就出台了<code>ASCII编码</code>，统一规定了上述常用符号用哪些二进制数来表示。</p>
-<h3 id="2-2-编码标准"><a href="#2-2-编码标准" class="headerlink" title="2.2 编码标准"></a>2.2 编码标准</h3><p>文字编码标准主要有<code>ASCII</code>、<code>GB2312</code>、<code>GBK</code>、<code>Unicode</code>等。</p>
-<p><code>ASCII</code>：编码是美国信息交换标准编码（美标）。</p>
-<p><code>GB2312</code>、<code>GBK</code>、<code>GB18030</code>：汉字字符编码方案的国家标准。</p>
-<p><code>BIG5码</code>：针对繁体汉字的汉字编码，在台湾、香港的电脑系统中普遍应用。</p>
-<p><code>Unicode</code>：宽字节字符集，它对每个字符都固定使用两个字节即16位表示（普及到东亚国家发展出的编码标准）（UCS4、UTF-8、UTF-16都是Unicode的编码方案。其中UTF-8因可以兼容<code>ASCII</code>而被广泛使用。）。</p>
-<hr>
-<p><code>Base64编码</code>：现有的字符集非常多，常用的有 <code>UTF-8 / GBK</code> 等, 这里面的某些字节在某些传输渠道。比如邮件传输就不支持上面<code>ASCII</code>码中的控制字符， <code>Base64</code>的创建就是为了解决此问题。</p>
-<p><code>Base64</code>内的64是指64个字符, 分别是 <code>A-Z, a-z, 0-9, +, /</code>，Base64 相应的索引表如下:</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e5c86ff3781d434b9fd123f9b8221192~tplv-k3u1fbpfcp-zoom-1.image" alt="777.jpg"></p>
-<p>在 <code>HTML</code> 中可以嵌入<code> base64</code> 编码的图片，可以减少网络请求。</p>
-<p>浏览器都支持 <code>Data URLs</code>，允许使用<code>base64</code>对图片或其他文件的二进制数据进行编码，就可以将其作为文本字符串嵌入网页中。</p>
-<p>Data URLs 由四个部分组成：前缀（<code>data:</code>）、指示数据类型的 <code>MIME</code> 类型、如果非文本则为可选的 <code>base64</code> 标记、数据本身：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data:[&lt;mediatype&gt;][;base64],&lt;data&gt;</span><br><span class="line"></span><br><span class="line">&lt;img alt=&quot;logo&quot; src=&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUg...&quot;&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><strong>但需要注意的是：如果图片较大则不适合使用这种方式，因为图片经过 base64 编码后的字符串变大约三分之一，影响HTML 页面加载速度。</strong></p>
-<h3 id="2-3-ASCII码与Base64的编解码"><a href="#2-3-ASCII码与Base64的编解码" class="headerlink" title="2.3 ASCII码与Base64的编解码"></a>2.3 ASCII码与Base64的编解码</h3><p><code>Base64</code>有64个字符， 2^6 = 64，所以每个<code>Base64编码</code>字符可以用一个<br><code>6位的二进制</code>来表示。这样的话如果有<code>3个字节的二进制</code>, 可以用<code>4位Base64字符</code>表示。</p>
-<p>编码流程如下:</p>
-<ol>
-<li><code>ASCII码</code>字符串根据ASCII码对照表转换为<code>二进制数值</code>；</li>
-<li>把<code>二进制数值</code>按每<code>6位</code>进行划分；</li>
-<li>然后<code>6位二进制</code>转化为<code>十进制</code>根据对照表找到<code>Base64编码字符</code>；</li>
-</ol>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/34e4045ef6a14b65b633fa49baacb0c1~tplv-k3u1fbpfcp-zoom-1.image" alt="777.png"></p>
-<p>由图可知，<code>Man</code>（3 字节）编码的结果为 <code>TWFu</code>（4 字节），经过 base64 编码后体积会增加 1/3。<code>Man</code> 这个字符串的长度刚好是 3，可以用 4 个 base64 单元来表示。</p>
-<blockquote>
-<p>如果待编码字符串的长度不是3的倍数，为了可以整除6编译出完整的字节数, 就需要使用 0 字节值在末尾补足，使其能够被 3 整除，然后再进行 base64 的编码。</p>
-</blockquote>
-<blockquote>
-<p>如果有连续<code>6位都是0的话, 就用“=”来表示</code>。</p>
-</blockquote>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8b8da44d120c4aaca4941756850048d7~tplv-k3u1fbpfcp-zoom-1.image" alt="777.png"></p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0de1be1c5374402b95b6e8a72ecf68cf~tplv-k3u1fbpfcp-zoom-1.image" alt="777.jpg"></p>
-<h3 id="base64编码与解码"><a href="#base64编码与解码" class="headerlink" title="base64编码与解码"></a>base64编码与解码</h3><ul>
-<li>btoa()：该函数能够基于二进制数据 “字符串” 创建一个 base64 编码的 ASCII 字符串。</li>
-<li>atob()： 该函数能够<code>解码</code>通过 base64 编码的字符串数据。</li>
-</ul>
-<h2 id="三、下载相关函数"><a href="#三、下载相关函数" class="headerlink" title="三、下载相关函数"></a>三、下载相关函数</h2><h3 id="3-1-Blob"><a href="#3-1-Blob" class="headerlink" title="3.1 Blob"></a>3.1 Blob</h3><h4 id="3-1-1-概念"><a href="#3-1-1-概念" class="headerlink" title="3.1.1 概念"></a>3.1.1 概念</h4><p><code>Blob（Binary Large Object）</code>表示二进制类型的大对象。在数据库管理系统中，将二进制数据存储为一个单一个体的集合。Blob 通常是影像、声音或多媒体文件。<strong>「在 JavaScript 中 Blob 类型的对象表示不可变的类似文件对象的原始数据。」</strong></p>
-<p>Blob 对象含有两个属性：size 和 type。其中 <code>size</code> 属性用于表示数据的大小（以字节为单位），<code>type</code> 是 <code>MIME 类型</code>的字符串。</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2de4a8bea46a48cd99226ae4b05bf882~tplv-k3u1fbpfcp-zoom-1.image" alt="777.png"></p>
-<h4 id="3-1-2-构造函数"><a href="#3-1-2-构造函数" class="headerlink" title="3.1.2 构造函数"></a>3.1.2 构造函数</h4><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5c106183f9624a1abc0f69f084c0091d~tplv-k3u1fbpfcp-zoom-1.image" alt="777.jpg"></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aBlob = <span class="keyword">new</span> Blob(blobParts, options);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><code>blobParts</code>：是一个由 <code>ArrayBuffer</code>，<code>ArrayBufferView</code>，<code>Blob</code>，<code>DOMString</code> 等对象构成的数组。<code>DOMStrings</code> 会被编码为 <code>UTF-8</code>。</p>
-</li>
-<li><p><code>options</code>：一个可选的对象，包含以下两个属性：</p>
-<ul>
-<li><code>type</code> —— 默认值为 <code>&quot;&quot;</code>，代表了将会被放入到 blob 中的数组内容的 MIME 类型。</li>
-<li><code>endings</code> —— 默认值为 <code>&quot;transparent&quot;</code>，用于指定包含行结束符 <code>\n</code> 的字符串如何被写入。 它是以下两个值中的一个： <code>&quot;native&quot;</code>，代表行结束符会被更改为适合宿主操作系统文件系统的换行符，或者 <code>&quot;transparent&quot;</code>，代表会保持 blob 中保存的结束符不变。</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myBlobParts = [<span class="string">&#x27;&lt;html&gt;&lt;h2&gt;Hello Semlinker&lt;/h2&gt;&lt;/html&gt;&#x27;</span>]; <span class="comment">// an array consisting of a single DOMString</span></span><br><span class="line"><span class="keyword">let</span> myBlob = <span class="keyword">new</span> Blob(myBlobParts, &#123;<span class="attr">type</span> : <span class="string">&#x27;text/html&#x27;</span>, <span class="attr">endings</span>: <span class="string">&quot;transparent&quot;</span>&#125;); <span class="comment">// the blob</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(myBlob.size + <span class="string">&quot; bytes size&quot;</span>);</span><br><span class="line"><span class="comment">// Output: 37 bytes size</span></span><br><span class="line"><span class="built_in">console</span>.log(myBlob.type + <span class="string">&quot; is the type&quot;</span>);</span><br><span class="line"><span class="comment">// Output: text/html is the type</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-2-Object-URL"><a href="#3-2-Object-URL" class="headerlink" title="3.2 Object URL"></a>3.2 Object URL</h3><p><code>Object URL</code> 是一种伪协议，也被称为 <code>Blob URL</code>。允许 <code>Blob</code> 或 <code>File</code> 对象用作图像，下载二进制数据链接等的 URL 源。在浏览器中，使用 <code>URL.createObjectURL</code> 方法来创建 <code>Blob URL</code>，该方法接收一个 <code>Blob</code> 对象，并为其创建一个唯一的 URL，形式为 <code>blob:&lt;origin&gt;/&lt;uuid&gt;</code>，对应的示例如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blob:https:&#x2F;&#x2F;example.org&#x2F;40a5fb5a-d56d-4a33-b4e2-0acf6a8e5f641</span><br></pre></td></tr></table></figure>
-<p>虽然存储了<code>URL → Blob</code>的映射，但 Blob 本身仍驻留在内存中，浏览器无法释放它。映射在文档卸载时自动清除，因此 Blob 对象随后被释放。但是，如果应用程序寿命很长，那不会很快发生。因此，如果创建了一个<code>Blob URL</code>，即使不再需要该<code>Blob</code>，它也会存在内存中。</p>
-<p>针对这个问题，可以调用 <code>URL.revokeObjectURL(url)</code> 方法，从内部映射中删除引用，从而允许删除 Blob（如果没有其他引用），并释放内存。</p>
-<h3 id="3-3-ArrayBuffer"><a href="#3-3-ArrayBuffer" class="headerlink" title="3.3 ArrayBuffer"></a>3.3 ArrayBuffer</h3><p>ArrayBuffer 对象用来表示<strong>「通用的、固定长度的」</strong>原始二进制数据缓冲区。** <strong>「ArrayBuffer 不能直接操作，而是要通过类型数组对象 或 <code>DataView</code>对象来操作」</strong>，它们会将缓冲区中的数据表示为特定的格式，并通过这些格式来读写缓冲区的内容。</p>
-<h3 id="3-4-Unit8Array"><a href="#3-4-Unit8Array" class="headerlink" title="3.4 Unit8Array"></a>3.4 Unit8Array</h3><p>Uint8Array 数组类型表示一个 8 位无符号整型数组，创建时内容被初始化为 0。创建完后，可以以<strong>「对象的方式或使用数组下标索引的方式」</strong> 引用数组中的元素。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Uint8Array</span>(); <span class="comment">// ES2017 最新语法</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Uint8Array</span>(length); <span class="comment">// 创建初始化为0的，包含length个元素的无符号整型数组</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Uint8Array</span>(typedArray);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Uint8Array</span>(object);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Uint8Array</span>(buffer [, byteOffset [, length]]);</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-5-Blob-与-ArrayBuffer"><a href="#3-5-Blob-与-ArrayBuffer" class="headerlink" title="3.5 Blob 与 ArrayBuffer"></a>3.5 Blob 与 ArrayBuffer</h3><ul>
-<li>除非需要使用 ArrayBuffer 提供的写入/编辑的能力，否则 Blob 格式可能是最好的。</li>
-<li>Blob 对象是不可变的，而 ArrayBuffer 是可以通过 TypedArrays 或 DataView 来操作。</li>
-<li>ArrayBuffer 是存在内存中的，可以直接操作。而 Blob 可以位于磁盘、高速缓存内存和其他不可用的位置。</li>
-<li>虽然 Blob 可以直接作为参数传递给其他函数，比如 <code>window.URL.createObjectURL()</code>。但是，可能仍需要 FileReader 之类的 File API 才能与 Blob 一起使用。</li>
-<li>Blob 与 ArrayBuffer 对象之间是可以相互转化的：<ul>
-<li>使用 FileReader 的 <code>readAsArrayBuffer()</code> 方法，可以把 Blob 对象转换为 ArrayBuffer 对象；</li>
-<li>使用 Blob 构造函数，如 <code>new Blob([new Uint8Array(data]);</code>，可以把 ArrayBuffer 对象转换为 Blob 对象。</li>
-</ul>
-</li>
-</ul>
-<h2 id="四、文件下载"><a href="#四、文件下载" class="headerlink" title="四、文件下载"></a>四、文件下载</h2><h3 id="4-1-a标签下载"><a href="#4-1-a标签下载" class="headerlink" title="4.1 a标签下载"></a>4.1 a标签下载</h3><h4 id="4-1-1-文件合成"><a href="#4-1-1-文件合成" class="headerlink" title="4.1.1 文件合成"></a>4.1.1 文件合成</h4><p><a href="https://link.juejin.cn/?target=https://github.com/lukechilds/merge-images" title="https://github.com/lukechilds/merge-images">merge-images</a> 这个库提供 <code>mergeImages(images, [options])</code> 方法，可以实现图片合成的功能。调用该方法后会返回一个 <a href="https://link.juejin.cn/?target=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise" title="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a> 对象，当异步操作完成后，合成的图片会以 <a href="https://link.juejin.cn/?target=https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/Data_URIs" title="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">Data URLs</a> 的格式返回。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mergePicEle = <span class="built_in">document</span>.querySelector(<span class="string">&quot;#mergedPic&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> images = [<span class="string">&quot;/body.png&quot;</span>, <span class="string">&quot;/eyes.png&quot;</span>, <span class="string">&quot;/mouth.png&quot;</span>].map(</span><br><span class="line">  (path) =&gt; <span class="string">&quot;../images&quot;</span> + path</span><br><span class="line">);</span><br><span class="line"><span class="keyword">let</span> imgDataUrl = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  imgDataUrl = <span class="keyword">await</span> mergeImages(images);</span><br><span class="line">  mergePicEle.src = imgDataUrl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-1-2-文件下载"><a href="#4-1-2-文件下载" class="headerlink" title="4.1.2 文件下载"></a>4.1.2 文件下载</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dataUrlToBlob</span>(<span class="params">base64, mimeType</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> bytes = <span class="built_in">window</span>.atob(base64.split(<span class="string">&quot;,&quot;</span>)[<span class="number">1</span>]);</span><br><span class="line">  <span class="keyword">let</span> ab = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(bytes.length);</span><br><span class="line">  <span class="keyword">let</span> ia = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(ab);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; bytes.length; i++) &#123;</span><br><span class="line">    ia[i] = bytes.charCodeAt(i);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Blob([ab], &#123; <span class="attr">type</span>: mimeType &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 保存文件</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saveFile</span>(<span class="params">blob, filename</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> a = <span class="built_in">document</span>.createElement(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">  a.download = filename;</span><br><span class="line">  a.href = URL.createObjectURL(blob);</span><br><span class="line">  a.click();</span><br><span class="line">  URL.revokeObjectURL(a.href) <span class="comment">// 内部映射中删除引用，从而允许删除 Blob，并释放内存</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-2-showSaveFilePicker-API-下载"><a href="#4-2-showSaveFilePicker-API-下载" class="headerlink" title="4.2 showSaveFilePicker API 下载"></a>4.2 showSaveFilePicker API 下载</h3><p><a href="https://link.juejin.cn/?target=https://developer.mozilla.org/en-US/docs/Web/API/window/showSaveFilePicker" title="https://developer.mozilla.org/en-US/docs/Web/API/window/showSaveFilePicker">showSaveFilePicker</a> 方法支持一个对象类型的可选参数，可包含以下属性：</p>
-<ul>
-<li><p><code>excludeAcceptAllOption</code>：布尔类型，默认值为 <code>false</code>。默认情况下，选择器应包含一个不应用任何文件类型过滤器的选项（由下面的 <code>types</code> 选项启用）。将此选项设置为 <code>true</code> 意味着 <code>types</code> 选项不可用。</p>
-</li>
-<li><p><code>types</code>：数组类型，表示允许保存的文件类型列表。数组中的每一项是包含以下属性的配置对象：</p>
-<ul>
-<li><code>description（可选）</code>：用于描述允许保存文件类型类别。</li>
-<li><code>accept</code>：是一个对象，该对象的 <code>key</code> 是 <a href="https://link.juejin.cn/?target=https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types" title="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types">MIME</a> 类型，值是文件扩展名列表。</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">saveFile</span>(<span class="params">blob, filename</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> handle = <span class="keyword">await</span> <span class="built_in">window</span>.showSaveFilePicker(&#123;</span><br><span class="line">      suggestedName: filename,</span><br><span class="line">      types: [</span><br><span class="line">        &#123;</span><br><span class="line">          description: <span class="string">&quot;PNG file&quot;</span>,</span><br><span class="line">          accept: &#123;</span><br><span class="line">            <span class="string">&quot;image/png&quot;</span>: [<span class="string">&quot;.png&quot;</span>],</span><br><span class="line">          &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          description: <span class="string">&quot;Jpeg file&quot;</span>,</span><br><span class="line">          accept: &#123;</span><br><span class="line">            <span class="string">&quot;image/jpeg&quot;</span>: [<span class="string">&quot;.jpeg&quot;</span>],</span><br><span class="line">          &#125;,</span><br><span class="line">         &#125;,</span><br><span class="line">      ],</span><br><span class="line">     &#125;);</span><br><span class="line">    <span class="keyword">const</span> writable = <span class="keyword">await</span> handle.createWritable();</span><br><span class="line">    <span class="keyword">await</span> writable.write(blob);</span><br><span class="line">    <span class="keyword">await</span> writable.close();</span><br><span class="line">    <span class="keyword">return</span> handle;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">     <span class="built_in">console</span>.error(err.name, err.message);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">download</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!imgDataUrl) &#123;</span><br><span class="line">    alert(<span class="string">&quot;请先合成图片&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> imgBlob = dataUrlToBlob(imgDataUrl, <span class="string">&quot;image/png&quot;</span>);</span><br><span class="line">  saveFile(imgBlob, <span class="string">&quot;face.png&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>与<strong>a 标签下载</strong> 相比，<a href="https://link.juejin.cn/?target=https://developer.mozilla.org/en-US/docs/Web/API/window/showSaveFilePicker" title="https://developer.mozilla.org/en-US/docs/Web/API/window/showSaveFilePicker">showSaveFilePicker</a> API 允许选择文件的下载目录、选择文件的保存格式和更改存储的文件名称。</p>
-<h3 id="4-3-FileSaver-下载"><a href="#4-3-FileSaver-下载" class="headerlink" title="4.3 FileSaver 下载"></a>4.3 FileSaver 下载</h3><p><a href="https://link.juejin.cn/?target=https://github.com/eligrey/FileSaver.js" title="https://github.com/eligrey/FileSaver.js">FileSaver.js</a> 是在客户端保存文件的解决方案，非常适合在客户端上生成文件的 Web 应用程序。它是 HTML5 版本的 saveAs() FileSaver 实现，支持大多数主流的浏览器，其兼容性如下图所示：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2350f24cd8f74c4fba2105e28a6feb3a~tplv-k3u1fbpfcp-zoom-1.image"></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FileSaver saveAs(</span><br><span class="line"> Blob/File/Url, </span><br><span class="line"> optional DOMString filename, </span><br><span class="line"> optional <span class="built_in">Object</span> &#123; autoBom &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 保存文本</span></span><br><span class="line"><span class="keyword">let</span> blob = <span class="keyword">new</span> Blob([<span class="string">&quot;文本数据!&quot;</span>], &#123; <span class="attr">type</span>: <span class="string">&quot;text/plain;charset=utf-8&quot;</span> &#125;);</span><br><span class="line">saveAs(blob, <span class="string">&quot;hello.txt&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 保存线上资源</span></span><br><span class="line">saveAs(<span class="string">&quot;https://z3.ax1x.com/2021/09/08/hbKjAO.png&quot;</span>, <span class="string">&quot;image.png&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 保存 canvas 画布内容</span></span><br><span class="line"><span class="keyword">let</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">&quot;my-canvas&quot;</span>);</span><br><span class="line">canvas.toBlob(<span class="function"><span class="keyword">function</span>(<span class="params">blob</span>) </span>&#123;</span><br><span class="line">  saveAs(blob, <span class="string">&quot;abao.png&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-4-base64-格式下载"><a href="#4-4-base64-格式下载" class="headerlink" title="4.4 base64 格式下载"></a>4.4 base64 格式下载</h3><p><strong>Base64</strong> 是一种基于 64 个可打印字符来表示二进制数据的表示方法。由于 2⁶ = 64 ，所以每 6 个比特为一个单元，对应某个可打印字符。3 个字节有 24 个比特，对应于 4 个 base64 单元，即 3 个字节可由 4 个可打印字符来表示。相应的转换过程如下图所示：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3281fcb81ced4f7e958ab7c476771147~tplv-k3u1fbpfcp-zoom-1.image"></p>
-<p><strong>Base64 常用在处理文本数据的场合，表示、传输、存储一些二进制数据，包括 MIME 的电子邮件及 XML 的一些复杂数据。</strong> 在 <a href="https://link.juejin.cn/?target=https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types" title="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types">MIME</a> 格式的电子邮件中，base64 可以用来将二进制的字节序列数据编码成 ASCII 字符序列构成的文本。使用时，在传输编码方式中指定 base64。使用的字符包括大小写拉丁字母各 26 个、数字 10 个、加号 + 和斜杠 /，共 64 个字符，等号 = 用来作为后缀用途。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">download</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> response = <span class="keyword">await</span> request.get(<span class="string">&quot;/file&quot;</span>, &#123;</span><br><span class="line">    params: &#123;</span><br><span class="line">      filename: picSelectEle.value + <span class="string">&quot;.png&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">if</span> (response &amp;&amp; response.data &amp;&amp; response.data.code === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> fileData = response.data.data;</span><br><span class="line">    <span class="keyword">const</span> &#123; name, type, content &#125; = fileData;</span><br><span class="line">    <span class="keyword">const</span> imgBlob = base64ToBlob(content, type);</span><br><span class="line">    saveAs(imgBlob, name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>因为返回的是 <code>base64</code> 格式的图片，所以在调用 <code>FileSaver</code> 提供的 <code>saveAs</code> 方法前，需要将 <code>base64</code> 字符串转换成 <code>blob</code> 对象，该转换是通过以下的 <code>base64ToBlob</code> 函数来完成。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">base64ToBlob</span>(<span class="params">base64, mimeType</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> bytes = <span class="built_in">window</span>.atob(base64);</span><br><span class="line">  <span class="keyword">let</span> ab = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(bytes.length);</span><br><span class="line">  <span class="keyword">let</span> ia = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(ab);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; bytes.length; i++) &#123;</span><br><span class="line">    ia[i] = bytes.charCodeAt(i);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Blob([ab], &#123; <span class="attr">type</span>: mimeType &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ba07cff6ef7f46b3bc7e8f3e111683e5~tplv-k3u1fbpfcp-zoom-1.image"></p>
-
+        
+          <a class="article-more-a" href="/2021/09/05/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/#more">more >></a>
+        
       
 
       
@@ -794,137 +835,6 @@
 
 
   
-    <article id="post-Javascript深入系列（二）：原型、原型链、继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/23/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%8E%9F%E5%9E%8B%E3%80%81%E5%8E%9F%E5%9E%8B%E9%93%BE%E3%80%81%E7%BB%A7%E6%89%BF/">Javascript深入系列（二）：原型、原型链、继承</a>
-    </h1>
-  
-
-        
-        <a href="/2020/12/23/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%8E%9F%E5%9E%8B%E3%80%81%E5%8E%9F%E5%9E%8B%E9%93%BE%E3%80%81%E7%BB%A7%E6%89%BF/" class="archive-article-date">
-  	<time datetime="2020-12-23T07:43:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、instanceof"><a href="#一、instanceof" class="headerlink" title="一、instanceof"></a>一、instanceof</h2><h3 id="1-1-基本用法"><a href="#1-1-基本用法" class="headerlink" title="1.1 基本用法"></a>1.1 基本用法</h3>
-        
-          <a class="article-more-a" href="/2020/12/23/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%8E%9F%E5%9E%8B%E3%80%81%E5%8E%9F%E5%9E%8B%E9%93%BE%E3%80%81%E7%BB%A7%E6%89%BF/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/12/23/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%8E%9F%E5%9E%8B%E3%80%81%E5%8E%9F%E5%9E%8B%E9%93%BE%E3%80%81%E7%BB%A7%E6%89%BF/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Javascript深入系列（一）：对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/29/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%AF%B9%E8%B1%A1/">Javascript深入系列（一）：对象</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/29/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
-  	<time datetime="2020-11-29T06:33:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object">Object MDN文档</a></p>
-<h3 id="1-1-构造函数的属性"><a href="#1-1-构造函数的属性" class="headerlink" title="1.1 构造函数的属性"></a>1.1 构造函数的属性</h3><h4 id="1-1-1-Object-prototype-constructor"><a href="#1-1-1-Object-prototype-constructor" class="headerlink" title="1.1.1 Object.prototype.constructor"></a>1.1.1 Object.prototype.constructor</h4><p>所有对象都会从它的原型上继承一个 constructor 属性</p>
-        
-          <a class="article-more-a" href="/2020/11/29/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%AF%B9%E8%B1%A1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/29/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%AF%B9%E8%B1%A1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -939,7 +849,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 宇智波胖虎
+    		&copy; 2022 宇智波胖虎
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

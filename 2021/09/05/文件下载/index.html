@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3281fcb81ced4f7e958ab7c476771147~tplv-k3u1fbpfcp-zoom-1.image">
 <meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ba07cff6ef7f46b3bc7e8f3e111683e5~tplv-k3u1fbpfcp-zoom-1.image">
 <meta property="article:published_time" content="2021-09-05T13:12:17.000Z">
-<meta property="article:modified_time" content="2021-09-08T17:03:38.048Z">
+<meta property="article:modified_time" content="2022-02-15T17:45:54.070Z">
 <meta property="article:author" content="宇智波胖虎">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e5c86ff3781d434b9fd123f9b8221192~tplv-k3u1fbpfcp-zoom-1.image">
@@ -189,6 +189,7 @@
 <h3 id="1-2-Byte与bit"><a href="#1-2-Byte与bit" class="headerlink" title="1.2 Byte与bit"></a>1.2 Byte与bit</h3><p><code>数据存储</code>是以<code>“字节”（Byte）</code>为单位，<code>数据传输</code>大多是以<code>“位”（bit，又名“比特”）为单位</code>，一个位就代表一个0或1（即二进制），每8个位（bit，简写为b）组成一个字节（Byte，简写为B），是最小一级的信息单位。</p>
 <p>有控制码或非美标码的文件，通常不能在不同电脑系统间直接交换。这类文件有一个通称，叫“二进制文件”(<code>Binary Files</code>)。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>字节(Byte)=<span class="number">8</span>位(bit)</span><br><span class="line"><span class="number">1</span>KB( Kilobyte，千字节)=<span class="number">1024</span>B</span><br><span class="line"><span class="number">1</span>MB( Megabyte，兆字节)=<span class="number">1024</span>KB</span><br><span class="line"><span class="number">1</span>GB( Gigabyte，吉字节，千兆)=<span class="number">1024</span>MB</span><br><span class="line"><span class="number">1</span>TB( Trillionbyte，万亿字节，太字节)=<span class="number">1024</span>GB</span><br><span class="line"><span class="number">1</span>PB( Petabyte，千万亿字节，拍字节)=<span class="number">1024</span>TB</span><br><span class="line"><span class="number">1</span>EB( Exabyte，百亿亿字节，艾字节)=<span class="number">1024</span>PB</span><br><span class="line"><span class="number">1</span>ZB(Zettabyte，十万亿亿字节，泽字节)=<span class="number">1024</span>EB</span><br><span class="line"><span class="number">1</span>YB( Yottabyte，一亿亿亿字节，尧字节)=<span class="number">1024</span>ZB</span><br><span class="line"><span class="number">1</span>BB( Brontobyte，千亿亿亿字节)=<span class="number">1024</span>YB</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="二、编码"><a href="#二、编码" class="headerlink" title="二、编码"></a>二、编码</h2><h3 id="2-1-概念"><a href="#2-1-概念" class="headerlink" title="2.1 概念"></a>2.1 概念</h3><p>在计算机中，所有的数据在存储和运算时都要使用二进制数表示（因为计算机用高电平和低电平分别表示1和0），例如，像a、b、c、d等52个字母（包括大写）以及0、1等数字还有一些常用的符号（例如*、#、@等）在计算机中存储时也要使用二进制数来表示。</p>
 <p>而具体用哪些二进制数字表示哪个符号，当然每个人都可以约定自己的一套（这就叫<code>编码</code>），而如果要想互相通信而不造成混乱，那么就必须使用相同的编码规则。美国有关的标准化组织就出台了<code>ASCII编码</code>，统一规定了上述常用符号用哪些二进制数来表示。</p>
 <h3 id="2-2-编码标准"><a href="#2-2-编码标准" class="headerlink" title="2.2 编码标准"></a>2.2 编码标准</h3><p>文字编码标准主要有<code>ASCII</code>、<code>GB2312</code>、<code>GBK</code>、<code>Unicode</code>等。</p>
@@ -387,6 +388,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2021/12/16/validate-npm-package-name%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          validate-npm-package-name源码学习
+        
+      </div>
+    </a>
+  
   
     <a href="/2021/01/25/%E6%8B%96%E6%8B%BD%E5%92%8C%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">拖拽和碰撞检测</div>
@@ -432,7 +442,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 宇智波胖虎
+    		&copy; 2022 宇智波胖虎
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

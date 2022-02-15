@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2021 | Hexo</title>
+  <title>validate-npm-package-name源码学习 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2021/index.html">
+  <meta name="description" content="源码共读活动：第7期 | validate-npm-package-name 检测 npm 包是否符合标准仓库：validate-npm-package-name正则表达式可视化：Regulex​ 一、介绍1.1 概念123456Give me a string and I&amp;#x27;ll tell you if it&amp;#x27;s a valid npm package name.This pa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="validate-npm-package-name源码学习">
+<meta property="og:url" content="http://yoursite.com/2021/12/16/validate-npm-package-name%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="源码共读活动：第7期 | validate-npm-package-name 检测 npm 包是否符合标准仓库：validate-npm-package-name正则表达式可视化：Regulex​ 一、介绍1.1 概念123456Give me a string and I&amp;#x27;ll tell you if it&amp;#x27;s a valid npm package name.This pa">
 <meta property="og:locale">
+<meta property="article:published_time" content="2021-12-16T03:58:32.000Z">
+<meta property="article:modified_time" content="2022-02-15T18:04:22.295Z">
 <meta property="article:author" content="宇智波胖虎">
 <meta name="twitter:card" content="summary">
   
@@ -150,265 +154,202 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-validate-npm-package-name源码学习" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      validate-npm-package-name源码学习
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/12/16/validate-npm-package-name%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/" class="archive-article-date">
+
+        
+        <a href="/2021/12/16/validate-npm-package-name%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/" class="archive-article-date">
   	<time datetime="2021-12-16T03:58:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-16</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/12/16/validate-npm-package-name%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">validate-npm-package-name源码学习</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>源码共读活动：<a target="_blank" rel="noopener" href="https://www.yuque.com/ruochuan12/notice/p7">第7期 | validate-npm-package-name 检测 npm 包是否符合标准</a><br>仓库：<a target="_blank" rel="noopener" href="https://github.com/npm/validate-npm-package-name">validate-npm-package-name</a><br>正则表达式可视化：<a target="_blank" rel="noopener" href="https://jex.im/regulex/#!flags=&re=%5E(a%7Cb)*%3F%24">Regulex</a><br>​</p>
+<h2 id="一、介绍"><a href="#一、介绍" class="headerlink" title="一、介绍"></a>一、介绍</h2><h3 id="1-1-概念"><a href="#1-1-概念" class="headerlink" title="1.1 概念"></a>1.1 概念</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Give me a string and I<span class="string">&#x27;ll tell you if it&#x27;</span>s a valid npm package name.</span><br><span class="line"></span><br><span class="line">This package <span class="built_in">exports</span> a single synchronous <span class="function"><span class="keyword">function</span> <span class="title">that</span> <span class="title">takes</span> <span class="title">a</span> <span class="title">string</span> <span class="title">as</span> <span class="title">input</span> <span class="title">and</span> <span class="title">returns</span> <span class="title">an</span> <span class="title">object</span> <span class="title">with</span> <span class="title">two</span> <span class="title">properties</span>:</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">validForNewPackages</span> :: <span class="title">Boolean</span></span></span><br><span class="line"><span class="function"><span class="title">validForOldPackages</span> :: <span class="title">Boolean</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">谷歌翻译：</span><br><span class="line">接受一个字符串，判断它是否是一个有效的npm包名。</span><br><span class="line"></span><br><span class="line">这个包导出一个同步函数，它接受一个字符串作为输入参数并返回一个具如下有两个属性的对象： </span><br><span class="line">validForNewPackages :: Boolean</span><br><span class="line">validForOldPackages :: Boolean</span><br></pre></td></tr></table></figure>
+<p>从概念中可以看出，validate-npm-package-name是用来校验npm包命名是否合法的一个工具。<br>​</p>
+<p>ps：只有在包名合法有效的时候，返回的对象只有validForNewPackages、validForOldPackages两个属性。当包名存在问题时，返回的对象中还会有erros或者warnings。<br>​</p>
+<a id="more"></a>
+<h3 id="1-2-命名规则"><a href="#1-2-命名规则" class="headerlink" title="1.2 命名规则"></a>1.2 命名规则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Below is a list <span class="keyword">of</span> rules that valid npm package name should conform to.</span><br><span class="line"></span><br><span class="line">package name length should be greater than zero</span><br><span class="line">all the characters <span class="keyword">in</span> the package name must be lowercase i.e., no uppercase or mixed <span class="keyword">case</span> names are allowed</span><br><span class="line">package name can consist <span class="keyword">of</span> hyphens</span><br><span class="line">package name must not contain any non-url-safe characters (since name ends up being part <span class="keyword">of</span> a URL)</span><br><span class="line">package name should not start <span class="keyword">with</span> . or _</span><br><span class="line">package name should not contain any leading or trailing spaces</span><br><span class="line">package name should not contain any <span class="keyword">of</span> the following characters: ~)(<span class="string">&#x27;!*</span></span><br><span class="line"><span class="string">package name cannot be the same as a node.js/io.js core module nor a reserved/blacklisted name. For example, the following names are invalid:</span></span><br><span class="line"><span class="string">http</span></span><br><span class="line"><span class="string">stream</span></span><br><span class="line"><span class="string">node_modules</span></span><br><span class="line"><span class="string">favicon.ico</span></span><br><span class="line"><span class="string">package name length cannot exceed 214</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">以下是npm包命名规则列表：</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> 包名长度应大于零</span><br><span class="line"><span class="number">2.</span> 包名中的所有字符都必须是小写，即:不允许大写或混合大小写的名称</span><br><span class="line"><span class="number">3.</span> 包名可以由连字符“-”组成</span><br><span class="line"><span class="number">4.</span> 包名不得包含任何非 url 安全字符（因为名称最终成为 URL 的一部分）</span><br><span class="line"><span class="number">5.</span> 包名不应以 . 或者 _ 开始</span><br><span class="line"><span class="number">6.</span> 包名不应包含任何首尾空格</span><br><span class="line"><span class="number">7.</span> 包名不应包含以下字符：~)(<span class="string">&#x27;!*</span></span><br><span class="line"><span class="string">8. 包名不能与 node.js/io.js 核心模块相同，也不能与保留/黑名单名称相同。例如，以下名称无效：</span></span><br><span class="line"><span class="string">   http stream node_modules favicon.ico</span></span><br><span class="line"><span class="string">9. 包名长度不能超过214</span></span><br></pre></td></tr></table></figure>
+<h4 id="1-2-1-有效包名"><a href="#1-2-1-有效包名" class="headerlink" title="1.2.1 有效包名"></a>1.2.1 有效包名</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> validate = <span class="built_in">require</span>(<span class="string">&quot;validate-npm-package-name&quot;</span>)</span><br><span class="line"></span><br><span class="line">validate(<span class="string">&quot;some-package&quot;</span>)</span><br><span class="line">validate(<span class="string">&quot;example.com&quot;</span>)</span><br><span class="line">validate(<span class="string">&quot;under_score&quot;</span>)</span><br><span class="line">validate(<span class="string">&quot;123numeric&quot;</span>)</span><br><span class="line">validate(<span class="string">&quot;@npm/thingy&quot;</span>)</span><br><span class="line">validate(<span class="string">&quot;@jane/foo.js&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>以上包名都是有效的，所以会返回以下这个对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  validForNewPackages: <span class="literal">true</span>,</span><br><span class="line">  validForOldPackages: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-2-无效包名"><a href="#1-2-2-无效包名" class="headerlink" title="1.2.2 无效包名"></a>1.2.2 无效包名</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">validate(<span class="string">&quot;excited!&quot;</span>)</span><br><span class="line">validate(<span class="string">&quot; leading-space:and:weirdchars&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>以上包名无效，所以会返回以下对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  validForNewPackages: <span class="literal">false</span>,</span><br><span class="line">  validForOldPackages: <span class="literal">false</span>,</span><br><span class="line">  errors: [</span><br><span class="line">    <span class="string">&#x27;name cannot contain leading or trailing spaces&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;name can only contain URL-friendly characters&#x27;</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-以前的包名"><a href="#1-3-以前的包名" class="headerlink" title="1.3 以前的包名"></a>1.3 以前的包名</h3><p>在以前，npm包命名随意，可以有大写字母，包名可能很长，也有可能是已经存在的包名。<br>在现在，如果给validate输入一个<strong>在以前算是有效的包名</strong>，会看到 validForNewPackages 属性的值发生变化，并且会出现一个警告数组：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">validate(<span class="string">&quot;eLaBorAtE-paCkAgE-with-mixed-case-and-more-than-214-characters-----------------------------------------------------------------------------------------------------------------------------------------------------------&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>以上函数返回：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  validForNewPackages: <span class="literal">false</span>,</span><br><span class="line">  validForOldPackages: <span class="literal">true</span>,</span><br><span class="line">  warnings: [</span><br><span class="line">    <span class="string">&quot;name can no longer contain capital letters&quot;</span>,</span><br><span class="line">    <span class="string">&quot;name can no longer contain more than 214 characters&quot;</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="二、源码分析"><a href="#二、源码分析" class="headerlink" title="二、源码分析"></a>二、源码分析</h2><h3 id="2-1-源码"><a href="#2-1-源码" class="headerlink" title="2.1 源码"></a>2.1 源码</h3><p>源码总共105行，算是偏少的，易于学习~</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> scopedPackagePattern = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&#x27;^(?:@([^/]+?)[/])?([^/]+?)$&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> builtins = <span class="built_in">require</span>(<span class="string">&#x27;builtins&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> blacklist = [</span><br><span class="line">  <span class="string">&#x27;node_modules&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;favicon.ico&#x27;</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> validate = <span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> warnings = []</span><br><span class="line">  <span class="keyword">var</span> errors = []</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (name === <span class="literal">null</span>) &#123;</span><br><span class="line">    errors.push(<span class="string">&#x27;name cannot be null&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> done(warnings, errors)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (name === <span class="literal">undefined</span>) &#123;</span><br><span class="line">    errors.push(<span class="string">&#x27;name cannot be undefined&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> done(warnings, errors)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> name !== <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">    errors.push(<span class="string">&#x27;name must be a string&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> done(warnings, errors)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!name.length) &#123;</span><br><span class="line">    errors.push(<span class="string">&#x27;name length must be greater than zero&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (name.match(<span class="regexp">/^\./</span>)) &#123;</span><br><span class="line">    errors.push(<span class="string">&#x27;name cannot start with a period&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (name.match(<span class="regexp">/^_/</span>)) &#123;</span><br><span class="line">    errors.push(<span class="string">&#x27;name cannot start with an underscore&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (name.trim() !== name) &#123;</span><br><span class="line">    errors.push(<span class="string">&#x27;name cannot contain leading or trailing spaces&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// No funny business</span></span><br><span class="line">  blacklist.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">blacklistedName</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (name.toLowerCase() === blacklistedName) &#123;</span><br><span class="line">      errors.push(blacklistedName + <span class="string">&#x27; is a blacklisted name&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Generate warnings for stuff that used to be allowed</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// core module names like http, events, util, etc</span></span><br><span class="line">  builtins.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">builtin</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (name.toLowerCase() === builtin) &#123;</span><br><span class="line">      warnings.push(builtin + <span class="string">&#x27; is a core module name&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// really-long-package-names-------------------------------such--length-----many---wow</span></span><br><span class="line">  <span class="comment">// the thisisareallyreallylongpackagenameitshouldpublishdowenowhavealimittothelengthofpackagenames-poch.</span></span><br><span class="line">  <span class="keyword">if</span> (name.length &gt; <span class="number">214</span>) &#123;</span><br><span class="line">    warnings.push(<span class="string">&#x27;name can no longer contain more than 214 characters&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// mIxeD CaSe nAMEs</span></span><br><span class="line">  <span class="keyword">if</span> (name.toLowerCase() !== name) &#123;</span><br><span class="line">    warnings.push(<span class="string">&#x27;name can no longer contain capital letters&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/[~&#x27;!()*]/</span>.test(name.split(<span class="string">&#x27;/&#x27;</span>).slice(<span class="number">-1</span>)[<span class="number">0</span>])) &#123;</span><br><span class="line">    warnings.push(<span class="string">&#x27;name can no longer contain special characters (&quot;~\&#x27;!()*&quot;)&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">encodeURIComponent</span>(name) !== name) &#123;</span><br><span class="line">    <span class="comment">// Maybe it&#x27;s a scoped package name, like @user/package</span></span><br><span class="line">    <span class="keyword">var</span> nameMatch = name.match(scopedPackagePattern)</span><br><span class="line">    <span class="keyword">if</span> (nameMatch) &#123;</span><br><span class="line">      <span class="keyword">var</span> user = nameMatch[<span class="number">1</span>]</span><br><span class="line">      <span class="keyword">var</span> pkg = nameMatch[<span class="number">2</span>]</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">encodeURIComponent</span>(user) === user &amp;&amp; <span class="built_in">encodeURIComponent</span>(pkg) === pkg) &#123;</span><br><span class="line">        <span class="keyword">return</span> done(warnings, errors)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    errors.push(<span class="string">&#x27;name can only contain URL-friendly characters&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> done(warnings, errors)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">validate.scopedPackagePattern = scopedPackagePattern</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> done = <span class="function"><span class="keyword">function</span> (<span class="params">warnings, errors</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = &#123;</span><br><span class="line">    validForNewPackages: errors.length === <span class="number">0</span> &amp;&amp; warnings.length === <span class="number">0</span>,</span><br><span class="line">    validForOldPackages: errors.length === <span class="number">0</span>,</span><br><span class="line">    warnings: warnings,</span><br><span class="line">    errors: errors</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!result.warnings.length) <span class="keyword">delete</span> result.warnings</span><br><span class="line">  <span class="keyword">if</span> (!result.errors.length) <span class="keyword">delete</span> result.errors</span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-分析"><a href="#2-2-分析" class="headerlink" title="2.2 分析"></a>2.2 分析</h3><h4 id="2-2-1"><a href="#2-2-1" class="headerlink" title="2.2.1"></a>2.2.1</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> scopedPackagePattern = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&#x27;^(?:@([^/]+?)[/])?([^/]+?)$&#x27;</span>)</span><br><span class="line"><span class="comment">// node所有内置模块</span></span><br><span class="line"><span class="keyword">var</span> builtins = <span class="built_in">require</span>(<span class="string">&#x27;builtins&#x27;</span>)</span><br><span class="line"><span class="comment">// 黑名单</span></span><br><span class="line"><span class="keyword">var</span> blacklist = [</span><br><span class="line">  <span class="string">&#x27;node_modules&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;favicon.ico&#x27;</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://github.com/juliangruber/builtins">仓库：builtins</a><br>源码中用到了builtins，builtins在之后的源码中，用来判断包名是否与<strong>当前 Node.js 版本的核心模块</strong>相同。<br>在此罗列一下核心模块：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> coreModules = [</span><br><span class="line">  <span class="string">&#x27;assert&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;buffer&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;child_process&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;cluster&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;console&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;constants&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;crypto&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;dgram&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;dns&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;domain&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;events&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;fs&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;http&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;https&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;module&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;net&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;os&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;path&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;punycode&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;querystring&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;readline&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;repl&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;stream&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;string_decoder&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;sys&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;timers&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;tls&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;tty&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;url&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;util&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;vm&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;zlib&#x27;</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h4 id="2-2-2"><a href="#2-2-2" class="headerlink" title="2.2.2"></a>2.2.2</h4><p>注释“校验代码”部分主要是判断包名是否有效的代码，暂时先省略，在之后再分析，先分析其他部分。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> validate = <span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 警告数组</span></span><br><span class="line">  <span class="keyword">var</span> warnings = []</span><br><span class="line">  <span class="comment">// 报错数组</span></span><br><span class="line">  <span class="keyword">var</span> errors = []</span><br><span class="line">  </span><br><span class="line">  <span class="comment">/***** 校验代码 *****/</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> done(warnings, errors)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 赋值正则对象</span></span><br><span class="line">validate.scopedPackagePattern = scopedPackagePattern</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> done = <span class="function"><span class="keyword">function</span> (<span class="params">warnings, errors</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = &#123;</span><br><span class="line">    <span class="comment">// 该属性来判断一个包名是否合法</span></span><br><span class="line">    validForNewPackages: errors.length === <span class="number">0</span> &amp;&amp; warnings.length === <span class="number">0</span>,</span><br><span class="line">    <span class="comment">// 这个属性是用于兼容最开始node package name带来的遗留问题，那个时候有些包名不规范</span></span><br><span class="line">    validForOldPackages: errors.length === <span class="number">0</span>,</span><br><span class="line">    <span class="comment">// 警告数组</span></span><br><span class="line">    warnings: warnings,</span><br><span class="line">    <span class="comment">// 报错数组</span></span><br><span class="line">    errors: errors</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!result.warnings.length) <span class="keyword">delete</span> result.warnings</span><br><span class="line">  <span class="keyword">if</span> (!result.errors.length) <span class="keyword">delete</span> result.errors</span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在介绍概念的时候提到过，validate函数返回的对象有两个属性，值均为布尔值：validForNewPackages和validForOldPackages。warnings和errors两个数组根据其长度是否为0，确定是否存在。<br>在return的done函数中，对以上几个属性赋值并返回对象。其中validForNewPackages用来判断一个包名是否合法，validForOldPackages主要是为了兼容以前包名不规范时定下的包名。</p>
+<h4 id="2-2-3-errors"><a href="#2-2-3-errors" class="headerlink" title="2.2.3 errors"></a>2.2.3 errors</h4><p>在执行到if判断里的“return done(warnings, errors) ”时，valid函数便会执行结束，不再执行之后的if判断，提高效率。<br>1、校验包名是否是字符串</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (name === <span class="literal">null</span>) &#123;</span><br><span class="line">  errors.push(<span class="string">&#x27;name cannot be null&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> done(warnings, errors)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (name === <span class="literal">undefined</span>) &#123;</span><br><span class="line">  errors.push(<span class="string">&#x27;name cannot be undefined&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> done(warnings, errors)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> name !== <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">  errors.push(<span class="string">&#x27;name must be a string&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> done(warnings, errors)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、校验包名是否是合法的字符串</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 不能是空字符串</span></span><br><span class="line"><span class="keyword">if</span> (!name.length) &#123;</span><br><span class="line">   errors.push(<span class="string">&#x27;name length must be greater than zero&#x27;</span>)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不能以“.”开头</span></span><br><span class="line"> <span class="keyword">if</span> (name.match(<span class="regexp">/^\./</span>)) &#123;</span><br><span class="line">   errors.push(<span class="string">&#x27;name cannot start with a period&#x27;</span>)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不能以“_”开头</span></span><br><span class="line"> <span class="keyword">if</span> (name.match(<span class="regexp">/^_/</span>)) &#123;</span><br><span class="line">   errors.push(<span class="string">&#x27;name cannot start with an underscore&#x27;</span>)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 首尾不能包含字符串</span></span><br><span class="line"> <span class="keyword">if</span> (name.trim() !== name) &#123;</span><br><span class="line">   errors.push(<span class="string">&#x27;name cannot contain leading or trailing spaces&#x27;</span>)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不能存在黑名单中</span></span><br><span class="line"> <span class="comment">// No funny business</span></span><br><span class="line"> blacklist.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">blacklistedName</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (name.toLowerCase() === blacklistedName) &#123;</span><br><span class="line">     errors.push(blacklistedName + <span class="string">&#x27; is a blacklisted name&#x27;</span>)</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="2-2-4-warnings"><a href="#2-2-4-warnings" class="headerlink" title="2.2.4 warnings"></a>2.2.4 warnings</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Generate warnings for stuff that used to be allowed</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 包名不能与node.js/io.js 的核心模块名相同</span></span><br><span class="line">  <span class="comment">// core module names like http, events, util, etc</span></span><br><span class="line">  builtins.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">builtin</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (name.toLowerCase() === builtin) &#123;</span><br><span class="line">      warnings.push(builtin + <span class="string">&#x27; is a core module name&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 包名长度不能超过214</span></span><br><span class="line">  <span class="comment">// really-long-package-names-------------------------------such--length-----many---wow</span></span><br><span class="line">  <span class="comment">// the thisisareallyreallylongpackagenameitshouldpublishdowenowhavealimittothelengthofpackagenames-poch.</span></span><br><span class="line">  <span class="keyword">if</span> (name.length &gt; <span class="number">214</span>) &#123;</span><br><span class="line">    warnings.push(<span class="string">&#x27;name can no longer contain more than 214 characters&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 包名需要为小写</span></span><br><span class="line">  <span class="comment">// mIxeD CaSe nAMEs</span></span><br><span class="line">  <span class="keyword">if</span> (name.toLowerCase() !== name) &#123;</span><br><span class="line">    warnings.push(<span class="string">&#x27;name can no longer contain capital letters&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 包名不能包含：~&#x27;!()*</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/[~&#x27;!()*]/</span>.test(name.split(<span class="string">&#x27;/&#x27;</span>).slice(<span class="number">-1</span>)[<span class="number">0</span>])) &#123;</span><br><span class="line">    warnings.push(<span class="string">&#x27;name can no longer contain special characters (&quot;~\&#x27;!()*&quot;)&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="2-2-5-包名只能包含URL安全字符"><a href="#2-2-5-包名只能包含URL安全字符" class="headerlink" title="2.2.5 包名只能包含URL安全字符"></a>2.2.5 包名只能包含URL安全字符</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> scopedPackagePattern = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&#x27;^(?:@([^/]+?)[/])?([^/]+?)$&#x27;</span>)</span><br><span class="line"> <span class="comment">// 包名只能包含URL安全字符</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">encodeURIComponent</span>(name) !== name) &#123;</span><br><span class="line">   <span class="comment">// Maybe it&#x27;s a scoped package name, like @user/package</span></span><br><span class="line">   <span class="keyword">var</span> nameMatch = name.match(scopedPackagePattern)</span><br><span class="line">   <span class="keyword">if</span> (nameMatch) &#123;</span><br><span class="line">     <span class="keyword">var</span> user = nameMatch[<span class="number">1</span>]</span><br><span class="line">     <span class="keyword">var</span> pkg = nameMatch[<span class="number">2</span>]</span><br><span class="line">     <span class="keyword">if</span> (<span class="built_in">encodeURIComponent</span>(user) === user &amp;&amp; <span class="built_in">encodeURIComponent</span>(pkg) === pkg) &#123;</span><br><span class="line">       <span class="keyword">return</span> done(warnings, errors)</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   errors.push(<span class="string">&#x27;name can only contain URL-friendly characters&#x27;</span>)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="三、心得"><a href="#三、心得" class="headerlink" title="三、心得"></a>三、心得</h2><p>虽然知道源码学习很重要，但平时因为工作忙或者懈怠，源码看的比较少，刚好碰到了“源码共读”这个活动，开始系统地看源码，希望能坚持下去，coding能力up up up！<br>根据推荐的学习顺序， validate-npm-package-name的源码还是十分友好的，学习到了一些知识还有写代码风格，是个好的开始。<br>​</p>
+<p>学习文章：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7012047954995314701">validate-npm-package-name 源码阅读</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/362147023">每天一个npm包：validate-npm-package-name</a></li>
+</ol>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/12/16/validate-npm-package-name%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/05/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" class="archive-article-date">
-  	<time datetime="2021-09-05T13:12:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-05</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2022/01/16/axios%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          axios工具函数源码学习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/09/05/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">文件下载</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/05/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/">文件下载</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/25/%E6%8B%96%E6%8B%BD%E5%92%8C%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B/" class="archive-article-date">
-  	<time datetime="2021-01-25T08:52:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/25/%E6%8B%96%E6%8B%BD%E5%92%8C%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B/">拖拽和碰撞检测</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/20/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E6%A8%A1%E5%9D%97%E5%8C%96%E8%A7%84%E8%8C%83/" class="archive-article-date">
-  	<time datetime="2021-01-20T05:22:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/20/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E6%A8%A1%E5%9D%97%E5%8C%96%E8%A7%84%E8%8C%83/">Javascript深入系列（八）：模块化规范</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/20/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E6%B5%AE%E7%82%B9%E7%B2%BE%E5%BA%A6/" class="archive-article-date">
-  	<time datetime="2021-01-20T05:22:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/20/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9A%E6%B5%AE%E7%82%B9%E7%B2%BE%E5%BA%A6/">Javascript深入系列（七）：浮点精度</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/15/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9AJS%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2021-01-15T09:33:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/15/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9AJS%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Javascript深入系列（六）：JS数据类型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/15/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9AEventLoop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" class="archive-article-date">
-  	<time datetime="2021-01-15T03:45:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/15/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9AEventLoop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">Javascript深入系列（五）：EventLoop事件循环</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/12/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E4%BA%8B%E4%BB%B6%E3%80%81%E4%BA%8B%E4%BB%B6%E6%B5%81%E3%80%81%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" class="archive-article-date">
-  	<time datetime="2021-01-12T06:16:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/12/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E4%BA%8B%E4%BB%B6%E3%80%81%E4%BA%8B%E4%BB%B6%E6%B5%81%E3%80%81%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">Javascript深入系列（四）：事件、事件流、事件委托</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/04/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%20%E4%BD%9C%E7%94%A8%E5%9F%9F%E3%80%81%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%A0%88%E3%80%81this%E3%80%81%E9%97%AD%E5%8C%85/" class="archive-article-date">
-  	<time datetime="2021-01-04T15:10:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/04/Javascript%E6%B7%B1%E5%85%A5%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%20%E4%BD%9C%E7%94%A8%E5%9F%9F%E3%80%81%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%A0%88%E3%80%81this%E3%80%81%E9%97%AD%E5%8C%85/">Javascript深入系列（三）： 作用域、执行上下文栈、this、闭包</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -431,8 +372,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
