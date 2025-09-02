@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>three.js css3d - periodic table</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			html, body {
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+				width: 100%;
+				height: 100%;
+			}
+
+			body {
+				background-color: #000000;
+				margin: 0;
+				font-family: Helvetica, sans-serif;;
+				overflow: hidden;
+			}
+
+			canvas {
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: #000;
+				z-index: -1;
+			}
+
+			#particleCanvas {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: -1;
+				pointer-events: none;
+			}
+
+			a {
+				color: #ffffff;
+			}
+
+			#info {
+				position: absolute;
+				width: 100%;
+				color: #ffffff;
+				padding: 5px;
+				font-family: Monospace;
+				font-size: 13px;
+				font-weight: bold;
+				text-align: center;
+				z-index: 1;
+			}
+
+			#menu {
+				position: absolute;
+				bottom: 20px;
+				width: 100%;
+				text-align: center;
+			}
+
+			#menu1 {
+				position: fixed;
+				top: 20px;
+				right: 20px;
+				z-index: 100;
+			}
+
+			.nav-toggle {
+				width: 60px;
+				height: 60px;
+				background: rgba(0, 127, 127, 0.8);
+				border: 1px solid rgba(127, 255, 255, 0.5);
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+			}
+
+			.nav-toggle:hover {
+				background: rgba(0, 127, 127, 1);
+				box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+				transform: scale(1.05);
+			}
+
+			.nav-toggle img {
+				width: 48px;
+				height: 48px;
+				opacity: 0.9;
+				transition: opacity 0.3s ease;
+				object-fit: contain;
+			}
+
+			.nav-toggle:hover img {
+				opacity: 1;
+			}
+
+			.nav-menu {
+				position: absolute;
+				top: 70px;
+				right: 0;
+				background: rgba(0, 0, 0, 0.9);
+				border: 1px solid rgba(127, 255, 255, 0.3);
+				border-radius: 10px;
+				padding: 15px;
+				width: auto;
+				min-width: 180px;
+				opacity: 0;
+				visibility: hidden;
+				transform: translateY(-10px);
+				transition: all 0.3s ease;
+				backdrop-filter: blur(10px);
+				box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+			}
+
+			.nav-menu.active {
+				opacity: 1;
+				visibility: visible;
+				transform: translateY(0);
+			}
+
+			.nav-close {
+				position: absolute;
+				top: 8px;
+				right: 10px;
+				width: 24px;
+				height: 24px;
+				cursor: pointer;
+				line-height: 1;
+				opacity: 0.7;
+				transition: opacity 0.3s ease;
+				object-fit: contain;
+			}
+
+			.nav-close:hover {
+				opacity: 1;
+			}
+
+			.nav-item {
+				display: flex;
+				align-items: center;
+				padding: 12px 15px;
+				color: rgba(255, 255, 255, 0.8);
+				text-decoration: none;
+				border-radius: 5px;
+				transition: all 0.3s ease;
+				margin-bottom: 5px;
+				cursor: pointer;
+				font-size: 16px;
+				white-space: nowrap;
+			}
+
+			.nav-item:hover {
+				background: rgba(0, 127, 127, 0.3);
+				color: rgba(255, 255, 255, 1);
+				box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+			}
+
+			.nav-item img {
+				width: 24px;
+				height: 24px;
+				margin-right: 12px;
+				opacity: 0.8;
+				transition: opacity 0.3s ease;
+				object-fit: contain;
+			}
+
+			.nav-item:hover img {
+				opacity: 1;
+			}
+
+			.nav-item:last-child {
+				margin-bottom: 0;
+			}
+
+			li {
+				padding-bottom: 10 px;
+			}
+
+			.element {
+				width: 100px;/* 120 160 */
+				height: 100px;
+				box-shadow: 0px 0px 12px rgba(0,255,255,0.5);
+				border: 1px solid rgba(127,255,255,0.25);
+				text-align: center;
+				cursor: default;
+			}
+
+			.element:hover {
+				box-shadow: 0px 0px 12px rgba(0,255,255,0.75);
+				border: 1px solid rgba(127,255,255,0.75);
+			}
+				.element img{
+					width:100px;
+					height:100px;
+				}
+
+				.element .number {
+					position: absolute;
+					top: 20px;
+					right: 20px;
+					font-size: 12px;
+					color: rgba(127,255,255,0.75);
+				}
+
+				.element .symbol {
+					position: absolute;
+					top: 40px;
+					left: 0px;
+					right: 0px;
+					font-size: 60px;
+					font-weight: bold;
+					color: rgba(255,255,255,0.75);
+					text-shadow: 0 0 10px rgba(0,255,255,0.95);
+				}
+
+				.element .details {
+					position: absolute;
+					bottom: 15px;
+					left: 0px;
+					right: 0px;
+					font-size: 12px;
+					color: rgba(127,255,255,0.75);
+				}
+
+			button {
+				color: rgba(127,255,255,0.75);
+				background: transparent;
+				outline: 1px solid rgba(127,255,255,0.75);
+				border: 0px;
+				padding: 5px 10px;
+				cursor: pointer;
+			}
+			button:hover {
+				background-color: rgba(0,255,255,0.5);
+			}
+			button:active {
+				color: #000000;
+				background-color: rgba(0,255,255,0.75);
+			}
+			.show_info{position:fixed;background-color:rgba(0,0,0,.6);padding:10px;width:300px;margin:0 auto;left: 0;right:0;border-radius: 5px;box-shadow: 0 0 10px 0 #fff;top:30%;}
+			.show_info img{display:block;margin:auto;border-radius: 5px;box-shadow: 0 0 10px 0 #888;}
+			.show_info .intro{color:#fff;text-indent:20px;margin-top:10px;height:65px;overflow:hidden;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;}
+			.show_info .info_my{text-align: center;}
+			.show_info .info_my > *{display:inline-block !important;vertical-align: middle;}
+			.show_info .info_my .info_mem{color:#fff;max-width:120px;}
+			.show_info .info_my .info_mem > div{text-align: left;}
+			.show_info .info_my .info_mem > div.nickname{max-width: 120px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+
+			.photo-modal {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, 0.9);
+				display: none;
+				justify-content: center;
+				align-items: center;
+				z-index: 1000;
+				cursor: pointer;
+			}
+
+			.photo-modal img {
+				max-width: 90%;
+				max-height: 90%;
+				object-fit: contain;
+				box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+				border-radius: 5px;
+			}
+
+			.photo-modal .close-btn {
+				position: absolute;
+				top: 20px;
+				right: 30px;
+				color: white;
+				font-size: 40px;
+				font-weight: bold;
+				cursor: pointer;
+				user-select: none;
+				z-index: 1001;
+			}
+
+			.photo-modal .close-btn:hover {
+				color: #ccc;
+			}
+
+			.element img {
+				cursor: pointer;
+				transition: opacity 0.3s ease;
+			}
+
+			.element img:hover {
+				opacity: 0.8;
+			}
+		</style>
+		<link rel="stylesheet" href="css/animate.min.css">
+		<!--引入three.js三维引擎-->
+		<script src="http://www.yanhuangxueyuan.com/versions/threejsR92/build/three.js"></script>
+		<!-- 引入threejs扩展控件OrbitControls.js -->
+		<script src="http://www.yanhuangxueyuan.com/versions/threejsR92/examples/js/controls/OrbitControls.js"></script>
+
+	</head>
+	<body>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/three.js"></script>
+		<script src="js/tween.min.js"></script>
+		<script src="js/TrackballControls.js"></script>
+		<script src="js/CSS3DRenderer.js"></script>
+		<script src="js/particles.js"></script>
+
+		<canvas id="particleCanvas"></canvas>
+		<div id="container"></div>
+		
+		<!-- 照片查看大图模态框 -->
+		<div id="photoModal" class="photo-modal">
+			<span class="close-btn">&times;</span>
+			<img id="modalImage" src="" alt="大图预览">
+		</div>
+
+
+		<div id="info">定格瞬间</div>
+		<div id="menu">
+			<button id="table">阵列</button>
+			<button id="sphere">圆球</button>
+			<button id="helix">螺旋</button>
+			<button id="grid">格子</button>
+		</div>
+		<div id="menu1">
+			<div class="nav-toggle" onclick="toggleNav()">
+				<img src="./icon/menu.png" alt="菜单">
+			</div>
+			<div class="nav-menu" id="navMenu">
+				<img src="./icon/X.png" alt="关闭" class="nav-close" onclick="closeNav()">
+				<div class="nav-item" onclick="navigateTo('home')">
+					<img src="./icon/library.png" alt="首页">
+					<span>首页</span>
+				</div>
+				<div class="nav-item" onclick="navigateTo('location')">
+					<img src="./icon/map.png" alt="地图">
+					<span>时光觅影</span>
+				</div>
+				<div class="nav-item" onclick="navigateTo('data')">
+					<img src="./icon/data.png" alt="数据">
+					<span>抽丝剥茧</span>
+				</div>
+				<div class="nav-item" onclick="navigateTo('location')">
+					<img src="./icon/map.png" alt="地图">
+					<span>寻踪觅迹</span>
+				</div>
+				<div class="nav-item" onclick="navigateTo('people')">
+					<img src="./icon/person.png" alt="人物">
+					<span>促膝谈心</span>
+				</div>
+
+				<div class="nav-item" onclick="navigateTo('ai')">
+					<img src="./icon/draw.png" alt="绘画">
+					<span>妙笔生花</span>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			// 星空粒子背景
+			function initStarryBackground() {
+				const canvas = document.getElementById('particleCanvas');
+				const ctx = canvas.getContext('2d');
+				
+				let stars = [];
+				let animationId;
+				
+				function resizeCanvas() {
+					canvas.width = window.innerWidth;
+					canvas.height = window.innerHeight;
+				}
+				
+				function createStar() {
+					return {
+						x: Math.random() * canvas.width,
+						y: Math.random() * canvas.height,
+						size: Math.random() * 2 + 0.5,
+						speed: Math.random() * 0.5 + 0.1,
+						opacity: Math.random() * 0.8 + 0.2,
+						twinkle: Math.random() * 0.02 + 0.01
+					};
+				}
+				
+				function initStars() {
+					stars = [];
+					for (let i = 0; i < 200; i++) {
+						stars.push(createStar());
+					}
+				}
+				
+				function updateStars() {
+					stars.forEach(star => {
+						star.y += star.speed;
+						star.opacity += Math.sin(Date.now() * star.twinkle) * 0.01;
+						
+						if (star.opacity > 1) star.opacity = 1;
+						if (star.opacity < 0.1) star.opacity = 0.1;
+						
+						if (star.y > canvas.height) {
+							star.y = -10;
+							star.x = Math.random() * canvas.width;
+						}
+					});
+				}
+				
+				function drawStars() {
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
+					
+					stars.forEach(star => {
+						ctx.save();
+						ctx.globalAlpha = star.opacity;
+						ctx.fillStyle = '#ffffff';
+						ctx.shadowBlur = star.size * 2;
+						ctx.shadowColor = '#87ceeb';
+						
+						ctx.beginPath();
+						ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+						ctx.fill();
+						
+						// 添加十字形闪烁效果
+						if (star.size > 1.5) {
+							ctx.strokeStyle = '#ffffff';
+							ctx.lineWidth = 0.5;
+							ctx.globalAlpha = star.opacity * 0.6;
+							
+							ctx.beginPath();
+							ctx.moveTo(star.x - star.size * 3, star.y);
+							ctx.lineTo(star.x + star.size * 3, star.y);
+							ctx.moveTo(star.x, star.y - star.size * 3);
+							ctx.lineTo(star.x, star.y + star.size * 3);
+							ctx.stroke();
+						}
+						
+						ctx.restore();
+					});
+				}
+				
+				function animate() {
+					updateStars();
+					drawStars();
+					animationId = requestAnimationFrame(animate);
+				}
+				
+				resizeCanvas();
+				initStars();
+				animate();
+				
+				window.addEventListener('resize', () => {
+					resizeCanvas();
+					initStars();
+				});
+			}
+
+			// 照片点击查看大图功能
+			function initPhotoModal() {
+				const modal = document.getElementById('photoModal');
+				const modalImg = document.getElementById('modalImage');
+				const closeBtn = document.querySelector('.close-btn');
+
+				// 点击关闭按钮
+				closeBtn.onclick = function() {
+					modal.style.display = 'none';
+				}
+
+				// 点击模态框背景关闭
+				modal.onclick = function(event) {
+					if (event.target === modal) {
+						modal.style.display = 'none';
+					}
+				}
+
+				// ESC键关闭
+				document.addEventListener('keydown', function(event) {
+					if (event.key === 'Escape' && modal.style.display === 'flex') {
+						modal.style.display = 'none';
+					}
+				});
+
+				// 显示大图
+				window.showLargePhoto = function(imgSrc) {
+					modalImg.src = imgSrc;
+					modal.style.display = 'flex';
+				}
+			}
+
+			// 导航菜单功能
+			function toggleNav() {
+				const navMenu = document.getElementById('navMenu');
+				navMenu.classList.toggle('active');
+			}
+
+			function closeNav() {
+				const navMenu = document.getElementById('navMenu');
+				navMenu.classList.remove('active');
+			}
+
+			function navigateTo(page) {
+				// 临时空链接，后续可以添加具体的路由逻辑
+				console.log('导航到:', page);
+				closeNav();
+				
+				// 这里可以添加实际的导航逻辑
+				switch(page) {
+					case 'home':
+						// window.location.href = '/home';
+						break;
+					case 'location':
+						// window.location.href = '/location';
+						break;
+					case 'photos':
+						// 当前页面就是照片页面
+						break;
+					case 'people':
+						// window.location.href = '/people';
+						break;
+					case 'data':
+						// window.location.href = '/data';
+						break;
+					case 'ai':
+						// window.location.href = '/ai';
+						break;
+				}
+			}
+
+			// 点击外部关闭导航
+			document.addEventListener('click', function(event) {
+				const navMenu = document.getElementById('navMenu');
+				const navToggle = document.querySelector('.nav-toggle');
+				
+				if (!navMenu.contains(event.target) && !navToggle.contains(event.target)) {
+					navMenu.classList.remove('active');
+				}
+			});
+
+			var personArray = new Array;
+    		var CurPersonNum = 0;
+    		// animate
+    		var _in = ['bounceIn','bounceInDown','bounceInLeft','bounceInRight','bounceInUp','fadeIn','fadeInDown','fadeInDownBig','fadeInLeft','fadeInLeftBig','fadeInRight','fadeInRightBig','fadeInUp','fadeInUpBig','rotateIn','rotateInDownLeft','rotateInDownRight','rotateInUpLeft','rotateInUpRight','slideInDown','slideInLeft','slideInRight'];
+    		var _out = ['bounceOut','bounceOutDown','bounceOutLeft','bounceOutRight','bounceOutUp','fadeOut','fadeOutDown','fadeOutDownBig','fadeOutLeft','fadeOutLeftBig','fadeOutRight','fadeOutRightBig','fadeOutUp','fadeOutUpBig','rotateOut','rotateOutDownLeft','rotateOutDownRight','rotateOutUpLeft','rotateOutUpRight','slideOutDown','slideOutLeft','slideOutRight'];
+    		
+    		// 模拟推送数据
+			var s = setInterval(function(){
+				// get animate
+				var rand_in = parseInt(Math.random() * _in.length,10);
+    			var rand_out = parseInt(Math.random() * _out.length,10);
+				if(CurPersonNum >= personArray.length){
+					CurPersonNum = 0;
+				}
+				$('.show_info').show();
+				$('.show_info').addClass(_in[rand_in]);
+				setTimeout(function(){
+					$('.show_info').removeClass(_in[rand_in]);
+					// 更改展示的图片
+
+					++CurPersonNum;
+					setTimeout(function(){
+						$('.show_info').addClass(_out[rand_out]);
+						setTimeout(function(){
+							$('.show_info').removeClass(_out[rand_out]);
+							$('.show_info').hide();
+						},1000);
+					},1500);
+				},1000);
+			},4500);
+
+			// 生成虚拟数据
+
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/tk0tjmttzyl0lnew.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/cen6jgvg8d1r7zhk.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/tdrxhxdjff2d37l0.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/wkeq3ctvshrvipfi.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/2s17nq6nno2vqbju.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/tuirn7btv6tew5kp.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/g5fwfv117jncl1b3.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/61mdvopflcyg7tim.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/8yjlj55zevjejiuy.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/3gidlyf8yjcs2h7a.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/czzb5280stkdd16h.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/egy3vnfbjctpsqfn.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/kr4hnptxbdm0ycsb.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/0bduucs21cw6yek6.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/ke4xnfzxtc5kg0or.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/blxmjvg7flwnpif6.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/yw63m0omnnkbe83r.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/bua1bn3msphvq56e.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/1g46ks3vxe8mly76.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/lvux8diqa57pe8iv.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/ga5artm48fmzfpth.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/ivjvtu4skmnm5qi2.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/4t20lxl45x5kzu86.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/q2dd2r3eug2ggxq5.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/i3h42prmn080fpzs.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/2kqvmwxcmmbpsndp.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/szloa2gbm5qzrssu.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/8ow0m1q1alyf0p1a.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/wdmuaehi00w0s3zs.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/w6ypv3ut3dmkhy2z.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/yvmtxbhmc5y82dhc.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/2cyvl8lxnlp6my5d.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/xi5dzas4a4kkz5wq.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/irelc4pla0cts6nj.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/a8js8snqap5fwcgv.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/nu7lvevocewevzrr.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/46cvvc2ij030n533.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/xelml23kmttven3j.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/uz545t836ebh73s2.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/l0nissa41esdjb6g.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/q5i3oogmpa4hassg.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/s36mvrzlptxthlwf.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/yhccuk1a7rceg7rt.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/13k4645cilrdoyfl.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/0mb5ilvynzgfdrgi.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/mpaafiwqovw10wes.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/nhi0752v81xu8kro.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/qjs5zdq40sms7kns.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/hjwlcx8wntysgwn0.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/k6rp5yl0ub3kaste.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/qkqnu5ytgx3j37dm.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/pf1dsr4edghotwbo.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/mmy1luirr1k27z8q.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/pz0xwmo6q7du6gsl.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/x3sek2czosl46gck.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/pc75fgdyvlrg3uoa.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/8b27bm5xem1gfrm8.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/whlx6xlt7xn3bhy6.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/231pyiasbc50v3y1.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/qmgqnpxl644cjjh5.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/rdlgepajxr6l5joi.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/jcu18pjjhgjtplyx.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/dw6jryzhjoe4a5f5.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/e8auogwo7hbfpfl4.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/q2r8zmxhdupdkv7t.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/w0zfi2pg01hj1j8r.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/ej553pchqkar5xpx.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/hn12ej0wlnjiuxut.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/ip4h0okgq2vyiu0y.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/o70cfutux2btv3td.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/f26qyeq0ib0hal7b.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/x46qmejit8jbfpvd.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/p8e4xg4k2pey2pii.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/vkrxxh4bc2hvxl1i.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/ohczjpfse2vywf46.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/163wnbcuzsbv1ny3.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/8ozs04gzxyhvsyf7.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/31n2qys7gyttcnm0.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/zyv1bryk6slksayz.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/dhkbvc3fdbjxfp8w.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/gegb6t072xj0xb0b.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/53ug1sipmzder74o.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/aqiwajz4x46medcg.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/pnv7kw18vthp231c.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/mlqc8havafxzmhqu.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/35ya0scp0na15ddh.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/64nqpjf6gcvteiuf.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/gjlqqma1mbtjum35.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/biz5cdndv7ltst36.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/27uvp72g7ps2heom.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/qgrc1tk5icxpuzwm.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/xpyhnnweb42q510q.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/bysozv4z53fp03yn.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/nlveafvdbaztgkqy.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/n2ou2iuw5h1gd3nd.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/8ap2h1rjditkthat.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/0mce1t3fnib8h4ec.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/7ls41arjkpnbdvpo.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/ui3zsavsurddo72s.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/2c441ke5vnrpw10y.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/zw1blgjzz5ug3twg.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/decwh4727m4x4and.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/16atpfur5iy7zil2.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/4gmygqorxo411fxn.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/4vw56jkfrg58zowc.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/psi2g1xuo1a4zjzf.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/13fsm5pgfp263np0.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/0y8z3sqtrq2uutjf.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/4thj5lek4bnml066.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/h2j3ljqxzsyhnw5o.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/eaylqflauf4kpulw.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/hsw5rjd4qd83iddz.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/e6xo2j5jpw3tk60z.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/0huzgcsf0dp8udxo.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/wilo4ynj8y8jx23r.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/z7ghwgehn8iff08z.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/rzd3axxihdn31tsa.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/k1vvyqjf7a5lr3yh.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/2is5h7oxuyjs1xg3.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/tmbetsdk20gerw6n.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/t3ma0zari3qohymw.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/wk6o6qcm12t55ka3.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/gk0a1bo85qp1uxnu.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/nuaodqohslpwcjhi.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/txptdhgq5711orga.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/02bhf57tbys5czsx.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/f4x3c8iw1r2mm6pw.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/m45p165utzjxo0nl.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/clbehb6d4l7rfavl.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/7s0ho1yaalnaaeyy.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/6f7j6jadh6wwe2ma.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/dpxlb43ghigaizrw.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/grozfhb1yu0i5y5v.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/fbybjtoo5fwt4par.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/nuzvgc5mt2oiivet.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/x0ggxmq3v2v6dh0r.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/2160jfwnzbjqj45p.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/cxa2yig6btww5nh3.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/ceaxiy0fvopqs3qz.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/03bf16azeinum7v1.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/8gqgv32ax8jwb1nm.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/l0bvlhtkgdrj6gjy.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/4htfhdr7qh5aujcz.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/dcdw0ahdprhk5x2n.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/gmgrq7ls22py8kop.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/ihf1vbg6de0hxlvn.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/fdevowcztkjc70ec.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/v4mb0a2p4x47z53y.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/8qjlqdv2epup48al.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/0t56oyah1siwe68a.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/vv2k05hxhaiq62kp.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/dphwy8cqm6qhnhuw.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/s2wyatg410r5367c.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/niuh2nfkfzypmesf.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/mxrcc4trj2jyj3xm.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/1jvyz1p543b48yni.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/trzoyvenqif8ep10.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/uv3bp7yf2b15j2dg.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/ik27yoyhc71g63kd.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/5pf4x3cp5l0yx6mi.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/riwq8k2wrwwmh72m.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/zgzpjruvzc3dcwwu.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/64o1q2q4gpcpbzwb.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/ze6uufyga4if7py6.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/qhn82eb84ab7q5zo.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/msmmwnhq8bg11643.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/nvie3xt0055atv36.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/pql7to24gaf4pjyf.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/7sdktk0frmnrhx57.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/stij3erd6ddajc3i.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/8n2q7w2ngt65x4rb.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/4q2j5s5mne761ad5.jpg!800x800"});
+		   personArray.push({image: "https://img.library.sh.cn/dy/img/oshgnizwho46v0zu.jpg!800x800"});
+
+
+
+	        var table = new Array;
+	        var tabley = [1,1,1,1,1,1,1,1,1,1,1,1,1,
+                                             2,2,2,2,2,2,
+                                             3,3,3,3,3,3,3,3,3,3,3,
+                                             4,4,4,4,4,
+                                             5,5,5,5,5,5,5,5,5,5,5,5,5,
+                                             7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,
+                                             9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
+                                             10,10,10,10,10,
+                                             11,11,11,11,11,11,11,11,11,11,11,11,11,11,
+                                             12,12,12,12,12,
+                                             13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13];
+	        var tablex = [4,6,7,8,9,11,12,13,14,16,17,18,19,
+                                             4,6,9,11,14,16,
+                                             4,6,7,8,9,11,14,16,17,18,19,
+                                             4,9,11,14,19,
+                                             4,6,7,8,9,11,12,13,14,16,17,18,19,
+                                             1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,
+                                             1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19,
+                                             4,6,9,14,16,
+                                             1,2,3,4,6,9,11,12,13,14,16,17,18,19,
+                                             1,6,9,11,19,
+                                             1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19];
+		    for (var i = 0; i < 123; i++) {
+		        table[i] = new Object();
+		        if (i < personArray.length) {
+		            table[i] = personArray[i];
+		            table[i].src = personArray[i].thumb_image;
+		        } 
+		        table[i].p_x = tablex[i];
+		        table[i].p_y = tabley[i];
+		    }
+
+
+			var camera, scene, renderer;
+			var controls;
+
+			var objects = [];
+			var targets = { table: [], sphere: [], helix: [], grid: [] };
+
+			// 初始化星空背景
+			initStarryBackground();
+			
+			// 初始化照片模态框
+			initPhotoModal();
+			
+			init();
+			animate();
+
+			function init() {
+
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera.position.z = 3000;
+
+				scene = new THREE.Scene();
+
+				// table
+
+				for ( var i = 0; i < table.length; i ++ ) {
+
+					var element = document.createElement( 'div' );
+					element.className = 'element';
+					element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
+
+					var img = document.createElement('img');
+					img.src = table[ i ].image;
+					img.addEventListener('click', function(event) {
+						event.stopPropagation();
+						showLargePhoto(this.src);
+					});
+					element.appendChild( img );
+
+
+					var object = new THREE.CSS3DObject( element );
+					object.position.x = Math.random() * 4000 - 1000;
+					object.position.y = Math.random() * 4000 - 2000;
+					object.position.z = Math.random() * 4000 - 2000;
+					scene.add( object );
+
+					objects.push( object );
+
+					// 表格需要坐标进行排序的
+					var object = new THREE.Object3D();
+					object.position.x = ( table[ i ].p_x * 140 ) - 1430;
+					object.position.y = - ( table[ i ].p_y * 180 ) + 1240;
+
+					targets.table.push( object );
+
+				}
+
+				// sphere
+
+				var vector = new THREE.Vector3();
+				var spherical = new THREE.Spherical();
+
+				for ( var i = 0, l = objects.length; i < l; i ++ ) {
+
+					var phi = Math.acos( -1 + ( 2 * i ) / l );
+					var theta = Math.sqrt( l * Math.PI ) * phi;
+
+					var object = new THREE.Object3D();
+
+					spherical.set( 800, phi, theta );
+
+					object.position.setFromSpherical( spherical );
+
+					vector.copy( object.position ).multiplyScalar( 2 );
+
+					object.lookAt( vector );
+
+					targets.sphere.push( object );
+
+				}
+
+				// helix
+
+				var vector = new THREE.Vector3();
+				var cylindrical = new THREE.Cylindrical();
+
+				for ( var i = 0, l = objects.length; i < l; i ++ ) {
+
+					var theta = i * 0.175 + Math.PI;
+					var y = - ( i * 5 ) + 450;
+
+					var object = new THREE.Object3D();
+
+					// 参数一 圈的大小 参数二 左右间距 参数三 上下间距
+					cylindrical.set( 900, theta, y );
+
+					object.position.setFromCylindrical( cylindrical );
+
+					vector.x = object.position.x * 2;
+					vector.y = object.position.y;
+					vector.z = object.position.z * 2;
+
+					object.lookAt( vector );
+
+					targets.helix.push( object );
+
+				}
+
+				// grid
+
+				for ( var i = 0; i < objects.length; i ++ ) {
+
+					var object = new THREE.Object3D();
+
+					object.position.x = ( ( i % 5 ) * 400 ) - 800; // 400 图片的左右间距  800 x轴中心店
+					object.position.y = ( - ( Math.floor( i / 5 ) % 5 ) * 300 ) + 500;  // 500 y轴中心店
+					object.position.z = ( Math.floor( i / 25 ) ) * 200 - 800;// 300调整 片间距 800z轴中心店
+
+					targets.grid.push( object );
+
+				}
+
+				//渲染
+				renderer = new THREE.CSS3DRenderer();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.domElement.style.position = 'absolute';
+				document.getElementById( 'container' ).appendChild( renderer.domElement );
+
+				// 鼠标控制
+				controls = new THREE.TrackballControls( camera, renderer.domElement );
+				controls.rotateSpeed = 0.5;
+				controls.minDistance = 500;
+				controls.maxDistance = 6000;
+				controls.addEventListener( 'change', render );
+
+
+
+				var button = document.getElementById( 'table' );
+				button.addEventListener( 'click', function ( event ) {
+					transform( targets.table, 1000 );
+				}, false );
+
+				var button = document.getElementById( 'sphere' );
+				button.addEventListener( 'click', function ( event ) {
+					transform( targets.sphere, 2000 );
+				}, false );
+
+				var button = document.getElementById( 'helix' );
+				button.addEventListener( 'click', function ( event ) {
+					transform( targets.helix, 2000 );
+				}, false );
+
+				var button = document.getElementById( 'grid' );
+				button.addEventListener( 'click', function ( event ) {
+					transform( targets.grid, 2000 );
+				}, false );
+
+				transform( targets.table, 2000 );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+
+			function transform( targets, duration ) {
+
+				TWEEN.removeAll();
+
+				for ( var i = 0; i < objects.length; i ++ ) {
+
+					var object = objects[ i ];
+					var target = targets[ i ];
+
+					new TWEEN.Tween( object.position )
+						.to( { x: target.position.x, y: target.position.y, z: target.position.z }, Math.random() * duration + duration )
+						.easing( TWEEN.Easing.Exponential.InOut )
+						.start();
+
+					new TWEEN.Tween( object.rotation )
+						.to( { x: target.rotation.x, y: target.rotation.y, z: target.rotation.z }, Math.random() * duration + duration )
+						.easing( TWEEN.Easing.Exponential.InOut )
+						.start();
+
+				}
+
+				new TWEEN.Tween( this )
+					.to( {}, duration * 2 )
+					.onUpdate( render )
+					.start();
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				render();
+
+			}
+
+			function animate() {
+
+				// 让场景通过x轴或者y轴旋转  & z
+				// scene.rotation.x += 0.011;
+				scene.rotation.y += 0.0005;
+
+				requestAnimationFrame( animate );
+
+				TWEEN.update();
+
+				controls.update();
+
+				// 渲染循环
+				render();
+
+			}
+
+			function render() {
+
+				renderer.render( scene, camera );
+
+			}
+
+
+
+
+		</script>
+		
+	</body>
+</html>
