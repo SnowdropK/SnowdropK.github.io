@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据可视化</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- 左侧介绍和时期选择 -->
+        <div class="left-section">
+            <!-- 介绍区域 -->
+            <div class="intro-area">
+                <!-- 萌芽期介绍 -->
+                <div class="intro-content active" id="budding-intro">
+                    <div class="intro-title">萌芽期<br>1905~1923</div>
+                    <div class="intro-text"><p>
+                        中国电影从无到有的拓荒阶段。1905年，北京丰泰照相馆拍摄的京剧纪录片《定军山》，标志着中国电影的诞生，其内容完全依附于传统戏曲艺术。1913年，郑正秋、张石川合作拍摄的《难夫难妻》，开创了中国短故事片的先河，虽然叙事简单、镜头呆板，但已显现出社会批判的雏形。此后近十年间，制片活动以上海为中心零星展开，内容多为低成本滑稽闹剧和戏曲纪录片，如《劳工之爱情》等作品，在艺术上虽显粗糙，却培养了最早的一批电影观众。1921年，中国第一部长故事片《阎瑞生》上映，以其社会新闻题材引发轰动，标志着中国电影开始进入长片制作时代。尽管总产量不足50部，却为中国电影的商业运作和叙事语言积累了最初的经验。</p>
+                    </div>
+                </div>
+                
+                <!-- 探索期介绍 -->
+                <div class="intro-content" id="exploration-intro">
+                    <div class="intro-title">探索期<br>1923~1927</div>
+                    <div class="intro-text"><p>
+                        中国电影在1923年后进入首个繁荣阶段，被称为"国片复兴运动"。直接契机是明星影片公司出品的《孤儿救祖记》在商业和口碑上获得巨大成功，极大地刺激了民族资本对电影业的投资热情。长故事片彻底取代短片成为市场主流，年产量从十几部迅速增长至近百部，并形成了明星、天一、神州等具有不同艺术倾向的制片公司并立的格局。这一时期类型探索多元，但整体艺术手法仍未摆脱文明戏的舞台框范和好莱坞的简单模仿。但其重要意义在于建立了中国电影最早的工业体系，培养了第一代专业的编导、摄影人才，为迎接下一个黄金时代做好了准备。</p>
+                    </div>
+                </div>
+                
+                <!-- 商业竞争期介绍 -->
+                <div class="intro-content" id="competition-intro">
+                    <div class="intro-title">商业竞争期<br>1928~1931</div>
+                    <div class="intro-text"><p>
+                        这是中国电影史上第一个完全由商业逻辑主导的无序竞争时期。1928年，明星公司推出的《火烧红莲寺》因其武侠奇幻元素和视觉奇观而票房大卖，随之引发了前所未有的跟拍热潮。在短短三年内，上海竟涌现出数十家小制片公司，专攻武侠神怪题材，产量超过250部，占当时总产量的六成以上，形成中国电影史上第一次类型片泛滥。这种恶性竞争最终导致市场饱和、观众厌弃。1931年，中国第一部有声片《歌女红牡丹》问世，预示着技术革新的来临；同年，南京国民政府以"宣扬迷信、败坏道德"为由，明令查禁武侠神怪片，这股狂潮才骤然消退。</p>
+                    </div>
+                </div>
+                
+                <!-- 变革期介绍 -->
+                <div class="intro-content" id="change-intro">
+                    <div class="intro-title">变革期<br>1932~1937</div>
+                    <div class="intro-text"><p>
+                        在民族危机日益深重的背景下，中国电影迎来了思想与艺术的第一次高峰。左翼文化工作者在中国共产党地下组织的领导下，通过进入明星、联华等大公司编剧部门，掌握了创作主导权，发起了影响深远的"左翼电影运动"。电影内容发生了根本性转变，从逃避现实的娱乐工具转变为批判社会、呐喊救亡的武器。代表作如《狂流》表现农村阶级矛盾，《神女》揭露底层女性苦难，《马路天使》描绘都市贫民悲惨生活，《风云儿女》及其主题曲《义勇军进行曲》更是直接吹响了抗日号角。这一时期涌现出夏衍、田汉、袁牧之、吴永刚等一大批优秀电影人，他们创作的作品将社会使命感、民族危机感与高超的叙事技巧融为一体，奠定了中国电影现实主义的深厚传统。</p>
+                    </div>
+                </div>
+                
+                <!-- 抗战时期介绍 -->
+                <div class="intro-content" id="war-intro">
+                    <div class="intro-title">抗战时期<br>1937~1945</div>
+                    <div class="intro-text"><p>
+                        抗日战争全面爆发后，中国电影被迫分割为三个相对独立的发展区域。在上海"孤岛"时期，电影人通过古装片和暗喻手法巧妙表达抗日情感，《木兰从军》等作品以历史人物暗示现实；大后方重庆、昆明等地集中了内迁的进步电影人，拍摄了《好丈夫》《保卫四行仓库》等直接反映抗战的影片，尽管条件艰苦，胶片短缺，但精神气质昂扬；延安边区则发展出全新的人民电影理念，虽作品数量有限，却为新中国电影奠定了思想基础。同时期日伪满映大量制作宣传片，企图为侵略政策服务。整个抗战期间，电影成为民族精神动员的重要武器，尽管物质条件极其恶劣，但展现了中华民族顽强的文化生命力。</p>
+                    </div>
+                </div>
+                
+                <!-- 战后时期介绍 -->
+                <div class="intro-content" id="afterwar-intro">
+                    <div class="intro-title">战后时期<br>1946~1949</div>
+                    <div class="intro-text"><p>
+                        抗战胜利后，中国电影迎来了艺术创作的第二次高峰，也是成熟期。电影人从大后方和沦陷区重返上海，成立了昆仑影业公司，成为进步电影创作的大本营。他们以宏大的史诗气魄，创作出《一江春水向东流》《八千里路云和月》《乌鸦与麻雀》等杰作，深刻反思抗战期间的民族苦难，并尖锐批判战后国民党政府的腐败统治与社会黑暗。与此同时，文华影业公司则汇聚了一批艺术至上的电影人，他们更专注于人性探索与文化反思，推出了《小城之春》《太太万岁》《哀乐中年》等作品，以精湛的视听语言和细腻的心理刻画，创造了具有现代主义意味的东方电影美学。这两大创作流派，一个外向批判，一个内省沉思，共同将中国电影的现实主义精神和艺术表现力推向了世界水平。</p>
+                    </div>
+                </div>
+                
+                <!-- 十七年电影介绍 -->
+                <div class="intro-content" id="seventeen-intro">
+                    <div class="intro-title">十七年电影<br>1949~1966</div>
+                    <div class="intro-text"><p>
+                        新中国成立的前十七年，中国电影在全新的政治体制下发展，其最显著的特征是成为社会主义意识形态建设的重要组成部分。电影生产完全国有化，影片题材高度集中，以歌颂革命历史、英雄模范和社会主义建设为核心功能。革命战争题材如《南征北战》《红色娘子军》《英雄儿女》等成为绝对主流，旨在弘扬革命英雄主义和爱国主义精神；反映工农兵生活的影片如《李双双》《我们村里的年轻人》则展现了新社会的新风貌。在政治与艺术的夹缝中，依然诞生了《林家铺子》《早春二月》《舞台姐妹》等艺术精品，它们以含蓄细腻的手法，展现了深厚的人文关怀和艺术探索。然而，电影创作深受政治运动影响，最终在1966年随着"文革"爆发而陷入全面停滞。</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <!-- 右侧内容区域 -->
+        <div class="content-section">
+         <!-- 时期选择 -->
+             <div class="period-selector">
+                 <div class="period-button active" onclick="showPeriod('budding')">
+                     <div class="timeline-title">萌芽期</div>
+                     <div class="timeline-years">1905-1923</div>
+                 </div>
+                 <div class="period-button" onclick="showPeriod('exploration')">
+                     <div class="timeline-title">探索期</div>
+                     <div class="timeline-years">1923-1927</div>
+                 </div>
+                 <div class="period-button" onclick="showPeriod('competition')">
+                     <div class="timeline-title">商业竞争期</div>
+                     <div class="timeline-years">1928-1931</div>
+                 </div>
+                 <div class="period-button" onclick="showPeriod('change')">
+                     <div class="timeline-title">变革期</div>
+                     <div class="timeline-years">1932-1937</div>
+                 </div>
+                 <div class="period-button" onclick="showPeriod('war')">
+                     <div class="timeline-title">抗战时期</div>
+                     <div class="timeline-years">1937-1945</div>
+                 </div>
+                 <div class="period-button" onclick="showPeriod('afterwar')">
+                     <div class="timeline-title">战后时期</div>
+                     <div class="timeline-years">1946-1949</div>
+                 </div>
+                 <div class="period-button" onclick="showPeriod('seventeen')">
+                     <div class="timeline-title">十七年电影</div>
+                     <div class="timeline-years">1949-1966</div>
+                 </div>
+             </div>
+            <!-- 萌芽期数据 -->
+            <div class="period-data active" id="budding-data">
+
+                <div class="content-grid">
+                    <div class="left-panel">
+                        <div class="chart-box">
+                            <div class="chart-title">年度产量</div>
+                            <canvas id="budding-chart"></canvas>
+                        </div>
+                        <div class="chart-box">
+                            <div class="chart-title">词云</div>
+                            <div class="word-cloud" id="budding-word-cloud">
+                                <!-- 词语将由JavaScript动态生成和定位 -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="right-panel">
+                        <div class="chart-box">
+                            <div class="chart-title">类型分布</div>
+                            <div id="budding-sunburst" class="sunburst-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 探索期数据 -->
+            <div class="period-data" id="exploration-data">
+
+                <div class="content-grid">
+                    <div class="left-panel">
+                        <div class="chart-box">
+                            <div class="chart-title">年度产量</div>
+                            <canvas id="exploration-chart"></canvas>
+                        </div>
+                        <div class="chart-box">
+                            <div class="chart-title">词云</div>
+                            <div class="word-cloud" id="exploration-word-cloud">
+                                <!-- 词语将由JavaScript动态生成和定位 -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="right-panel">
+                        <div class="chart-box">
+                            <div class="chart-title">类型分布</div>
+                            <div id="exploration-sunburst" class="sunburst-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--竞争期数据 -->
+            <div class="period-data active" id="competition-data">
+
+                <div class="content-grid">
+                    <div class="left-panel">
+                        <div class="chart-box">
+                            <div class="chart-title">年度产量</div>
+                            <canvas id="competition-chart"></canvas>
+                        </div>
+                        <div class="chart-box">
+                            <div class="chart-title">词云</div>
+                            <div class="word-cloud" id="competition-word-cloud">
+                                <!-- 词语将由JavaScript动态生成和定位 -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="right-panel">
+                        <div class="chart-box">
+                            <div class="chart-title">类型分布</div>
+                            <div id="competition-sunburst" class="sunburst-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--变革期数据 -->
+            <div class="period-data active" id="change-data">
+
+                <div class="content-grid">
+                    <div class="left-panel">
+                        <div class="chart-box">
+                            <div class="chart-title">年度产量</div>
+                            <canvas id="change-chart"></canvas>
+                        </div>
+                        <div class="chart-box">
+                            <div class="chart-title">词云</div>
+                            <div class="word-cloud" id="change-word-cloud">
+                                <!-- 词语将由JavaScript动态生成和定位 -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="right-panel">
+                        <div class="chart-box">
+                            <div class="chart-title">类型分布</div>
+                            <div id="change-sunburst" class="sunburst-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--抗战期数据 -->
+            <div class="period-data active" id="war-data">
+
+                <div class="content-grid">
+                    <div class="left-panel">
+                        <div class="chart-box">
+                            <div class="chart-title">年度产量</div>
+                            <canvas id="war-chart"></canvas>
+                        </div>
+                        <div class="chart-box">
+                            <div class="chart-title">词云</div>
+                            <div class="word-cloud" id="war-word-cloud">
+                                <!-- 词语将由JavaScript动态生成和定位 -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="right-panel">
+                        <div class="chart-box">
+                            <div class="chart-title">类型分布</div>
+                            <div id="war-sunburst" class="sunburst-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--战后期数据 -->
+            <div class="period-data active" id="afterwar-data">
+
+                <div class="content-grid">
+                    <div class="left-panel">
+                        <div class="chart-box">
+                            <div class="chart-title">年度产量</div>
+                            <canvas id="afterwar-chart"></canvas>
+                        </div>
+                        <div class="chart-box">
+                            <div class="chart-title">词云</div>
+                            <div class="word-cloud" id="afterwar-word-cloud">
+                                <!-- 词语将由JavaScript动态生成和定位 -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="right-panel">
+                        <div class="chart-box">
+                            <div class="chart-title">类型分布</div>
+                            <div id="afterwar-sunburst" class="sunburst-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--战后期数据 -->
+            <div class="period-data active" id="seventeen-data">
+
+                <div class="content-grid">
+                    <div class="left-panel">
+                        <div class="chart-box">
+                            <div class="chart-title">年度产量</div>
+                            <canvas id="seventeen-chart"></canvas>
+                        </div>
+                        <div class="chart-box">
+                            <div class="chart-title">词云</div>
+                            <div class="word-cloud" id="seventeen-word-cloud">
+                                <!-- 词语将由JavaScript动态生成和定位 -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="right-panel">
+                        <div class="chart-box">
+                            <div class="chart-title">类型分布</div>
+                            <div id="seventeen-sunburst" class="sunburst-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html> 
