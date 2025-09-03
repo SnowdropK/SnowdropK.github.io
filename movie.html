@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>movie</title>
+    <title>影·史</title>
     <style>
         * {
             margin: 0;
@@ -283,6 +283,47 @@
             top: calc(50% - .5px);
             left: 0px;
         }
+
+        .bottom-navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0);
+            padding: 15px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            flex-direction: column;
+        }
+
+        .nav-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-icon:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            scale: 1.1;
+        }
+
+        .nav-icon img {
+            max-width: 32px;
+            max-height: 32px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
     </style>
 </head>
 
@@ -306,34 +347,34 @@
              </div>
 
              <div class="img1">
-                <img src="https://i1.hdslb.com/bfs/archive/61b766b3e03df7a7c4a55d0e6141bfe9c4ce4a1d.jpg">
+                <img src="img/1.jpg">
              </div>
 
             <div class="img1">
-                <img src="https://img0.baidu.com/it/u=1848888223,379114435&fm=253&fmt=auto&app=138&f=JPEG?w=608&h=417">
+                <img src="img/2.jpg">
             </div>
 
              <div class="img1">
-                <img src="https://imagepphcloud.thepaper.cn/pph/image/180/492/248.png">
+                <img src="img/3.png">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p1533026146.jpg">
+                <img src="img/4.jpg">
              </div>
 
             <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p2914962654.jpg">
+                <img src="img/5.jpg">
             </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2263659157.jpg">
+                <img src="img/6.jpg">
              </div>
 
              <div class="img1">
              </div>
 
             <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2175793222.jpg">
+                <img src="img/7.jpg">
             </div>
 
              <div class="img1">
@@ -344,7 +385,7 @@
              </div>
 
             <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p1522752499.jpg">
+                <img src="img/9.jpg">
             </div>
 
              <div class="img1">
@@ -359,23 +400,23 @@
             </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p2513212474.jpg">
+                <img src="img/12.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p1797954853.jpg">
+                <img src="img/13.jpg">
              </div>
 
             <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2183949870.jpg">
+                <img src="img/14.jpg">
             </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p2620916135.jpg">
+                <img src="img/15.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2574651698.jpg">
+                <img src="img/16.jpg">
              </div>
 
             <div class="img1">
@@ -406,330 +447,330 @@
             </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2227576967.jpg">
+                <img src="img/23.jpg">
              </div>
 
              <div class="img1">
              </div>
 
             <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2780848480.jpg">
+                <img src="img/24.jpg">
             </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2263660383.jpg">
+                <img src="img/25.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p2211731825.jpg">
+                <img src="img/26.jpg">
              </div>
 
             <div class="img1">
-                <img src="https://img2.doubanio.com/view/photo/l/public/p1525246381.jpg">
+                <img src="img/27.jpg">
             </div>
 
              <div class="img1">
-                <img src="https://img0.baidu.com/it/u=1442792484,1615647229&fm=253&fmt=auto?w=550&h=500">
+                <img src="img/28.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p1042024394.jpg">
+                <img src="img/29.jpg">
              </div>
 
             <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p1525418962.jpg">
+                <img src="img/30.jpg">
             </div>
 
              <div class="img1">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2551230327.jpg">
+                <img src="img/31.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2560483218.jpg">
+                <img src="img/32.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p2862278845.jpg">
+                <img src="img/33.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2569099069.jpg">
+                <img src="img/34.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2142083759.jpg">
+                <img src="img/35.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2265506048.jpg">
+                <img src="img/36.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p1561816595.jpg">
+                <img src="img/37.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2118905312.jpg">
+                <img src="img/38.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2327207793.jpg">
+                <img src="img/39.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p1384607964.jpg">
+                <img src="img/40.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p2622835665.jpg">
+                <img src="img/41.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p1472094490.jpg">
+                <img src="img/42.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p1340144516.jpg">
+                <img src="img/43.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2873805058.jpg">
+                <img src="img/44.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2631893952.jpg">
+                <img src="img/45.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p2111096594.jpg">
+                <img src="img/46.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2042328803.jpg">
+                <img src="img/47.jpg">
              </div>
 
              <div class="img1">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2218033209.jpg">
+                <img src="img/48.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p1954301534.jpg">
+                <img src="img/49.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2495718270.jpg">
+                <img src="img/50.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2171578207.jpg">
+                <img src="img/51.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2656376518.jpg">
+                <img src="img/52.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2674255599.jpg">
+                <img src="img/53.jpg">
              </div>
 
              <div class="img1">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2358631210.jpg">
+                <img src="img/54.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2105634222.jpg">
+                <img src="img/55.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p2564021034.jpg">
+                <img src="img/56.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p714904986.jpg">
+                <img src="img/57.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2698520039.jpg">
+                <img src="img/58.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2878847220.jpg">
+                <img src="img/59.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2698568062.jpg">
+                <img src="img/60.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p1420355222.jpg">
+                <img src="img/61.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2624482543.jpg">
+                <img src="img/62.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p2677704606.jpg">
+                <img src="img/63.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2262124060.jpg">
+                <img src="img/64.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p2262122506.jpg">
+                <img src="img/65.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2712282132.jpg">
+                <img src="img/66.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2628486640.jpg">
+                <img src="img/67.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2580658248.jpg">
+                <img src="img/68.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2905327378.jpg">
+                <img src="img/69.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2677795882.jpg">
+                <img src="img/70.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p2888402555.jpg">
+                <img src="img/71.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p2639003546.jpg">
+                <img src="img/72.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img2.doubanio.com/view/photo/l/public/p2105948851.jpg">
+                <img src="img/73.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img2.doubanio.com/view/photo/l/public/p2531311811.jpg">
+                <img src="img/74.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p1754502919.jpg">
+                <img src="img/75.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2516078073.jpg">
+                <img src="img/76.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2737766359.jpg">
+                <img src="img/77.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p2875317736.jpg">
+                <img src="img/78.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2529050429.jpg">
+                <img src="img/79.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p459948603.jpg">
+                <img src="img/80.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p1735717670.jpg">
+                <img src="img/81.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2600217897.jpg">
+                <img src="img/82.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p460135474.jpg">
+                <img src="img/83.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2573386347.jpg">
+                <img src="img/84.jpg">
              </div>
 
              <div class="img1">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p1759104528.jpg">
+                <img src="img/85.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2533776713.jpg">
+                <img src="img/86.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img2.doubanio.com/view/photo/l/public/p2092901711.jpg">
+                <img src="img/87.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2668146419.jpg">
+                <img src="img/88.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p2564838436.jpg">
+                <img src="img/89.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2907830030.jpg">
+                <img src="img/90.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p2387337658.jpg">
+                <img src="img/91.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p2633374084.jpg">
+                <img src="img/92.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p1449740717.jpg">
+                <img src="img/93.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2287659682.jpg">
+                <img src="img/94.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img1.doubanio.com/view/photo/l/public/p1507809888.jpg">
+                <img src="img/95.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2164143523.jpg">
+                <img src="img/96.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img3.doubanio.com/view/photo/l/public/p2244967062.jpg">
+                <img src="img/97.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img2.doubanio.com/view/photo/l/public/p2872766461.jpg">
+                <img src="img/98.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p2540944396.jpg">
+                <img src="img/99.jpg">
              </div>
 
              <div class="img1">
-                <img src="https://img9.doubanio.com/view/photo/l/public/p2901449626.jpg">
+                <img src="img/100.jpg">
              </div>
         </div>
 
@@ -750,7 +791,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://i1.hdslb.com/bfs/archive/61b766b3e03df7a7c4a55d0e6141bfe9c4ce4a1d.jpg" width=336 height=224>
+                    <img src="img/1.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     定军山
@@ -767,7 +808,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img0.baidu.com/it/u=1848888223,379114435&fm=253&fmt=auto&app=138&f=JPEG?w=608&h=417" width=336 height=224>
+                    <img src="img/2.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     难夫难妻
@@ -784,7 +825,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://imagepphcloud.thepaper.cn/pph/image/180/492/248.png" width=336 height=224>
+                    <img src="img/3.png" width=336 height=224>
                 </div>
                 <div class="card-title">
                     黑籍冤魂
@@ -801,7 +842,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p1533026146.jpg" width=336 height=224>
+                    <img src="img/4.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     阎瑞生
@@ -818,7 +859,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p2914962654.jpg" width=336 height=224>
+                    <img src="img/5.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     劳工之爱情
@@ -835,7 +876,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2263659157.jpg" width=336 height=224>
+                    <img src="img/6.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     孤儿救祖记
@@ -866,7 +907,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2175793222.jpg" width=336 height=224>
+                    <img src="img/7.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     盘丝洞
@@ -914,7 +955,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p1522752499.jpg" width=336 height=224>
+                    <img src="img/9.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     火烧红莲寺
@@ -979,7 +1020,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p2513212474.jpg" width=336 height=224>
+                    <img src="img/12.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     小玩意
@@ -996,7 +1037,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p1797954853.jpg" width=336 height=224>
+                    <img src="img/13.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     神女
@@ -1013,7 +1054,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2183949870.jpg" width=336 height=224>
+                    <img src="img/14.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     大路
@@ -1030,7 +1071,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p2620916135.jpg" width=336 height=224>
+                    <img src="img/15.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     新女性
@@ -1047,7 +1088,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2574651698.jpg" width=336 height=224>
+                    <img src="img/16.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     渔光曲
@@ -1180,7 +1221,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2227576967.jpg" width=336 height=224>
+                    <img src="img/23.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     铁扇公主
@@ -1211,7 +1252,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2780848480.jpg" width=336 height=224>
+                    <img src="img/24.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     一江春水向东流
@@ -1228,7 +1269,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2263660383.jpg" width=336 height=224>
+                    <img src="img/25.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     太太万岁
@@ -1245,7 +1286,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p2211731825.jpg" width=336 height=224>
+                    <img src="img/26.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     小城之春
@@ -1262,7 +1303,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img2.doubanio.com/view/photo/l/public/p1525246381.jpg" width=336 height=224>
+                    <img src="img/27.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     万家灯火
@@ -1279,7 +1320,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img0.baidu.com/it/u=1442792484,1615647229&fm=253&fmt=auto?w=550&h=500" width=336 height=224>
+                    <img src="img/28.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     生死恨
@@ -1296,7 +1337,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p1042024394.jpg" width=336 height=224>
+                    <img src="img/29.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     乌鸦与麻雀
@@ -1313,7 +1354,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p1525418962.jpg" width=336 height=224>
+                    <img src="img/30.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     哀乐中年
@@ -1344,7 +1385,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2551230327.jpg" width=336 height=224>
+                    <img src="img/31.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     桥
@@ -1361,7 +1402,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2560483218.jpg" width=336 height=224>
+                    <img src="img/32.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     三毛流浪记
@@ -1378,7 +1419,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p2862278845.jpg" width=336 height=224>
+                    <img src="img/33.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     白毛女
@@ -1395,7 +1436,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2569099069.jpg" width=336 height=224>
+                    <img src="img/34.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     姊姊妹妹站起来
@@ -1412,7 +1453,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2142083759.jpg" width=336 height=224>
+                    <img src="img/35.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     龙须沟
@@ -1429,7 +1470,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2265506048.jpg" width=336 height=224>
+                    <img src="img/36.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     祖国的花朵
@@ -1446,7 +1487,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p1561816595.jpg" width=336 height=224>
+                    <img src="img/37.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     上甘岭
@@ -1463,7 +1504,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2118905312.jpg" width=336 height=224>
+                    <img src="img/38.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     祝福
@@ -1480,7 +1521,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2327207793.jpg" width=336 height=224>
+                    <img src="img/39.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     女篮5号
@@ -1497,7 +1538,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p1384607964.jpg" width=336 height=224>
+                    <img src="img/40.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     风筝
@@ -1514,7 +1555,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p2622835665.jpg" width=336 height=224>
+                    <img src="img/41.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     柳堡的故事
@@ -1531,7 +1572,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p1472094490.jpg" width=336 height=224>
+                    <img src="img/42.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     永不消逝的电波
@@ -1548,7 +1589,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p1340144516.jpg" width=336 height=224>
+                    <img src="img/43.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     林则徐
@@ -1565,7 +1606,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2873805058.jpg" width=336 height=224>
+                    <img src="img/44.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     林家铺子
@@ -1582,7 +1623,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2631893952.jpg" width=336 height=224>
+                    <img src="img/45.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     大闹天宫
@@ -1599,7 +1640,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p2111096594.jpg" width=336 height=224>
+                    <img src="img/46.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     早春二月
@@ -1616,7 +1657,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2042328803.jpg" width=336 height=224>
+                    <img src="img/47.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     英雄儿女
@@ -1647,7 +1688,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2218033209.jpg" width=336 height=224>
+                    <img src="img/48.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     智取威虎山
@@ -1664,7 +1705,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p1954301534.jpg" width=336 height=224>
+                    <img src="img/49.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     独臂刀
@@ -1681,7 +1722,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2495718270.jpg" width=336 height=224>
+                    <img src="img/50.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     侠女
@@ -1698,7 +1739,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2171578207.jpg" width=336 height=224>
+                    <img src="img/51.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     精武门
@@ -1715,7 +1756,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2656376518.jpg" width=336 height=224>
+                    <img src="img/52.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     闪闪的红星
@@ -1732,7 +1773,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2674255599.jpg" width=336 height=224>
+                    <img src="img/53.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     决裂
@@ -1763,7 +1804,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2358631210.jpg" width=336 height=224>
+                    <img src="img/54.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     小花
@@ -1780,7 +1821,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2105634222.jpg" width=336 height=224>
+                    <img src="img/55.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     瞧这一家子
@@ -1797,7 +1838,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p2564021034.jpg" width=336 height=224>
+                    <img src="img/56.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     哪吒闹海
@@ -1814,7 +1855,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p714904986.jpg" width=336 height=224>
+                    <img src="img/57.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     庐山恋
@@ -1831,7 +1872,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2698520039.jpg" width=336 height=224>
+                    <img src="img/58.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     巴山夜雨
@@ -1848,7 +1889,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2878847220.jpg" width=336 height=224>
+                    <img src="img/59.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     405谋杀案
@@ -1865,7 +1906,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2698568062.jpg" width=336 height=224>
+                    <img src="img/60.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     天云山传奇
@@ -1882,7 +1923,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p1420355222.jpg" width=336 height=224>
+                    <img src="img/61.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     小街
@@ -1899,7 +1940,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2624482543.jpg" width=336 height=224>
+                    <img src="img/62.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     喜盈门
@@ -1916,7 +1957,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p2677704606.jpg" width=336 height=224>
+                    <img src="img/63.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     阿Q正传
@@ -1933,7 +1974,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2262124060.jpg" width=336 height=224>
+                    <img src="img/64.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     骆驼祥子
@@ -1950,7 +1991,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p2262122506.jpg" width=336 height=224>
+                    <img src="img/65.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     茶馆
@@ -1967,7 +2008,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2712282132.jpg" width=336 height=224>
+                    <img src="img/66.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     丝路花雨
@@ -1984,7 +2025,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2628486640.jpg" width=336 height=224>
+                    <img src="img/67.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     牧马人
@@ -2001,7 +2042,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2580658248.jpg" width=336 height=224>
+                    <img src="img/68.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     人到中年
@@ -2018,7 +2059,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2905327378.jpg" width=336 height=224>
+                    <img src="img/69.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     少林寺
@@ -2035,7 +2076,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2677795882.jpg" width=336 height=224>
+                    <img src="img/70.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     城南旧事
@@ -2052,7 +2093,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p2888402555.jpg" width=336 height=224>
+                    <img src="img/71.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     包氏父子
@@ -2069,7 +2110,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p2639003546.jpg" width=336 height=224>
+                    <img src="img/72.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     天书奇谭
@@ -2086,7 +2127,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img2.doubanio.com/view/photo/l/public/p2105948851.jpg" width=336 height=224>
+                    <img src="img/73.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     一个和八个
@@ -2103,7 +2144,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img2.doubanio.com/view/photo/l/public/p2531311811.jpg" width=336 height=224>
+                    <img src="img/74.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     半边人
@@ -2120,7 +2161,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p1754502919.jpg" width=336 height=224>
+                    <img src="img/75.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     A计划
@@ -2137,7 +2178,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2516078073.jpg" width=336 height=224>
+                    <img src="img/76.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     火烧圆明园
@@ -2154,7 +2195,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2737766359.jpg" width=336 height=224>
+                    <img src="img/77.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     高山下的花环
@@ -2171,7 +2212,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p2875317736.jpg" width=336 height=224>
+                    <img src="img/78.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     黄土地
@@ -2188,7 +2229,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2529050429.jpg" width=336 height=224>
+                    <img src="img/79.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     黑炮事件
@@ -2205,7 +2246,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p459948603.jpg" width=336 height=224>
+                    <img src="img/80.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     芙蓉镇
@@ -2222,7 +2263,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p1735717670.jpg" width=336 height=224>
+                    <img src="img/81.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     红高粱
@@ -2239,7 +2280,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2600217897.jpg" width=336 height=224>
+                    <img src="img/82.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     人·鬼·情
@@ -2256,7 +2297,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p460135474.jpg" width=336 height=224>
+                    <img src="img/83.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     悲情城市
@@ -2273,7 +2314,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2573386347.jpg" width=336 height=224>
+                    <img src="img/84.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     秋菊打官司
@@ -2304,7 +2345,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p1759104528.jpg" width=336 height=224>
+                    <img src="img/85.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     香魂女
@@ -2321,7 +2362,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2533776713.jpg" width=336 height=224>
+                    <img src="img/86.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     霸王别姬
@@ -2338,7 +2379,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img2.doubanio.com/view/photo/l/public/p2092901711.jpg" width=336 height=224>
+                    <img src="img/87.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     背靠背，脸对脸
@@ -2355,7 +2396,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2668146419.jpg" width=336 height=224>
+                    <img src="img/88.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     活着
@@ -2372,7 +2413,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p2564838436.jpg" width=336 height=224>
+                    <img src="img/89.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     阳光灿烂的日子
@@ -2389,7 +2430,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2907830030.jpg" width=336 height=224>
+                    <img src="img/90.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     重庆森林
@@ -2406,7 +2447,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p2387337658.jpg" width=336 height=224>
+                    <img src="img/91.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     甲方乙方
@@ -2423,7 +2464,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p2633374084.jpg" width=336 height=224>
+                    <img src="img/92.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     小武
@@ -2440,7 +2481,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p1449740717.jpg" width=336 height=224>
+                    <img src="img/93.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     一一
@@ -2457,7 +2498,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2287659682.jpg" width=336 height=224>
+                    <img src="img/94.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     花样年华
@@ -2474,7 +2515,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img1.doubanio.com/view/photo/l/public/p1507809888.jpg" width=336 height=224>
+                    <img src="img/95.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     卧虎藏龙
@@ -2491,7 +2532,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2164143523.jpg" width=336 height=224>
+                    <img src="img/96.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     鬼子来了
@@ -2508,7 +2549,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img3.doubanio.com/view/photo/l/public/p2244967062.jpg" width=336 height=224>
+                    <img src="img/97.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     英雄
@@ -2525,7 +2566,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img2.doubanio.com/view/photo/l/public/p2872766461.jpg" width=336 height=224>
+                    <img src="img/98.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     无间道
@@ -2542,7 +2583,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p2540944396.jpg" width=336 height=224>
+                    <img src="img/99.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     功夫
@@ -2559,7 +2600,7 @@
 
             <div class="card">
                 <div class="card-image">
-                    <img src="https://img9.doubanio.com/view/photo/l/public/p2901449626.jpg" width=336 height=224>
+                    <img src="img/100.jpg" width=336 height=224>
                 </div>
                 <div class="card-title">
                     宇宙探索编辑部
@@ -2906,6 +2947,9 @@
                 clockRotate(-207);
             }
         }
+        window.addEventListener('load', function() {
+            slideToPrev();
+        });
         // 向后切换卡片
         function slideToNext() {
             offset = Math.max(minOffset, offset - 1);
@@ -3155,6 +3199,29 @@
         }
 
     </script>
+
+    <!-- 右下角导航图标栏 -->
+    <div class="bottom-navigation">
+        <a href="https://snowdropk.github.io/" class="nav-icon" id="home-icon">
+            <img src="icon/home.png" alt="首页">
+        </a>
+        <a href="https://snowdropk.github.io/data" class="nav-icon" id="data-icon">
+            <img src="icon/data.png" alt="数据">
+        </a>
+        <a href="https://snowdropk.github.io/photo" class="nav-icon" id="photo-icon">
+            <img src="icon/photo.png" alt="照片">
+        </a>
+        <a href="https://snowdropk.github.io/map" class="nav-icon" id="map-icon">
+            <img src="icon/map.png" alt="地图">
+        </a>
+        <a href="https://snowdropk.github.io/chat" class="nav-icon" id="person-icon">
+            <img src="icon/person.png" alt="人物">
+        </a>
+        <a href="https://snowdropk.github.io/poster" class="nav-icon" id="draw-icon">
+            <img src="icon/draw.png" alt="绘画">
+        </a>
+    </div>
+
 </body>
 
 </html>

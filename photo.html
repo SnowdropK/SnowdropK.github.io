@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>three.js css3d - periodic table</title>
+		<title>影·史</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
@@ -56,131 +56,11 @@
 
 			#menu {
 				position: absolute;
-				bottom: 20px;
+				bottom: 30px;
 				width: 100%;
 				text-align: center;
 			}
 
-			#menu1 {
-				position: fixed;
-				top: 20px;
-				right: 20px;
-				z-index: 100;
-			}
-
-			.nav-toggle {
-				width: 60px;
-				height: 60px;
-				background: rgba(0, 127, 127, 0.8);
-				border: 1px solid rgba(127, 255, 255, 0.5);
-				border-radius: 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				cursor: pointer;
-				transition: all 0.3s ease;
-				box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-			}
-
-			.nav-toggle:hover {
-				background: rgba(0, 127, 127, 1);
-				box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-				transform: scale(1.05);
-			}
-
-			.nav-toggle img {
-				width: 48px;
-				height: 48px;
-				opacity: 0.9;
-				transition: opacity 0.3s ease;
-				object-fit: contain;
-			}
-
-			.nav-toggle:hover img {
-				opacity: 1;
-			}
-
-			.nav-menu {
-				position: absolute;
-				top: 70px;
-				right: 0;
-				background: rgba(0, 0, 0, 0.9);
-				border: 1px solid rgba(127, 255, 255, 0.3);
-				border-radius: 10px;
-				padding: 15px;
-				width: auto;
-				min-width: 180px;
-				opacity: 0;
-				visibility: hidden;
-				transform: translateY(-10px);
-				transition: all 0.3s ease;
-				backdrop-filter: blur(10px);
-				box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
-			}
-
-			.nav-menu.active {
-				opacity: 1;
-				visibility: visible;
-				transform: translateY(0);
-			}
-
-			.nav-close {
-				position: absolute;
-				top: 8px;
-				right: 10px;
-				width: 24px;
-				height: 24px;
-				cursor: pointer;
-				line-height: 1;
-				opacity: 0.7;
-				transition: opacity 0.3s ease;
-				object-fit: contain;
-			}
-
-			.nav-close:hover {
-				opacity: 1;
-			}
-
-			.nav-item {
-				display: flex;
-				align-items: center;
-				padding: 12px 15px;
-				color: rgba(255, 255, 255, 0.8);
-				text-decoration: none;
-				border-radius: 5px;
-				transition: all 0.3s ease;
-				margin-bottom: 5px;
-				cursor: pointer;
-				font-size: 16px;
-				white-space: nowrap;
-			}
-
-			.nav-item:hover {
-				background: rgba(0, 127, 127, 0.3);
-				color: rgba(255, 255, 255, 1);
-				box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
-			}
-
-			.nav-item img {
-				width: 24px;
-				height: 24px;
-				margin-right: 12px;
-				opacity: 0.8;
-				transition: opacity 0.3s ease;
-				object-fit: contain;
-			}
-
-			.nav-item:hover img {
-				opacity: 1;
-			}
-
-			.nav-item:last-child {
-				margin-bottom: 0;
-			}
-
-			li {
-				padding-bottom: 10 px;
-			}
 
 			.element {
 				width: 100px;/* 120 160 */
@@ -298,6 +178,47 @@
 			.element img:hover {
 				opacity: 0.8;
 			}
+
+			.bottom-navigation {
+				position: fixed;
+				top: 20px;
+				right: 20px;
+				display: flex;
+				gap: 10px;
+				background: rgba(0, 0, 0, 0);
+				padding: 10px;
+				border-radius: 15px;
+				backdrop-filter: blur(10px);
+				z-index: 1000;
+				flex-direction: column;
+			}
+
+			.nav-icon {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 40px;
+				height: 40px;
+				border-radius: 10px;
+				background: rgba(255, 255, 255, 0);
+				transition: all 0.3s ease;
+				text-decoration: none;
+			}
+
+			.nav-icon:hover {
+				background: rgba(255, 255, 255, 0.3);
+				transform: translateY(-3px);
+				scale: 1.1;
+			}
+
+			.nav-icon img {
+				max-width: 32px;
+				max-height: 32px;
+				width: auto;
+				height: auto;
+				object-fit: contain;
+			}
+
 		</style>
 		<link rel="stylesheet" href="css/animate.min.css">
 		<!--引入three.js三维引擎-->
@@ -317,6 +238,29 @@
 		<canvas id="particleCanvas"></canvas>
 		<div id="container"></div>
 		
+
+    <!-- 右上角导航图标栏 -->
+    <div class="bottom-navigation">
+        <a href="https://snowdropk.github.io/" class="nav-icon" id="home-icon">
+            <img src="icon/home.png" alt="首页">
+        </a>
+        <a href="https://snowdropk.github.io/movie" class="nav-icon" id="movie-icon">
+            <img src="icon/movie.png" alt="电影">
+        </a>
+        <a href="https://snowdropk.github.io/data" class="nav-icon" id="data-icon">
+            <img src="icon/data.png" alt="数据">
+        </a>
+        <a href="https://snowdropk.github.io/map" class="nav-icon" id="map-icon">
+            <img src="icon/map.png" alt="地图">
+        </a>
+        <a href="https://snowdropk.github.io/chat" class="nav-icon" id="person-icon">
+            <img src="icon/person.png" alt="人物">
+        </a>
+        <a href="https://snowdropk.github.io/poster" class="nav-icon" id="draw-icon">
+            <img src="icon/draw.png" alt="绘画">
+        </a>
+    </div>
+
 		<!-- 照片查看大图模态框 -->
 		<div id="photoModal" class="photo-modal">
 			<span class="close-btn">&times;</span>
@@ -331,39 +275,7 @@
 			<button id="helix">螺旋</button>
 			<button id="grid">格子</button>
 		</div>
-		<div id="menu1">
-			<div class="nav-toggle" onclick="toggleNav()">
-				<img src="./icon/menu.png" alt="菜单">
-			</div>
-			<div class="nav-menu" id="navMenu">
-				<img src="./icon/X.png" alt="关闭" class="nav-close" onclick="closeNav()">
-				<div class="nav-item" onclick="navigateTo('home')">
-					<img src="./icon/library.png" alt="首页">
-					<span>首页</span>
-				</div>
-				<div class="nav-item" onclick="navigateTo('location')">
-					<img src="./icon/map.png" alt="地图">
-					<span>时光觅影</span>
-				</div>
-				<div class="nav-item" onclick="navigateTo('data')">
-					<img src="./icon/data.png" alt="数据">
-					<span>抽丝剥茧</span>
-				</div>
-				<div class="nav-item" onclick="navigateTo('location')">
-					<img src="./icon/map.png" alt="地图">
-					<span>寻踪觅迹</span>
-				</div>
-				<div class="nav-item" onclick="navigateTo('people')">
-					<img src="./icon/person.png" alt="人物">
-					<span>促膝谈心</span>
-				</div>
 
-				<div class="nav-item" onclick="navigateTo('ai')">
-					<img src="./icon/draw.png" alt="绘画">
-					<span>妙笔生花</span>
-				</div>
-			</div>
-		</div>
 
 		<script>
 			// 星空粒子背景
@@ -491,55 +403,6 @@
 					modal.style.display = 'flex';
 				}
 			}
-
-			// 导航菜单功能
-			function toggleNav() {
-				const navMenu = document.getElementById('navMenu');
-				navMenu.classList.toggle('active');
-			}
-
-			function closeNav() {
-				const navMenu = document.getElementById('navMenu');
-				navMenu.classList.remove('active');
-			}
-
-			function navigateTo(page) {
-				// 临时空链接，后续可以添加具体的路由逻辑
-				console.log('导航到:', page);
-				closeNav();
-				
-				// 这里可以添加实际的导航逻辑
-				switch(page) {
-					case 'home':
-						// window.location.href = '/home';
-						break;
-					case 'location':
-						// window.location.href = '/location';
-						break;
-					case 'photos':
-						// 当前页面就是照片页面
-						break;
-					case 'people':
-						// window.location.href = '/people';
-						break;
-					case 'data':
-						// window.location.href = '/data';
-						break;
-					case 'ai':
-						// window.location.href = '/ai';
-						break;
-				}
-			}
-
-			// 点击外部关闭导航
-			document.addEventListener('click', function(event) {
-				const navMenu = document.getElementById('navMenu');
-				const navToggle = document.querySelector('.nav-toggle');
-				
-				if (!navMenu.contains(event.target) && !navToggle.contains(event.target)) {
-					navMenu.classList.remove('active');
-				}
-			});
 
 			var personArray = new Array;
     		var CurPersonNum = 0;
