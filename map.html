@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>中国电影制片厂分布图</title>
+    <title>map</title>
     <style>
         body {
             font-family: 'Microsoft YaHei', Arial, sans-serif;
             margin: 0;
             padding: 20px;
             background: #dfb293;
-            overflow: :hidden;
+            overflow: hidden; /* 修复CSS语法错误：移除多余的冒号 */
         }
         
         #main {
@@ -47,6 +47,8 @@
             background: #772424;
             padding: 10px;
             border-radius: 15px;
+            /* 修复backdrop-filter兼容性：添加webkit前缀 */
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             z-index: 1000;
             flex-direction: row;
@@ -83,6 +85,24 @@
             50% { transform: scale(1.02); opacity: 0.9; }
             100% { transform: scale(1); opacity: 1; }
         }
+
+        /* 响应式设计 - 移动端适配 */
+        @media (max-width: 768px) {
+            /* 移动端三栏改为单栏布局 */
+            div[style*="grid-template-columns: 1fr 1fr 1fr"] {
+                display: block !important;
+            }
+            
+            /* 移动端每个区域增加底部间距 */
+            div[style*="background: #fff3e7"] {
+                margin-bottom: 15px !important;
+            }
+            
+            /* 移动端图片区域高度调整 */
+            div[style*="height: 120px"] {
+                height: 80px !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -112,11 +132,57 @@
         
         <div id="main"></div>
         
-        <!-- 详细信息面板 -->
-        <div id="detail-panel" style="display: none; margin-top: 20px; padding: 20px; background: #FFFFF0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-            <div id="detail-content"></div>
-            <div id="detail-content"></div>
-            <button onclick="closeDetailPanel()" style="margin-top: 15px; padding: 8px 16px; background: #772424; color: white; border: none; border-radius: 4px; cursor: pointer;">关闭</button>
+        <!-- 详细信息面板 - 三栏布局设计 -->
+        <div id="detail-panel" style="display: none; margin-top: 20px; padding: 20px; background: #FFFFF0; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); border: 2px solid #8f3d38;">
+            <h2 style="color: #8f3d38; margin-bottom: 20px; text-shadow: 0 2px 4px rgba(143,61,56,0.3); font-size: 24px; text-align: center; border-bottom: 3px solid #8f3d38; padding-bottom: 10px;" id="detail-title">⭐ 制片厂详情</h2>
+            
+            <!-- 三栏布局容器 -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                <!-- 左栏：基本信息 -->
+                <div style="background: #fff3e7; border-radius: 10px; padding: 15px; border: 1px solid #e0d5c7; position: relative; overflow: hidden;">
+                    <h3 style="color: #8f3d38; margin: 0 0 15px 0; font-size: 16px; font-weight: bold; text-align: center; border-bottom: 2px solid #8f3d38; padding-bottom: 8px;">🎬 基本信息</h3>
+                                         <div id="studio-history-image" style="width: 100%; height: 120px; background: linear-gradient(135deg, #8f3d38 0%, #c58a99 50%, #e1788b 100%); border-radius: 8px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 4px 10px rgba(143,61,56,0.3);">
+                         <div style="position: absolute; top: 10px; left: 10px; width: 6px; height: 6px; background: rgba(255,255,255,0.3); border-radius: 50%;"></div>
+                         <div style="position: absolute; top: 30px; right: 15px; width: 4px; height: 4px; background: rgba(255,255,255,0.4); border-radius: 50%;"></div>
+                         <div style="position: absolute; bottom: 20px; left: 20px; width: 8px; height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px;"></div>
+                         <span style="position: relative; z-index: 1; font-weight: bold;">🎬 作品海报</span>
+                     </div>
+                    <div style="color: #555; line-height: 1.6; font-size: 14px;" id="basic-info">
+                        <!-- 基本信息内容将通过JavaScript动态填充 -->
+                    </div>
+                </div>
+
+                <!-- 中栏：详细介绍 -->
+                <div style="background: #fff3e7; border-radius: 10px; padding: 15px; border: 1px solid #e0d5c7; position: relative; overflow: hidden;">
+                    <h3 style="color: #8f3d38; margin: 0 0 15px 0; font-size: 16px; font-weight: bold; text-align: center; border-bottom: 2px solid #8f3d38; padding-bottom: 8px;">📖 详细介绍</h3>
+                                         <div id="studio-works-image" style="width: 100%; height: 120px; background: linear-gradient(45deg, #2c5aa0 0%, #4a90e2 50%, #7bb3f0 100%); border-radius: 8px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 4px 10px rgba(44,90,160,0.3);">
+                         <div style="position: absolute; top: 15px; left: 15px; width: 20px; height: 15px; background: rgba(255,255,255,0.2); border-radius: 2px;"></div>
+                         <div style="position: absolute; top: 40px; right: 20px; width: 15px; height: 12px; background: rgba(255,255,255,0.15); border-radius: 2px;"></div>
+                         <div style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); width: 25px; height: 18px; background: rgba(255,255,255,0.1); border-radius: 3px;"></div>
+                         <span style="position: relative; z-index: 1; font-weight: bold;">🏢 现状照片</span>
+                     </div>
+                    <div style="color: #555; line-height: 1.6; font-size: 14px;" id="works-info">
+                        <!-- 作品信息内容将通过JavaScript动态填充 -->
+                    </div>
+                </div>
+
+                <!-- 右栏：历史变迁 -->
+                <div style="background: #fff3e7; border-radius: 10px; padding: 15px; border: 1px solid #e0d5c7; position: relative; overflow: hidden;">
+                    <h3 style="color: #8f3d38; margin: 0 0 15px 0; font-size: 16px; font-weight: bold; text-align: center; border-bottom: 2px solid #8f3d38; padding-bottom: 8px;">📚 重大事记</h3>
+                                         <div id="studio-current-image" style="width: 100%; height: 120px; background: linear-gradient(135deg, #2d7d32 0%, #4caf50 50%, #81c784 100%); border-radius: 8px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 4px 10px rgba(45,125,50,0.3);">
+                         <div style="position: absolute; top: 20px; left: 20px; width: 12px; height: 8px; background: rgba(255,255,255,0.3); border-radius: 1px;"></div>
+                         <div style="position: absolute; top: 35px; left: 35px; width: 8px; height: 6px; background: rgba(255,255,255,0.4); border-radius: 1px;"></div>
+                         <div style="position: absolute; bottom: 25px; right: 20px; width: 16px; height: 10px; background: rgba(255,255,255,0.2); border-radius: 2px;"></div>
+                         <div style="position: absolute; bottom: 40px; right: 40px; width: 10px; height: 7px; background: rgba(255,255,255,0.25); border-radius: 1px;"></div>
+                         <span style="position: relative; z-index: 1; font-weight: bold;">📸 历史照片</span>
+                     </div>
+                    <div style="color: #555; line-height: 1.6; font-size: 14px;" id="detailed-info">
+                        <!-- 详细介绍内容将通过JavaScript动态填充 -->
+                    </div>
+                </div>
+            </div>
+            
+            <button onclick="closeDetailPanel()" style="margin-top: 20px; padding: 12px 25px; background: linear-gradient(135deg, #8f3d38, #a04843); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; transition: all 0.3s ease; display: block; margin-left: auto; margin-right: auto; box-shadow: 0 4px 15px rgba(143,61,56,0.3);">关闭详情</button>
         </div>
     </div>
 
@@ -133,7 +199,7 @@
             var chinaRoughLatitude = 36; // 中国大致纬度
             option = {
                 title: {
-                    text: '中国电影制片厂分布图',
+                    text: '中国电影制片厂旧址参观指南',
                     left: 'center',
                     top: 20,
                     textStyle: {
@@ -149,19 +215,19 @@
                     center: [105, 36],
                     label: {
                         show: true,
-                        textBorderColor: '#fff',
+                        textBorderColor: '#ffffff',
                         textBorderWidth: 2,
                         fontSize: 11,
                         color: '#333'
                     },
                     itemStyle: {
-                        areaColor: '#c58a99',
-                        borderColor: '#926a88',
+                        areaColor: '#dea947',
+                        borderColor: '#f2daaa',
                         borderWidth: 1
                     },
                     emphasis: {
                         itemStyle: {
-                            areaColor: '#e1788b'
+                            areaColor: '#7c3d2a'
                         },
                         label: {
                             color: 'black',
@@ -174,7 +240,7 @@
                     formatter: function(params) {
                         if (params.componentType === 'series' && params.data && params.data.type === 'studio') {
                             return `<div style="max-width: 300px;">
-                                <strong style="color: #8f3d38; font-size: 20px;">⭐ ${params.name}</strong><br/>
+                                <strong style="color: #000000; font-size: 20px;">⭐ ${params.name}</strong><br/>
                                 <span style="color: #000000; font-size: 12px;">坐标: [${params.value[0].toFixed(2)}, ${params.value[1].toFixed(2)}]</span><br/>
                                 <div style="color: #000000;margin-top: 8px; line-height: 1.4; font-size: 12px;">
                                     位置: ${params.data.position}
@@ -196,43 +262,204 @@
                         data: [
 
                             { 
-                                name: '长春电影制片厂', 
+                                name: '长春电影制片厂',
                                 value: [125.3150, 43.8050],
-                                position: '红旗街道红旗街1118号',
-                                work: '《白毛女》《上甘岭》《英雄儿女》',
+                                position: '长春市朝阳区红旗街道红旗街1118号',
+                                establishYear: '1945.10.1',
+                                work: '《白毛女》《上甘岭》《英雄儿女》《刘三姐》',
                                 type: 'studio',
-                                description: '长影是新中国第一家电影制片厂，创造了新中国电影史上的七个“第一”：第一部多集新闻纪录片《民主东北》；第一部木偶片《皇帝梦》；第一部动画片《瓮中捉鳖》；第一部短故事片《留下他打老蒋》；第一部科教片《预防鼠疫》；第一部长故事片《桥》；第一部译制片《普通一兵》。长影还创作了《白毛女》、《上甘岭》、《英雄儿女》、《刘三姐》、《董存瑞》等上千部经典影片，译制了来自50多个国家和地区的影片，被誉为“新中国电影的摇篮”和“中国电影的黄埔军校”。<br><br>2014年，本着“修旧如旧”的原则，在长影老厂区正面主楼改建成了长影旧址博物馆，并于同年正式对外开放。如今，长影旧址博物馆已成为国家4A级景区，是长春的热门文化景点和“网红打卡地”。游客可以在这里沉浸式体验电影历史，例如在洗印车间旧址观看沉浸式戏剧，或在第三摄影棚体验新技术带来的光影盛宴。',
-                                move: ''
+                                awards: '◉ 《人到中年》  1982年金鸡奖最佳故事片、百花奖最佳故事片<br>◉ 《开国大典》  1989年金鸡奖最佳故事片<br>◉ 《中华儿女》  第五届卡罗维发利国际电影节“自由斗争奖”<br>◉ 《甲午风云》  葡萄牙菲格拉达福兹国际电影节评委奖<br>◉ 《谭嗣同》  法国华语影片“雄狮奖”',
+                                description: '长影是新中国第一家电影制片厂，新中国三大电影基地之一，创造了新中国电影史上的七个“第一”：第一部多集新闻纪录片《民主东北》；第一部木偶片《皇帝梦》；第一部动画片《瓮中捉鳖》；第一部短故事片《留下他打老蒋》；第一部科教片《预防鼠疫》；第一部长故事片《桥》；第一部译制片《普通一兵》。长影还创作了《白毛女》、《上甘岭》、《英雄儿女》、《刘三姐》等上千部经典影片，译制了来自50多个国家和地区的影片，被誉为“新中国电影的摇篮”和“中国电影的黄埔军校”。<br><br>2014年，本着“修旧如旧”的原则，在长影老厂区正面主楼改建成了长影旧址博物馆，并于同年正式对外开放。如今，长影旧址博物馆已成为国家4A级景区，是长春的热门文化景点和“网红打卡地”。游客可以在这里沉浸式体验电影历史，例如在洗印车间旧址观看沉浸式戏剧，或在第三摄影棚体验新技术带来的光影盛宴。',
+                                move: '◉ 1945  日本投降后，中国共产党于1945年10月1日在原伪满时期日本建立的“株式会社满洲映画协会”所在地接收并成立“东北电影公司”<br>◉ ‌1946  国共内战局势紧张，东北电影公司于5月23日迁往黑龙江省兴山市（今鹤岗市），并于1946年10月1日正式更名为东北电影制片厂<br>◉ ‌1948  在1948年10月19日长春解放后，东影开始分批迁回长春原址<br>◉ 1955  1955年2月，东北电影制片厂正式更名为长春电影制片厂'
                             },
                             { 
                                 name: '西安电影制片厂', 
                                 value: [108.9500, 34.3300],
+                                position: '西安市西影路508号',
+                                establishYear: '1958.8.23',
+                                work: '《红高粱》《老井》《霸王别姬》《黑炮事件》',
                                 type: 'studio',
-                                description: '西安电影制片厂，简称"西影"，成立于1958年8月，是中国重要的电影制片基地之一。西影以拍摄农村题材、历史题材和儿童题材影片著称。代表作品有《人生》《老井》《红高粱》《大话西游》《霸王别姬》等经典影片，培养了众多著名导演和演员。'
+                                awards: '◉ 《红高粱》  第38届西柏林国际电影节金熊奖<br>◉ 《老井》  第二届日本东京国际电影节最佳故事片金麒麟大奖<br>◉ 《霸王别姬》  法国戛纳国际电影节金棕榈大奖',
+                                description: '西影是中国西北地区最早、规模最大的电影制片基地，也是新中国六大电影制片厂之一。20世纪八九十年代，是西影的高光时刻。以吴天明厂长为代表的西影人，开创了著名的“西部电影”艺术流派，拍摄了《人生》、《老井》、《红高粱》等一大批反映西部地域特质与人文魅力的经典影片。张艺谋的《红高粱》在1988年柏林国际电影节荣获金熊奖，成为首部获得这一奖项的亚洲电影。西影也被誉为“中国第五代导演的艺术摇篮”，除了张艺谋，陈凯歌、黄建新、何平等导演的核心作品也多与西影密切相关。<br><br>2016年，西影集团启动了对老厂区的提升改造，旨在打造电影圈子·西影电影产业集聚区。改造过程中坚持“无伤痕开发”和“生态保护”原则，不拆一座老建筑、不毁一棵老树，完整保留了具有浓郁苏式风格的老办公楼、123号摄影棚、洗印车间、置景车间等宝贵工业和文化遗产，让老厂区焕发出新的活力。',
+                                move: '◉ 1938  抗日战争期间延安根据地成立延安电影团<br>◉ 1958  1958年8月23日，西安电影制片厂正式成立<br>◉ ‌2000  组建西影股份有限公司，是中国首家国有资本控股、民营资本参股的股份制电影生产企业<br>◉ 2009  2009年5月27日，具有独立法人资格的西部电影集团有限公司正式成立<br>◉ 2011  2011年12月8日，西安电影制片厂有限公司成立'
                             },
                             { 
                                 name: '上海电影制片厂', 
-                                value: [121.438159,31.186874],
+                                value: [121.438429,31.186262],
+                                position: '上海市徐汇区漕溪北路595号',
+                                establishYear: '1949.11.16',
+                                work: '《庐山恋》《芙蓉镇》《城南旧事》《天云山传奇》',
                                 type: 'studio',
-                                description: '西安电影制片厂，简称"西影"，成立于1958年8月，是中国重要的电影制片基地之一。西影以拍摄农村题材、历史题材和儿童题材影片著称。代表作品有《人生》《老井》《红高粱》《大话西游》《霸王别姬》等经典影片，培养了众多著名导演和演员。'
+                                awards: '◉ 《红色娘子军》  第1届大众电影百花奖最佳故事片奖<br>◉ 《庐山恋》  第4届大众电影百花奖最佳故事片奖<br>◉ 《天云山传奇》  第1届中国电影金鸡奖最佳故事片奖<br>◉ 《城南旧事》  第3届中国电影金鸡奖最佳导演奖<br>◉ 《芙蓉镇》  第7届中国电影金鸡奖最佳故事片奖<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp第10届大众电影百花奖最佳故事片奖',
+                                description: '上影厂是新中国三大电影基地之一，被誉为新中国电影的“半壁江山”。上影拍摄了超过850部故事片、800多部电视剧，创造了中国电影史上的多项“第一”：新中国第一部彩色戏曲片《梁山伯与祝英台》；新中国第一部体育题材影片《女篮五号》；新中国第一部彩色宽银幕立体声故事片《老兵新传》；改革开放后第一部获得国际大奖的国产电影《城南旧事》；第一部应用数字特技技术制作的电影《紧急迫降》；中国第一部科幻故事片《珊瑚岛上的死光》；第一部获吉尼斯世界纪录的电影《庐山恋》。<br><br>上影厂原主要生产厂区位于漕溪北路595号，该地块的大部分建筑已进行拆迁改造。原址上建立了上海电影博物馆和上影集团大楼。博物馆于2013年开放，收藏展示了大量中国电影的重要历史物件，并设有互动体验装置。部分历史建筑得以保留和改造，例如：原5号摄影棚在改建过程中被要求按原样重建，作为电影博物馆的一部分。',
+                                move: '◉ 1949  1949年11月16日，上海电影制片厂成立<br>◉ 1950~1952  由上海长江电影制片厂、昆仑影业公司等8家私营电影企业联合组建为国营的上海联合电影制片厂<br>◉ 1953  1953年2月，上海电影制片厂与上海联合电影制片厂合并，仍沿用上海电影制片厂厂名<br>◉ 1957  上海电影制片厂改组为上海电影制片公司，下设江南、海燕、天马电影制片厂三个故事片厂，以及上海电影译制厂等专业制片单位<br>◉ 1958  1958年10月，上海市电影局成立，上海电影制片公司撤销<br>◉ 1966  海燕、天马两厂停止生产<br>◉ 1977  海燕、天马两厂正式合并，恢复上海电影制片厂<br>◉ 1966  1996年7月11日，以上海电影制片厂为母体，组建成立上海电影电视（集团）公司<br>◉ 2001  2001年8月，再次集合上海美术电影制片厂、上海电影译制厂、上海电影技术厂等单位，组建成立上海电影（集团）公司'
                             },
+                            { 
+                                name: '天山电影制片厂', 
+                                value: [87.621338,43.748649],
+                                position: '乌鲁木齐市十七户路1号',
+                                establishYear: '1959.1.1',
+                                work: '《阿娜尔罕》《向导》《不当演员的姑娘》',
+                                type: 'studio',
+                                awards: '◉ 《向导》  文化部优秀影片奖<br>◉ 《不当演员的姑娘》  文化部优秀影片荣誉奖<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp1985年伊斯坦布尔国际电影节优秀影片奖<br>◉ 《买买提外传》  中国电影金鸡奖特别奖<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp广播电影电视部优秀影片奖',
+                                description: '天山电影制片厂是中国新疆维吾尔自治区一家重要的电影制片厂，以其独特的民族风格和地域特色在中国电影界占有特殊地位。天山厂的影片深深扎根于新疆多民族的文化土壤，以展现新疆民族文化与地域风貌为核心，形成了浓郁的民族风格和地域风情。除了拍摄影片，天山厂还承担着大量的少数民族语电影译制工作，年均译制量曾高达40余部（维语、哈语等），让众多国内外影片能为新疆各族群众所欣赏，丰富了他们的文化生活，也促进了文化传播与民族团结。<br><br>2023年5月，新疆电影博物馆在天山电影制片厂厂区内开工建造。2024年7月9日，博物馆主体结构正式封顶。这座规划建筑面积约6000平方米的博物馆，将展示数字时代和胶片时代的电影制作流程，并引入电影文创、高科技体验等新业态，旨在成为一体式的城市文化新地标。',
+                                move: '◉ 1959  1959年1月1日，乌鲁木齐电影制片厂成立，同年3月1日更名为新疆电影制片厂<br>◉ 1962  因国家经济调整和自然灾害影响，厂子撤销建制，保留民族语译制生产，更名为新疆电影译制厂，这一时期主要专注于用维吾尔语和哈萨克语译制影片<br>◉ 1979  经国务院批准，恢复新疆电影制片厂建制，并于同年10月24日正式更名为天山电影制片厂<br>◉ 2002  出于保护和发展少数民族地区电影事业的考虑，天山厂由企业单位恢复为事业单位'
+                            },
+                            { 
+                                name: '中央电影摄影场', 
+                                value: [106.573528,29.540841],
+                                position: '重庆市南岸区玄坛庙黄家巷6号',
+                                establishYear: '1933.10',
+                                work: '《中华儿女》《农人之春》《青年中国》',
+                                type: 'studio',
+                                awards: '◉ 《农人之春》  布鲁塞尔农村电影竞赛会奖项',
+                                description: '中电是中国国民党官方于1933年10月在南京成立的电影制片机构，首任场长张冲借鉴欧洲经验扩建场地，建成中国首个有声电影摄制基地，直属于当时的国民党中央宣传委员会，被誉为战时的“东方好莱坞”。中电是中国电影史上一个重要的官方电影制片机构。它不仅在抗战时期通过电影宣传抗日、记录历史，其部分资产和人员也在后来成为了新中国电影事业的基础之一。<br><br>中电在重庆的旧址位于南岸区玄坛庙黄家巷6号。这里曾是富商黄锡滋的别墅，建筑为西式风格，有圆弧形长条窗和淡黄色涂料墙体，室内有仿西洋式的壁炉等。该旧址已入选重庆市第一批优秀历史建筑名录，是电影制作工艺和抗战历史的重要见证。目前，部分建筑可能已被拆除或翻修。',
+                                move: '◉ 1933  1933年10月，国民党中央宣传委员会在南京创建中央电影摄影场<br>◉ 1937  南京战争爆发后，迁往芜湖<br>◉ 1938  抗战全面爆发后，迁至重庆南岸玄坛庙黄家巷，并在此运作长达7年零9个月。当时的重庆成为了中国的文化中心，黄家巷也因此汇聚了大批优秀的电影人才，被誉为战时的“中国好莱坞”<br>◉ 1945  抗战胜利后，中电接收了敌产，在上海设立了一、二分厂，在北平设立了三分厂<br>◉ 1947 1947年4月，中电改组为中央电影企业股份有限公司<br>◉ 1949 北平的中电三厂和上海的中电一、二厂先后为北京、上海的军管会接管，为北京电影制片厂和上海电影制片厂的建厂准备了条件'
+                            },
+                            { 
+                                name: '中国电影制片厂', 
+                                value: [114.291731,30.611369],
+                                position: '武汉市江岸区惠济路',
+                                establishYear: '1938.4.1',
+                                work: '《八百壮士》《塞上风云》《保卫我们的土地》',
+                                type: 'studio',
+                                awards: '暂无明确记载',
+                                description: '中制前身为国民党南昌行营政训处下属的汉口摄影场，1938年4月1日正式改组成立，隶属于国民政府军事委员会政治部第三厅，由中国共产党人郭沫若、田汉等主持工作。抗日战争期间，该厂通过阳翰笙招募左翼电影人，摄制了《保卫我们的土地》。1938年8月袁牧之、吴印咸携电影器材离开中制赴延安，成为延安电影团创始成员。1943年后改组缩减产量，至1945年仅完成《还我故乡》等4部影片。<br><br>中国电影制片厂在1938年的旧址，位于今武汉市江岸区惠济路一带（原汉口杨森花园），这里曾是抗战初期一个重要的文化宣传阵地，但其各旧址并未得到明显的保护和开发为纪念地或博物馆。',
+                                move: '◉ 1938  1938年于武汉成立，隶属于国民政府军事委员会政治部第三厅；同年9月，因武汉抗战形势紧张迁往重庆观音岩纯阳洞<br>◉ 1946  迁至南京，隶属于国民党政府国防部<br>◉ 1948  1948年8月，国共内战接近尾声，随国民党迁往台湾'
+                            },
+                            { 
+                                name: '北京电影制片厂', 
+                                value: [116.359040,39.970697],
+                                position: '北京市海淀区北三环中路77号',
+                                establishYear: '1949.4.20',
+                                work: '《林家铺子》《骆驼祥子》《小花》《瞧这一家子》《祝福》',
+                                type: 'studio',
+                                awards: '◉ 《骆驼祥子》  1982年华表奖优秀故事片奖<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp1983年百花奖最佳故事片、最佳女演员<br>1983年金鸡奖最佳故事片、最佳女主角、最佳美术奖<br>◉ 《小花》  1979年文化部优秀影片奖<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp百花奖最佳故事片、最佳女演员<br>◉ 《祝福》  1957年卡罗维发利国际电影节特别奖',
+                                description: '北影厂是新中国三大电影基地之一，北影厂在漫长的创作生涯中，逐渐形成了自己独特的艺术风格——尤其擅长将文学名著改编成电影，作品充满了民族文化传统和“书卷气”。建厂至1985年，共拍摄故事片180部、舞台艺术片58部，代表作包括《祝福》《青春之歌》《骆驼祥子》等。<br><br>北影厂位于北三环中路77号的主要生产部门后来陆续迁往位于怀柔的国家中影数字制作基地。原北三环厂区则面临拆迁与开发的争议，经过多方努力，厂区内的主楼、东楼和西楼三栋建筑因其历史价值被列入《北京市优秀近现代建筑保护名录》得以保留。2021年，修缮完工后的“八一楼”主楼，被规划为集结电影创作、交流、传承等功能的电影文化新地标。',
+                                move: '◉ 1949  1949年4月，中国共产党接收原国民党“中电三厂”，成立北平电影制片厂（厂址位于西城区新街口）。同年10月，更名为北京电影制片厂，田方任首任厂长<br>◉ 1956  新闻纪录片部门分出，成立中央新闻纪录电影制片厂，北影转为故事片专业厂。为了适应拍摄长故事片的需求，北影厂在安定门外小关建设了新厂区。这个新厂由苏联专家协助规划设计，1959年建成时是当时国内规模最大的电影制片厂，建筑面积约5.5万平方米<br>◉ 1973  由于小关厂区位置偏僻、地势低洼等原因，经批准，北影厂搬迁至北三环中路77号<br>◉ 1999  整合进入中国电影集团公司，厂标用于中影出品影片'
+                            },
+                            { 
+                                name: '峨眉电影制片厂', 
+                                value: [104.023340,30.671174],
+                                position: '成都市青羊区府南街道清江东路360号',
+                                establishYear: '1959.7.1',
+                                work: '《焦裕禄》《鸦片战争》《嘉陵江边》《顽主》',
+                                type: 'studio',
+                                awards: '◉ 《红衣少女》  第5届中国电影金鸡奖最佳故事片奖<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp第8届大众电影百花奖最佳故事片奖<br>◉ 《焦裕禄》  第11届中国电影金鸡奖最佳故事片奖<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp第14届大众电影百花奖最佳故事片奖<br>◉ 《鸦片战争》  第17届中国电影金鸡奖最佳故事片奖、最佳摄影奖<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp第21届大众电影百花奖最佳故事片奖',
+                                description: '峨影是中国西南地区重要的电影制片基地，也是新中国较早的电影制片厂之一。峨眉电影制片厂作为中国西南地区电影文化的重要标志，其发展历程是中国电影事业发展的一个缩影。从早期偏远的厂区到如今的文化地标，峨影不仅为观众带来了无数光影感动，也为中国电影培养了大量人才。<br><br>当年的峨影厂原址上，如今打造了全国第一家园林庭院式影城——峨影1958电影城。这里最大程度地保留了峨影厂的历史风貌，原办公大楼、制片车间、仓库、锅炉房、摄影棚和录音棚等外貌全部原样保留，成为了一个记录时代的光影记忆空间。2019年7月，峨眉电影制片厂厂房还作为具有重要文化价值和内涵的历史建筑，入围了成都市第十二批历史建筑保护名录。',
+                                move: '◉ 1958  1958年，为发展西南地区的电影事业，峨眉电影制片厂开始筹建<br>◉ 1959  1959年7月1日，峨眉电影制片厂在成都西郊罗家碾（现成都市清江东路一带）正式挂牌成立，由郭沫若先生题写厂名并题诗<br>◉ 1962  因国家经济调整，峨影厂暂停建设，主要保留创作干部和护厂任务<br>◉ 1976  改革开放后，峨影厂迎来创作高峰，推出了《顽主》、《焦裕禄》、《红衣少女》等一大批思想深刻、艺术性强的优秀影片，在国际国内屡获大奖，形成了独特的“峨影风格”<br>◉ 2003  峨眉电影集团正式成立，成为产业链条完整的国家电影集团之一'
+                            },
+                            { 
+                                name: '八一电影制片厂', 
+                                value: [116.306353,39.887453],
+                                position: '北京市丰台区六里桥街道六里桥北里甲1号',
+                                establishYear: '1952.8.1',
+                                work: '《地道战》《地雷战》《永不消逝的电波》《闪闪的红星》',
+                                type: 'studio',
+                                awards: '◉ 《惊天动地》  第30届大众电影百花奖优秀故事片奖、最佳女配角<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp俄罗斯第八届奥泽洛夫国际军事电影节奖项<br>◉ 《为了生命》  俄罗斯第八届奥泽洛夫国际军事电影节奖项',
+                                description: '八一厂的前身是八路军的“延安电影团”，是一家具有摄制故事片、战地纪实片、军事教育片、新闻纪录片、国防科研片、电视剧等多片种生产能力的综合性电影制片厂。这不仅丰富了电影创作内容，也为部队训练、教学和向大众普及军事科学知识提供了支持。八一厂作为中国唯一的军队电影制片厂，自1952年成立以来，创作了大量优秀的军事题材影视作品，为亿万观众留下了深刻印象，也为中国电影史留下了浓墨重彩的一笔。<br><br>八一厂在2018年的改革中与原总政歌舞团、总政歌剧团、总政话剧团、总政军乐团合并，组建了“解放军文化艺术中心”，其对内名称变更为“解放军文化艺术中心电影电视制作部”，对外仍保留“八一电影制片厂”的称号。此次改革是军队整体改革的一部分。',
+                                move: '◉ 1952  1952年8月1日建立解放军电影制片厂<br>◉ 1956  更名为八一电影制片厂<br>◉ 2018  2018年2月2日，八一电影制片厂与原总政歌舞团、总政歌剧团、总政话剧团、总政军乐团合并为解放军文化艺术中心，八一电影制片厂对内更名为“解放军文化艺术中心电影电视制作部”'
+                            },
+                            { 
+                                name: '潇湘电影制片厂', 
+                                value: [113.026645,28.156991],
+                                position: '长沙市劳动东路165号',
+                                establishYear: '1958.6',
+                                work: '《那山那人那狗》《国歌》《新龙门客栈》',
+                                type: 'studio',
+                                awards: '◉ 《那山那人那狗》  1999年金鸡奖最佳影片奖、最佳演员奖<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp加拿大蒙特利尔国际电影节最受观众欢迎影片奖<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp日本每日电影大奖最佳外语片奖<br>◉ 《候补队员》  1984年第4届中国电影金鸡奖特别奖<br>◉ 《国歌》  第五届中国电影华表奖优秀故事片奖',
+                                description: '潇影的前身是湖南电影制片厂，始建于1958年6月。1980年，正式更名为潇湘电影制片厂。潇影厂以拍摄故事片为主，其作品深深植根于湖湘文化，注重将主流题材与地方特色相结合。截至2006年底，潇影厂共生产电影故事片120部，电视剧140部620余集，以及大量的新闻、纪录和科教片。如今的潇湘电影集团有限公司是中国七大国有电影集团之一，已发展成为一家综合性电影企业。其业务范围远远超出了传统的电影制片，涵盖了影视制片生产、营销发行放映、院线影院经营、电视媒介传播、影视器材租赁、影视艺术培训、电子音像出版、文化地产开发等多元产业。<br><br>2009年，随着文化体制改革的推进，潇影厂转企改制为潇湘电影集团有限公司，目前的注册地址是长沙市雨花区韶山中路1号潇影大厦2311室。',
+                                move: '◉ 1958  湖南省决定新建电影制片厂，最初命名为湖南电影制片厂<br>◉ 1961  由于国家经济调整，制片厂停办<br>◉ 1977  改革开放后，湖南电影制片厂再次成立<br>◉ 1980  正式更名为潇湘电影制片厂，并开始从主要拍摄新闻纪录片和科教片转向摄制故事片<br>◉ 2003  2003年6月，以潇湘电影制片厂为主体组建了潇湘电影集团，并被列为全国七大电影集团之一<br>◉ 2009  作为文化体制改革的一部分，潇影由事业单位转制为国有企业，成立潇湘电影集团有限公司'
+                            },
+                            { 
+                                name: '珠江电影制片厂', 
+                                value: [113.321203,23.094549],
+                                position: '广州市海珠区赤岗街道新港中路354号',
+                                establishYear: '1958.5.1',
+                                work: '《南海潮》《大浪淘沙》《七十二家房客》《雅马哈鱼档》',
+                                type: 'studio',
+                                awards: '◉ 《南海潮》  1964年第3届百花奖最佳故事片最受观众欢迎影片奖<br>◉ 《乡情》  第5届百花奖最佳故事片奖<br>◉ 《乡音》  第4届金鸡奖最佳故事片奖<br>◉ 《孙中山》  第7届金鸡奖最佳故事片、最佳导演<br>◉ 《安居》  第18届金鸡奖最佳故事片奖<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp第4届华表奖优秀故事片奖',
+                                description: '珠江电影制片厂是新中国第一批电影制片厂之一，也是华南地区历史最早、规模最大、实力最强的综合性电影企业，被誉为“岭南之星”。珠影厂以拍摄故事片为主，其作品深深植根于岭南文化，注重反映南方人民的生活和地域特色，形成了独特的“岭南风格”。在改革开放初期，珠影厂推出了一系列反映南方都市生活、展现市场经济条件下人们精神风貌的“南国都市电影”。截至2005年底，珠影共生产电影故事片200多部，电影短片500多部1300多本，电视剧80多部400多集。<br><br>当年的珠影厂原址，如今也注入了新的活力。厂区部分区域进行了改造，建成了珠影·星光城，成为一个集文化、娱乐、美食于一体的潮人文化聚集地和美食打卡地。同时，这里还保留了珠江电影展览长廊，展示了老式的电影设备和经典故事画面，供人们回顾历史。原有的一号摄影大棚、行政大楼（苏联式建筑风格）等也作为历史的见证被保留下来。',
+                                move: '◉ 1958  1958年5月1日，建立广州电影制片厂<br>◉ 1961  更名为珠江电影制片厂<br>◉ 1985  转制为珠江电影制片公司<br>◉ 2006  转制为珠江电影制片有限公司<br>◉ 2008  与其他公司共同组建了珠江电影集团有限公司'
+                            },
+                            { 
+                                name: '广西电影制片厂', 
+                                value: [108.310153,22.844484],
+                                position: '南宁市西乡塘区友爱北路26号',
+                                establishYear: '1958',
+                                work: '《一个和八个》《黄土地》《一个都不能少》《我的父亲母亲》',
+                                type: 'studio',
+                                awards: '◉ 《血战台儿庄》  第10届大众电影百花奖最佳故事片奖<br>◉ 《一个都不能少》  威尼斯国际电影节金狮奖<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp金鸡奖最佳导演<br>◉ 《周恩来》  中国电影金鸡奖特别奖<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp大众电影百花奖最佳故事片奖<br>◉ 《黄土地》  第5届中国电影金鸡奖最佳摄影奖',
+                                description: '广影是中国电影史上一个颇具传奇色彩的地方，虽然地处西南边陲，却在上世纪八九十年代创造了令人瞩目的辉煌成就，被誉为“第五代导演的摇篮”，推出了多部具有探索精神和深远影响力的电影作品。<br><br>广西电影制片厂的老厂址位于广西南宁市西乡塘区友爱北路26号。这里曾是广西电影制片厂多年来的主要生产和创作基地，承载了其辉煌的历史和众多电影人的记忆。如今它早已不再是电影生产的核心区域，但老厂区的部分建筑，例如宿舍区，据悉至今仍在沿用。',
+                                move: '◉ 1958  筹建并建立广西电影制片厂<br>◉ 1960  因国家经济调整，仅保留了1个新闻纪录片摄制组<br>◉ 1970  在原有基础上筹建广西新闻纪录电影制片厂<br>◉ 1974  改名为广西电影译制厂，开始用本地区少数民族语言译制故事片<br>◉ 1980  正式使用广西电影制片厂厂名<br>◉ 2009  完成改制，成立广西电影集团有限公司'
+                            },
+                            { 
+                                name: '山西电影制片厂', 
+                                value: [112.548458,37.857954],
+                                position: '太原市迎泽区迎泽大街318号',
+                                establishYear: '1958.8',
+                                work: '《暖春》《暖情》《暖秋》',
+                                type: 'studio',
+                                awards: '◉ 《暖春》  第9届中国电影华表奖优秀故事片奖<br>◉ 《明天我爱你》  第9届中国电影华表奖优秀故事片奖<br>◉ 《走过严冬》  第9届中国电影华表奖优秀故事片奖<br>◉ 《声震长空》  第9届中国电影华表奖优秀故事片奖<br>◉ 《生死托付》  2007年中国电影华表奖优秀故事片奖<br>◉ 《剃头匠》  第5届印度浦那国际电影节最佳故事片奖',
+                                description: '山西厂是全国30多个国办电影厂中规模最小的厂之一，但被赞为“小厂办大事”，是“全国省办厂的一面旗帜”。山西厂的作品大多聚焦农村生活、家庭亲情和社会现实，风格质朴，情感真挚。它凭借对现实主义题材的深耕，尤其是农村和家庭情感故事的细腻刻画，创作出了一系列深受观众喜爱、获奖无数的作品，在中国电影界赢得了尊重。<br><br>目前山西厂已注销事业单位法人登记，这意味着它作为“事业单位”的身份已经成为历史。',
+                                move: '◉ 1958  建立山西电影制片厂，但是到1998年底的40年间，由于各种原因，山西厂仅拍摄了12部故事片和部分电影纪录片；直到1999年，山西厂迎来了发展的转折点，进入了空前的黄金时期<br>◉ 2009  完成转企改制，更名为山西电影制片厂有限公司<br>◉ 2011  整合为山西影视（集团）有限责任公司的全资子公司，成为独立法人单位'
+                            },
+                            { 
+                                name: '山东电影制片厂', 
+                                value: [117.048387,36.655296],
+                                position: '济南市历下区文化东路79号',
+                                establishYear: '1958',
+                                work: '《孔繁森》《首席执行官》《回西藏》',
+                                type: 'studio',
+                                awards: '◉ 《沂蒙六姐妹》  第13届中国电影华表奖优秀故事片奖、优秀编剧奖<br>◉ 《出山》  第49届休斯敦国际电影节最高奖雷米大奖',
+                                description: '山东电影制片厂是山东省一家有着六十多年历史的电影制片机构，虽然不像一些大型电影集团那样产量巨大，但其作品注重现实主义题材和深刻的情感表达，并且在一些重要的电影节和奖项中获得了认可和提名，尤其是《回西藏》在第36届中国电影金鸡奖上获得6项提名，展现了其一定的制作水准和艺术追求。<br><br>山东电影制片厂从1958年走来，经历了创建、停产、重组和转企改制的曲折历程。虽然面临过市场化的挑战，但通过转制为公司，它仍在持续运作和探索之中。',
+                                move: '◉ 1958  建立山东电影制片厂，隶属于山东省文化厅<br>◉ 1962  由于国家经济调整，制片厂关停<br>◉ 1982  1982年12月，山东电影制片厂重新组建<br>◉ 1986  1986年10月，山东电影制片厂、山东电影洗印厂等单位重组成立了山东电影电视剧制作中心<br>◉ 2019  2019年8月19日，山东电影制片厂有限公司正式成立，标志着其从事业单位转变为有限责任公司'
+                            },
+                            { 
+                                name: '河南电影制片厂', 
+                                value: [113.691510,34.775301],
+                                position: '郑州市黄河路117号',
+                                establishYear: '1958',
+                                work: '《建党伟业》《忠烈杨家将》',
+                                type: 'studio',
+                                awards: '◉ 《建党伟业》  第14届中国电影华表奖优秀故事影片奖<br>◉ 《清风亭》  第14届中国电影华表奖优秀戏曲影片奖<br>◉ 《中原女警》  第14届中国电影华表奖优秀数字影片奖<br>◉ 《程婴救孤》  第15届美国洛杉矶国际家庭电影节最佳外语戏曲片奖<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp中国电影华表奖优秀影片奖（戏曲影片）',
+                                description: '河南电影制片厂是河南省重要的影视制作机构，也是中国电影事业发展中的一员。自1958年建厂以来，从一个以拍摄科教片为主的地方制片厂，发展成为中国电影产业中具有一定影响力的集团企业。它生产的诸多作品，尤其是戏曲电影和现实题材影片，赢得了不少荣誉，也承载了一代人的记忆。转制为企业后，它仍在影视创作的道路上探索和努力。',
+                                move: '◉ 1958  筹建河南科教电影制片厂，最初以拍摄科教片为主<br>◉ 1979  正式建立河南电影制片厂<br>◉ 1992  明确为事业单位，实行企业化管理，同年底正式转为企业<br>◉ 1996  划属河南省广播电影电视局领导<br>◉ 2006  根据文化体制改革精神，在河南电影制片厂的基础上，联合黄河音像出版社等多家单位，组建了河南电影电视制作集团有限公司，此举旨在整合资源，增强市场竞争力'
+                            },
+                            { 
+                                name: '上海美术电影制片厂', 
+                                value: [121.433314,31.226222],
+                                position: '上海市静安区万航渡路618号',
+                                establishYear: '1957.4',
+                                work: '《大闹天宫》《哪吒闹海》《天书奇谭》',
+                                type: 'studio',
+                                awards: '◉ 《猴子钓鱼》  加拿大第四届渥太华国际动画片电影节儿童片一等奖<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp保加利亚第四届卡布洛澳国际喜剧电影节最佳短片奖<br>◉ 《鹬蚌相争》  柏林国际电影节短片银熊奖<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp南斯拉夫萨格勒布国际动画电影节特别奖<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp加拿大多伦多国际动画电影节特别奖<br>◉ 《山水情》  莫斯科国际青少年电影节勇与美奖',
+                                description: '上美影是中国动画史上的一座丰碑。上美影的辉煌在于其开创了多种独具中国特色的动画形式：水墨动画：1960年中国第一部水墨动画片《小蝌蚪找妈妈》，将典雅的中国水墨画与动画电影相结合，形成了最具中国特色的艺术风格；剪纸动画：1958年，美术工作者吸取中国民间皮影戏和剪纸艺术的特点，拍出第一部彩色剪纸片《猪八戒吃西瓜》。木偶动画：创作了如《阿凡提的故事》等经典木偶片；折纸动画：1960年拍出第一部折纸片《聪明的鸭子》；这些探索使得“美术片”成为中国电影独有的称谓，并形成了享誉国际的动画“中国学派”。<br><br>根据“上海美影”微信公众号发布的信息，未来的万航渡路618号将被打造成“618国际动画艺术社区”。其目标是建设成为产学研一体的美术片研发与制作基地，并通过博览、互动、体验等形式，多维度展现美影文化IP，激发IP生命力，形成良性生态链。',
+                                move: '◉ 1949  长春东北电影制片厂成立美术片组<br>◉ 1950  长春东北电影制片厂美术片组在特伟、靳夕等前辈动画艺术家的带领下南迁至上海，成为上海电影制片厂的一部分<br>◉ 1957  1957年4月，上海美术电影制片厂正式建厂，特伟任厂长<br>◉ 1966  停止生产<br>◉ 1976  恢复生产<br>◉ 1995  国家取消了实行四十多年的动画片计划经济指标政策，中影公司不再收购动画片，上美影需自负盈亏'
+                            }
                         ],
 
                         itemStyle: {
                             color: function(params) {
-                                return (params.data && params.data.type === 'studio') ? '#8f3d38' : '#ff6b35';
+                                return (params.data && params.data.type === 'studio') ? '#ff0048' : '#ff6b35';
                             },
                             borderColor: function(params) {
-                                return (params.data && params.data.type === 'studio') ? '#fff' : '#fff';
+                                return (params.data && params.data.type === 'studio') ? '#ffffff' : '#ffffff';
                             },
                             borderWidth: function(params) {
                                 return (params.data && params.data.type === 'studio') ? 3 : 2;
                             },
                             shadowColor: function(params) {
-                                return (params.data && params.data.type === 'studio') ? '#ff1744' : 'transparent';
+                                return (params.data && params.data.type === 'studio') ? '#ffffff' : '#ffffff';
                             },
                             shadowBlur: function(params) {
                                 return (params.data && params.data.type === 'studio') ? 10 : 0;
+                            },
+                            textborderColor: function(params) {
+                                return (params.data && params.data.type === 'studio') ? '#ffffff' : '#ffffff';
+                            },
+                            textborderWidth: function(params) {
+                                return (params.data && params.data.type === 'studio') ? 6 : 2;
                             }
                         },
                         symbol: function(params) {
@@ -245,39 +472,49 @@
                             show: true,
                             position: 'right',
                             fontSize: function(params) {
-                                return (params.data && params.data.type === 'studio') ? 13 : 10;
+                                return (params.data && params.data.type === 'studio') ? 15 : 15;
                             },
                             color: function(params) {
-                                return (params.data && params.data.type === 'studio') ? '#ff1744' : '#333';
+                                return (params.data && params.data.type === 'studio') ? '#ff0048' : '#000000';
                             },
+                            borderColor: function(params) {
+                                return (params.data && params.data.type === 'studio') ? '#ffffff' : '#ffffff';
+                            },
+
                             fontWeight: function(params) {
-                                return (params.data && params.data.type === 'studio') ? 'bold' : 'normal';
+                                return (params.data && params.data.type === 'studio') ? 'bold' : 'bold';
                             },
                             formatter: function(params) {
-                                return (params.data && params.data.type === 'studio') ? '⭐ ' + params.name : params.name;
+                                return (params.data && params.data.type === 'studio') ? '' + params.name : params.name;
                             },
-                            textBorderColor: function(params) {
-                                return (params.data && params.data.type === 'studio') ? '#fff' : 'transparent';
+                            textborderColor: function(params) {
+                                return (params.data && params.data.type === 'studio') ? '#ffffff' : '#ffffff';
                             },
-                            textBorderWidth: function(params) {
-                                return (params.data && params.data.type === 'studio') ? 2 : 0;
+                            textborderWidth: function(params) {
+                                return (params.data && params.data.type === 'studio') ? 6 : 2;
                             }
                         },
                         emphasis: {
                             itemStyle: {
                                 color: function(params) {
-                                    return (params.data && params.data.type === 'studio') ? '#ff4569' : '#ff8a65';
+                                    return (params.data && params.data.type === 'studio') ? '#ffffff' : '#ff0048';
                                 },
                                 borderColor: '#fff',
                                 borderWidth: function(params) {
                                     return (params.data && params.data.type === 'studio') ? 4 : 3;
                                 },
                                 shadowColor: function(params) {
-                                    return (params.data && params.data.type === 'studio') ? '#ff1744' : '#ff6b35';
+                                    return (params.data && params.data.type === 'studio') ? '#ff0048' : '#ff0048';
                                 },
                                 shadowBlur: function(params) {
                                     return (params.data && params.data.type === 'studio') ? 15 : 5;
-                                }
+                                },
+                            textborderColor: function(params) {
+                                return (params.data && params.data.type === 'studio') ? '#ffffff' : '#ffffff';
+                            },
+                            textborderWidth: function(params) {
+                                return (params.data && params.data.type === 'studio') ? 6 : 2;
+                            }
                             },
                             symbolSize: function(params) {
                                 return (params.data && params.data.type === 'studio') ? 30 : 12;
@@ -296,41 +533,140 @@
             });
         }
         
-        // 显示详细信息面板
+        // 显示详细信息面板 - 三栏布局数据填充
         function showDetailPanel(studioData) {
-            const detailContent = document.getElementById('detail-content');
+            // 获取各个内容区域的元素
+            const detailTitle = document.getElementById('detail-title');
+            const basicInfo = document.getElementById('basic-info');
+            const worksInfo = document.getElementById('works-info');
+            const detailedInfo = document.getElementById('detailed-info');
             const detailPanel = document.getElementById('detail-panel');
             
-            detailContent.innerHTML = `
-                <h2 style="color: #000001; margin-bottom: 15px; text-shadow: 0 2px 4px rgba(0,23,68,0.3);">
-                    ⭐ ${studioData.name}
-                </h2>
-                <div style="background: #fff3e7; padding: 15px; border-radius: 5px; line-height: 1.6;">
-                    <p style="margin-bottom: 10px;">
-                        <strong>📍 地理位置：</strong>
-                        ${studioData.position}
-                    </p>
-                    <p style="margin-bottom: 10px;">
-                        <strong>🎦 作品：</strong>
-                        ${studioData.work}
-                    </p>
-                    <p style="margin-bottom: 15px;">
-                        <strong>📖 详细信息：</strong>
-                    </p>
-                    <p style="color: #555;">
+            // 获取图片显示区域
+            const historyImage = document.getElementById('studio-history-image');
+            const worksImage = document.getElementById('studio-works-image');
+            const currentImage = document.getElementById('studio-current-image');
+            
+            // 更新标题
+            detailTitle.innerHTML = `${studioData.name}`;
+            
+            // 根据制片厂名称设置对应图片
+            updateStudioImages(studioData.name, historyImage, worksImage, currentImage);
+            
+            // 填充基本信息栏（左栏）
+            basicInfo.innerHTML = `
+                <p style="margin-bottom: 8px;">
+                    <strong>📍 地理位置：</strong><br/>
+                    ${studioData.position}
+                </p>
+                <p style="margin-bottom: 8px;">
+                    <strong>📅 成立时间：</strong><br/>
+                    ${studioData.establishYear}
+                </p>
+                <p style="margin-bottom: 10px;">
+                    <strong>🎬 代表作品：</strong><br/>
+                    ${studioData.work}
+                </p>
+                <p style="margin-bottom: 10px;">
+                    <strong>🏆 获奖情况：</strong><br/>
+                    ${studioData.awards}
+                </p>
+            `;
+            
+            // 填充作品信息栏（中栏）
+            worksInfo.innerHTML = `
+                <div style="margin-bottom: 10px;">
+                    <strong>📖 详细介绍：</strong><br/>
+                    <div style="margin-top: 5px; text-align: justify;">
                         ${studioData.description}
-                    </p>
-                    <p style="margin-bottom: 15px;">
-                        <strong>🗺 搬迁史：</strong>
-                    </p>
-                    <p style="color: #555;">
-                        ${studioData.move}
-                    </p>
+                    </div>
                 </div>
             `;
             
+            // 填充详细介绍栏（右栏）
+            detailedInfo.innerHTML = `
+                <div style="margin-top: 10px;">
+                    <strong>🗺️ 发展历程：</strong><br/>
+                    <div style="margin-top: 5px; text-align: justify;">
+                        ${studioData.move}
+                    </div>
+                </div>
+            `;
+            
+            // 显示面板并滚动到视图
             detailPanel.style.display = 'block';
             detailPanel.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 根据制片厂名称更新图片显示
+        function updateStudioImages(studioName, historyImageDiv, worksImageDiv, currentImageDiv) {
+            // 重置所有图片区域样式
+            resetImageDiv(historyImageDiv, '🎬 作品海报');
+            resetImageDiv(worksImageDiv, '🏢 现状照片');  
+            resetImageDiv(currentImageDiv, '📸 历史照片');
+            
+            // 根据制片厂名称设置对应图片
+            if (studioName === '西安电影制片厂') {
+                // 设置西安电影制片厂的图片（请确保图片文件在正确的路径下）
+                setImageBackground(historyImageDiv, './img/1.jpg', '📸 西影历史');
+                setImageBackground(worksImageDiv, './img/2.jpg', '🎬 经典作品');
+                setImageBackground(currentImageDiv, './img/3.jpg', '🏢 现在面貌');
+            }
+            // 可以继续添加其他制片厂的图片设置
+            // else if (studioName === '长春电影制片厂') {
+            //     setImageBackground(historyImageDiv, 'changchun1.jpg', '📸 长影历史');
+            //     setImageBackground(worksImageDiv, 'changchun2.jpg', '🎬 经典作品');
+            //     setImageBackground(currentImageDiv, 'changchun3.jpg', '🏢 现在面貌');
+            // }
+        }
+
+        // 重置图片区域为默认渐变样式
+        function resetImageDiv(imageDiv, text) {
+            const gradients = [
+                'linear-gradient(135deg, #8f3d38 0%, #c58a99 50%, #e1788b 100%)',
+                'linear-gradient(45deg, #2c5aa0 0%, #4a90e2 50%, #7bb3f0 100%)',
+                'linear-gradient(135deg, #2d7d32 0%, #4caf50 50%, #81c784 100%)'
+            ];
+            
+            const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
+            imageDiv.style.background = randomGradient;
+            imageDiv.innerHTML = `
+                <div style="position: absolute; top: 10px; left: 10px; width: 6px; height: 6px; background: rgba(255,255,255,0.3); border-radius: 50%;"></div>
+                <div style="position: absolute; top: 30px; right: 15px; width: 4px; height: 4px; background: rgba(255,255,255,0.4); border-radius: 50%;"></div>
+                <div style="position: absolute; bottom: 20px; left: 20px; width: 8px; height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px;"></div>
+                <span style="position: relative; z-index: 1; font-weight: bold; color: white;">${text}</span>
+            `;
+        }
+
+        // 设置真实图片背景
+        function setImageBackground(imageDiv, imagePath, text) {
+            // 创建一个新的图片对象来测试图片是否能加载
+            const img = new Image();
+            
+            img.onload = function() {
+                // 图片加载成功，设置背景
+                imageDiv.style.background = `url('${imagePath}') center/cover`;
+                imageDiv.style.position = 'relative';
+                imageDiv.innerHTML = `
+                    <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); border-radius: 8px;"></div>
+                    <span style="position: relative; z-index: 1; font-weight: bold; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">${text}</span>
+                `;
+                console.log(`✅ 图片加载成功: ${imagePath}`);
+            };
+            
+            img.onerror = function() {
+                // 图片加载失败，显示错误信息并保持默认样式
+                console.error(`❌ 图片加载失败: ${imagePath}`);
+                imageDiv.innerHTML = `
+                    <div style="position: absolute; top: 10px; left: 10px; width: 6px; height: 6px; background: rgba(255,255,255,0.3); border-radius: 50%;"></div>
+                    <div style="position: absolute; top: 30px; right: 15px; width: 4px; height: 4px; background: rgba(255,255,255,0.4); border-radius: 50%;"></div>
+                    <div style="position: absolute; bottom: 20px; left: 20px; width: 8px; height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px;"></div>
+                    <span style="position: relative; z-index: 1; font-weight: bold; color: white;">${text}<br/><small style="font-size: 10px;">图片未找到</small></span>
+                `;
+            };
+            
+            // 开始加载图片
+            img.src = imagePath;
         }
         
         // 关闭详细信息面板
